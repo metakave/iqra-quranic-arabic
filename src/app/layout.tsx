@@ -18,11 +18,12 @@ const amiriQuran = Amiri_Quran({
 });
 
 export const metadata: Metadata = {
-  title: "ইক্বরা কোরানের আরবী | বাংলাভাষীদের জন্য ধাপে ধাপে কুরআনিক আরবি",
+  title: "ইক্বরা কোরানের আরবী - IQRA Quranic Arabic | বাংলাভাষীদের জন্য ধাপে ধাপে কুরআনিক আরবি",
   description:
     "ছোট ছোট পাঠ, বাস্তব আয়াত এবং বৈজ্ঞানিক অনুশীলনের মাধ্যমে কুরআনের আরবি সরাসরি বুঝে পড়ার স্ব-শিক্ষণ প্ল্যাটফর্ম।",
   keywords: [
     "ইক্বরা কোরানের আরবী",
+    "IQRA Quranic Arabic",
     "কুরআনিক আরবি",
     "Quranic Arabic Bengali",
     "কুরআন শিক্ষা",
@@ -46,11 +47,18 @@ export default function RootLayout({
         <main className="flex-1 flex flex-col">{children}</main>
         <footer className="border-t border-stone-200 bg-stone-100/70 py-8 px-4 text-center text-sm text-stone-600">
           <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
               <span className="h-7 w-7 rounded-lg bg-emerald-700 text-white flex items-center justify-center font-bold text-base">
                 ق
               </span>
-              <span className="font-bold text-stone-800 text-base">ইক্বরা কোরানের আরবী</span>
+              <div className="text-left">
+                <span className="font-bold text-stone-800 text-base block leading-tight">
+                  ইক্বরা কোরানের আরবী
+                </span>
+                <span className="text-[10px] text-stone-500 font-sans tracking-wider uppercase block">
+                  IQRA Quranic Arabic
+                </span>
+              </div>
             </div>
             <p className="text-xs sm:text-sm text-stone-500">
               ১২০টি পাঠের স্ব-শিক্ষণ পাঠ্যক্রম • পদ্ধতি: দেখুন → ভাঙুন → জুড়ুন → বলুন → মিলিয়ে নিন

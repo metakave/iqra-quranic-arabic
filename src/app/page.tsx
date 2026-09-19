@@ -33,9 +33,14 @@ export default function HomePage() {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-100 leading-tight">
-            ইক্বরা কোরানের আরবী
-          </h1>
+          <div className="space-y-2">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-100 leading-tight">
+              ইক্বরা কোরানের আরবী
+            </h1>
+            <p className="text-sm sm:text-base font-sans font-semibold tracking-widest text-emerald-400 uppercase">
+              IQRA Quranic Arabic
+            </p>
+          </div>
 
           <p className="text-lg sm:text-2xl text-emerald-300 font-medium max-w-2xl mx-auto leading-relaxed">
             কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবি সরাসরি উপলব্ধি করার আধুনিক পদ্ধতি

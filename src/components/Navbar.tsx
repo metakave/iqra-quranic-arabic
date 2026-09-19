@@ -37,8 +37,8 @@ export default function Navbar() {
             <span className="font-bold text-lg sm:text-xl text-stone-100 tracking-tight block leading-tight">
               ইক্বরা কোরানের আরবী
             </span>
-            <span className="text-[10px] text-emerald-400 font-sans tracking-wide uppercase hidden sm:block">
-              Quranic Arabic in Bengali
+            <span className="text-[10px] text-emerald-400 font-sans tracking-wider uppercase hidden sm:block">
+              IQRA Quranic Arabic
             </span>
           </div>
         </Link>
