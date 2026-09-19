@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
-  const next = searchParams.get('next') ?? '/dashboard';
+  const next = searchParams.get('next') ?? '/onboarding';
 
   if (code) {
     const cookieStore = await cookies();
@@ -30,13 +30,34 @@ export async function GET(request: Request) {
         },
       });
 
-      const { error } = await supabase.auth.exchangeCodeForSession(code);
-      if (!error) {
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+      if (!error && data?.user) {
+        // Automatically ensure user profile is initialized in profiles table
+        const u = data.user;
+        const name = u.user_metadata?.full_name || u.user_metadata?.name || 'কুরআন শিক্ষার্থী';
+        const email = u.email || '';
+
+        try {
+          await supabase.from('profiles').upsert(
+            {
+              id: u.id,
+              name,
+              email,
+              arabic_reading_level: 'fluent_decoding',
+              daily_target_minutes: 30,
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: 'id' }
+          );
+        } catch (profileErr) {
+          console.error('[Auth Callback] Profile upsert notice:', profileErr);
+        }
+
         return NextResponse.redirect(`${origin}${next}`);
       }
       console.error('[Auth Callback] Exchange error:', error);
     }
   }
 
-  return NextResponse.redirect(`${origin}/dashboard`);
+  return NextResponse.redirect(`${origin}${next}`);
 }

@@ -5,17 +5,35 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Flame, Zap, BookOpen, Clock, User, Compass, BookMarked } from 'lucide-react';
 import { getUserProfile } from '@/lib/gamification';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { UserProfile } from '@/types/curriculum';
+import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [googleUser, setGoogleUser] = useState<SupabaseUser | null>(null);
 
   useEffect(() => {
     setProfile(getUserProfile());
     // Listen to storage changes to update live
     const handleStorage = () => setProfile(getUserProfile());
     window.addEventListener('storage', handleStorage);
+
+    // Sync authenticated Supabase user
+    if (isSupabaseConfigured && supabase) {
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user) setGoogleUser(user);
+      });
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        setGoogleUser(session?.user ?? null);
+      });
+      return () => {
+        window.removeEventListener('storage', handleStorage);
+        subscription.unsubscribe();
+      };
+    }
+
     return () => window.removeEventListener('storage', handleStorage);
   }, [pathname]);
 
@@ -91,8 +109,19 @@ export default function Navbar() {
             href="/onboarding"
             className="flex items-center gap-1.5 bg-stone-800 hover:bg-stone-700 border border-stone-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm text-stone-200 transition-colors"
           >
-            <User className="w-3.5 h-3.5 text-stone-400" />
-            <span className="hidden sm:inline">প্রোফাইল</span>
+            {googleUser?.user_metadata?.avatar_url || googleUser?.user_metadata?.picture ? (
+              <img
+                src={googleUser.user_metadata.avatar_url || googleUser.user_metadata.picture}
+                alt="User"
+                className="w-4 h-4 rounded-full border border-emerald-400 object-cover"
+              />
+            ) : (
+              <User className="w-3.5 h-3.5 text-stone-400" />
+            )}
+            <span className="hidden sm:inline">
+              {googleUser?.user_metadata?.full_name?.split(' ')[0] ||
+                (profile?.name && profile.name !== 'কুরআন শিক্ষার্থী' ? profile.name.split(' ')[0] : 'প্রোফাইল')}
+            </span>
           </Link>
         </div>
       </div>
