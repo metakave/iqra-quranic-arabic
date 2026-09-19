@@ -255,7 +255,7 @@ export default function VocabularyPage() {
                     : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
                 }`}
               >
-                <span className="font-quran text-sm mr-1 font-bold">{rf.rootLettersArabic}</span>
+                <span className="font-quran text-sm mr-1 font-bold" dir="rtl">{rf.rootLettersArabic}</span>
                 <span>({rf.derivatives.length})</span>
               </button>
             ))}
