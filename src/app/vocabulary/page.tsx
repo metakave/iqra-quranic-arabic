@@ -124,7 +124,7 @@ export default function VocabularyPage() {
             </div>
             <div className="bg-stone-800/80 border border-stone-700 p-3 rounded-2xl">
               <span className="text-xl sm:text-2xl font-bold text-amber-400 block">
-                ৪,৮০১+
+                {totalFrequency.toLocaleString('bn-BD')}+
               </span>
               <span className="text-[11px] sm:text-xs text-stone-400">কুরআনে পুনরাবৃত্তি</span>
             </div>
