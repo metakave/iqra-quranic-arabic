@@ -8,19 +8,26 @@ import {
   Filter,
   Sparkles,
   Layers,
+  LayoutGrid,
   ArrowRight,
-  BookMarked,
-  CheckCircle2,
   ChevronDown,
-  ExternalLink,
   Flame,
+  ArrowDownNarrowWide,
+  ArrowUpNarrowWide,
+  ArrowDownAZ,
+  ArrowUpDown,
 } from 'lucide-react';
 import { QURAN_ROOT_FAMILIES, RootFamily, DerivativeWord } from '@/data/quranVocabulary';
+
+type SortOption = 'freq_desc' | 'freq_asc' | 'alphabetical';
+type ViewMode = 'family' | 'words';
 
 export default function VocabularyPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRootId, setSelectedRootId] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<SortOption>('freq_desc');
+  const [viewMode, setViewMode] = useState<ViewMode>('family');
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
 
   const toggleExpand = (id: string) => {
@@ -41,15 +48,15 @@ export default function VocabularyPage() {
     0
   );
 
-  // Filter logic
+  // Filter and sort logic for families
   const filteredFamilies = useMemo(() => {
-    return QURAN_ROOT_FAMILIES.filter((family) => {
+    const matched = QURAN_ROOT_FAMILIES.filter((family) => {
       if (selectedRootId !== 'all' && family.id !== selectedRootId) {
         return false;
       }
       return true;
     }).map((family) => {
-      const filteredDerivatives = family.derivatives.filter((word) => {
+      let filteredDerivatives = family.derivatives.filter((word) => {
         // Category filter
         if (selectedCategory !== 'all') {
           if (selectedCategory === 'verb') {
@@ -76,17 +83,81 @@ export default function VocabularyPage() {
         return true;
       });
 
+      // Sort derivatives within each family
+      filteredDerivatives = [...filteredDerivatives].sort((a, b) => {
+        if (sortBy === 'freq_desc') {
+          return (b.frequencyInQuran ?? 0) - (a.frequencyInQuran ?? 0);
+        }
+        if (sortBy === 'freq_asc') {
+          return (a.frequencyInQuran ?? 0) - (b.frequencyInQuran ?? 0);
+        }
+        if (sortBy === 'alphabetical') {
+          return a.arabic.localeCompare(b.arabic, 'ar');
+        }
+        return 0;
+      });
+
       return {
         ...family,
         derivatives: filteredDerivatives,
       };
     }).filter((family) => family.derivatives.length > 0);
-  }, [searchQuery, selectedRootId, selectedCategory]);
 
-  const totalMatches = filteredFamilies.reduce(
-    (sum, f) => sum + f.derivatives.length,
-    0
-  );
+    // Sort families
+    return matched.sort((a, b) => {
+      if (sortBy === 'freq_desc') {
+        return b.frequencyInQuran - a.frequencyInQuran;
+      }
+      if (sortBy === 'freq_asc') {
+        return a.frequencyInQuran - b.frequencyInQuran;
+      }
+      if (sortBy === 'alphabetical') {
+        return a.rootLettersArabic.localeCompare(b.rootLettersArabic, 'ar');
+      }
+      return 0;
+    });
+  }, [searchQuery, selectedRootId, selectedCategory, sortBy]);
+
+  // Flattened words for 'words' view mode
+  const allFilteredWords = useMemo(() => {
+    const list: (DerivativeWord & {
+      rootLettersArabic: string;
+      rootMeaningBengali: string;
+      rootFamilyId: string;
+    })[] = [];
+
+    filteredFamilies.forEach((family) => {
+      family.derivatives.forEach((word) => {
+        list.push({
+          ...word,
+          rootLettersArabic: family.rootLettersArabic,
+          rootMeaningBengali: family.rootMeaningBengali,
+          rootFamilyId: family.id,
+        });
+      });
+    });
+
+    return list.sort((a, b) => {
+      if (sortBy === 'freq_desc') {
+        return (b.frequencyInQuran ?? 0) - (a.frequencyInQuran ?? 0);
+      }
+      if (sortBy === 'freq_asc') {
+        return (a.frequencyInQuran ?? 0) - (b.frequencyInQuran ?? 0);
+      }
+      if (sortBy === 'alphabetical') {
+        return a.arabic.localeCompare(b.arabic, 'ar');
+      }
+      return 0;
+    });
+  }, [filteredFamilies, sortBy]);
+
+  const totalMatches = allFilteredWords.length;
+
+  const sortLabels: Record<SortOption, string> = {
+    freq_desc: 'সর্বাধিক পুনরাবৃত্তি আগে (High → Low)',
+    freq_asc: 'কম পুনরাবৃত্তি আগে (Low → High)',
+    alphabetical: 'আরবি বর্ণানুক্রমিক (A → Z)',
+  };
 
   return (
     <div className="min-h-screen bg-stone-50 pb-20">
@@ -105,7 +176,7 @@ export default function VocabularyPage() {
           </h1>
 
           <p className="text-sm sm:text-base text-stone-300 max-w-2xl mx-auto leading-relaxed">
-            কুরআনের বেশিরভাগ আয়াত মাত্র কয়েকটি উচ্চ-ফ্রিকোয়েন্সির মূল শব্দ (Root Words) এবং তাদের রূপান্তর দ্বারা গঠিত। নিচে মূল শব্দ পরিবার ও বাস্তব কুরআনিক উদাহরণসহ সাজানো হলো।
+            কুরআনের মূল শব্দ পরিবার ও সর্বাধিক পুনরাবৃত্ত শব্দসমূহ। যেকোনো শব্দে ট্যাপ করে কুরআনের বাস্তব আয়াত ও ব্যাকরণগত রূপান্তর দেখুন।
           </p>
 
           {/* Quick Stat Badges */}
@@ -157,103 +228,191 @@ export default function VocabularyPage() {
             )}
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1 border-t border-stone-100">
-            {/* Root Word Filter */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
-              <span className="text-xs font-bold text-stone-500 flex items-center gap-1 shrink-0 mr-1">
-                <Filter className="w-3.5 h-3.5" /> মূল:
-              </span>
+          {/* Root Pills Horizontal Bar */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+            <span className="text-xs font-bold text-stone-500 flex items-center gap-1 shrink-0 mr-1">
+              <Filter className="w-3.5 h-3.5" /> মূল:
+            </span>
+            <button
+              type="button"
+              onClick={() => setSelectedRootId('all')}
+              className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-colors shrink-0 ${
+                selectedRootId === 'all'
+                  ? 'bg-emerald-700 text-white font-bold shadow-xs'
+                  : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+              }`}
+            >
+              সকল ({totalDerivatives})
+            </button>
+            {QURAN_ROOT_FAMILIES.map((rf) => (
               <button
+                key={rf.id}
                 type="button"
-                onClick={() => setSelectedRootId('all')}
+                onClick={() => setSelectedRootId(rf.id)}
                 className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-colors shrink-0 ${
-                  selectedRootId === 'all'
+                  selectedRootId === rf.id
                     ? 'bg-emerald-700 text-white font-bold shadow-xs'
                     : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
                 }`}
               >
-                সকল ({totalDerivatives})
+                <span className="font-quran text-sm mr-1 font-bold">{rf.rootLettersArabic}</span>
+                <span>({rf.derivatives.length})</span>
               </button>
-              {QURAN_ROOT_FAMILIES.map((rf) => (
+            ))}
+          </div>
+
+          {/* Sorting & Category Control Toolbar */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-3 border-t border-stone-100">
+            {/* Sort Mechanism */}
+            <div className="flex items-center flex-wrap gap-2">
+              <span className="text-xs font-bold text-stone-600 flex items-center gap-1">
+                <ArrowUpDown className="w-3.5 h-3.5 text-emerald-700" /> সাজান:
+              </span>
+              <div className="inline-flex bg-stone-100 p-1 rounded-xl border border-stone-200 text-xs">
                 <button
-                  key={rf.id}
                   type="button"
-                  onClick={() => setSelectedRootId(rf.id)}
-                  className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-colors shrink-0 ${
-                    selectedRootId === rf.id
-                      ? 'bg-emerald-700 text-white font-bold shadow-xs'
-                      : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                  onClick={() => setSortBy('freq_desc')}
+                  title="সবচেয়ে বেশি ব্যবহৃত শব্দ ও মূল আগে"
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
+                    sortBy === 'freq_desc'
+                      ? 'bg-white text-emerald-800 font-bold shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900'
                   }`}
                 >
-                  <span className="font-quran text-sm mr-1 font-bold">{rf.rootLettersArabic}</span>
-                  <span>({rf.derivatives.length})</span>
+                  <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                  <span>সর্বাধিক আগে (High → Low)</span>
                 </button>
-              ))}
+                <button
+                  type="button"
+                  onClick={() => setSortBy('freq_asc')}
+                  title="কম ব্যবহৃত শব্দ ও মূল আগে"
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
+                    sortBy === 'freq_asc'
+                      ? 'bg-white text-emerald-800 font-bold shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900'
+                  }`}
+                >
+                  <ArrowUpNarrowWide className="w-3.5 h-3.5 text-stone-500" />
+                  <span>কম আগে (Low → High)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSortBy('alphabetical')}
+                  title="আরবি বর্ণানুক্রমিক সাজান"
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
+                    sortBy === 'alphabetical'
+                      ? 'bg-white text-emerald-800 font-bold shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900'
+                  }`}
+                >
+                  <ArrowDownAZ className="w-3.5 h-3.5 text-stone-500" />
+                  <span>বর্ণানুক্রমিক (A → Z)</span>
+                </button>
+              </div>
             </div>
 
-            {/* Category Filter */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 shrink-0">
-              <button
-                type="button"
-                onClick={() => setSelectedCategory('all')}
-                className={`text-xs px-2.5 py-1 rounded-lg transition-colors ${
-                  selectedCategory === 'all'
-                    ? 'bg-stone-800 text-white font-semibold'
-                    : 'text-stone-600 hover:bg-stone-100'
-                }`}
-              >
-                সব রূপ
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedCategory('verb')}
-                className={`text-xs px-2.5 py-1 rounded-lg transition-colors ${
-                  selectedCategory === 'verb'
-                    ? 'bg-stone-800 text-white font-semibold'
-                    : 'text-stone-600 hover:bg-stone-100'
-                }`}
-              >
-                ক্রিয়া (Verbs)
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedCategory('noun')}
-                className={`text-xs px-2.5 py-1 rounded-lg transition-colors ${
-                  selectedCategory === 'noun'
-                    ? 'bg-stone-800 text-white font-semibold'
-                    : 'text-stone-600 hover:bg-stone-100'
-                }`}
-              >
-                বিশেষ্য (Nouns)
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedCategory('adjective')}
-                className={`text-xs px-2.5 py-1 rounded-lg transition-colors ${
-                  selectedCategory === 'adjective'
-                    ? 'bg-stone-800 text-white font-semibold'
-                    : 'text-stone-600 hover:bg-stone-100'
-                }`}
-              >
-                গুণবাচক (Adjectives)
-              </button>
+            {/* View Mode & Category Filters */}
+            <div className="flex items-center justify-between md:justify-end gap-2 flex-wrap">
+              {/* Category Filter */}
+              <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-xl border border-stone-200 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('all')}
+                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                    selectedCategory === 'all'
+                      ? 'bg-stone-800 text-white font-semibold'
+                      : 'text-stone-600 hover:bg-stone-200'
+                  }`}
+                >
+                  সব রূপ
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('verb')}
+                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                    selectedCategory === 'verb'
+                      ? 'bg-stone-800 text-white font-semibold'
+                      : 'text-stone-600 hover:bg-stone-200'
+                  }`}
+                >
+                  ক্রিয়া
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('noun')}
+                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                    selectedCategory === 'noun'
+                      ? 'bg-stone-800 text-white font-semibold'
+                      : 'text-stone-600 hover:bg-stone-200'
+                  }`}
+                >
+                  বিশেষ্য
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('adjective')}
+                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                    selectedCategory === 'adjective'
+                      ? 'bg-stone-800 text-white font-semibold'
+                      : 'text-stone-600 hover:bg-stone-200'
+                  }`}
+                >
+                  গুণবাচক
+                </button>
+              </div>
+
+              {/* View Mode Toggle: Family vs Flat Words */}
+              <div className="inline-flex bg-stone-100 p-1 rounded-xl border border-stone-200 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setViewMode('family')}
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-medium transition-all ${
+                    viewMode === 'family'
+                      ? 'bg-white text-emerald-800 font-bold shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900'
+                  }`}
+                  title="মূল শব্দ পরিবারভিত্তিক গ্রুপ ভিউ"
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>পরিবার</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode('words')}
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-medium transition-all ${
+                    viewMode === 'words'
+                      ? 'bg-white text-emerald-800 font-bold shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900'
+                  }`}
+                  title="সকল একক শব্দ তালিকা ভিউ"
+                >
+                  <LayoutGrid className="w-3.5 h-3.5" />
+                  <span>একক শব্দ</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Results Counter */}
-        <div className="py-4 px-2 flex items-center justify-between text-xs text-stone-500">
-          <span>
-            প্রদর্শিত হচ্ছে: <strong className="text-stone-800 font-bold">{totalMatches}টি</strong> শব্দ রূপ
-          </span>
-          <span className="text-[11px]">
+        {/* Results & Sort Counter Bar */}
+        <div className="py-4 px-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-stone-500">
+          <div className="flex items-center gap-2">
+            <span>
+              প্রদর্শিত: <strong className="text-stone-800 font-bold">{totalMatches}টি</strong> শব্দ
+              {viewMode === 'family' && ` (${filteredFamilies.length}টি মূল পরিবার)`}
+            </span>
+            <span className="text-stone-300">•</span>
+            <span className="text-emerald-700 font-medium bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+              {sortLabels[sortBy]}
+            </span>
+          </div>
+          <span className="text-[11px] text-stone-400">
             কার্ডে ট্যাপ করে কুরআনের বাস্তব আয়াত ও উদাহরণ দেখুন
           </span>
         </div>
 
-        {/* Root Families List */}
-        {filteredFamilies.length === 0 ? (
+        {/* Empty State */}
+        {totalMatches === 0 ? (
           <div className="bg-white rounded-3xl p-12 text-center border border-stone-200 space-y-3">
             <BookOpen className="w-10 h-10 text-stone-300 mx-auto" />
             <h3 className="text-lg font-bold text-stone-800">কোনো শব্দ পাওয়া যায়নি</h3>
@@ -266,25 +425,30 @@ export default function VocabularyPage() {
                 setSearchQuery('');
                 setSelectedRootId('all');
                 setSelectedCategory('all');
+                setSortBy('freq_desc');
               }}
               className="px-4 py-2 rounded-xl bg-emerald-700 text-white font-medium text-xs mt-2"
             >
               ফিল্টার রিসেট করুন
             </button>
           </div>
-        ) : (
+        ) : viewMode === 'family' ? (
+          /* View Mode 1: Grouped by Root Family */
           <div className="space-y-8">
             {filteredFamilies.map((family) => {
               return (
                 <div
                   key={family.id}
-                  className="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm"
+                  className="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm transition-all"
                 >
                   {/* Family Header */}
                   <div className="p-5 sm:p-6 bg-gradient-to-r from-stone-900 to-stone-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-3">
-                        <div className="font-quran text-3xl sm:text-4xl text-emerald-400 font-bold tracking-widest px-3 py-1 bg-stone-800/80 rounded-xl border border-stone-700" dir="rtl">
+                        <div
+                          className="font-quran text-3xl sm:text-4xl text-emerald-400 font-bold tracking-widest px-3 py-1 bg-stone-800/80 rounded-xl border border-stone-700"
+                          dir="rtl"
+                        >
                           {family.rootLettersArabic}
                         </div>
                         <div>
@@ -292,7 +456,7 @@ export default function VocabularyPage() {
                             {family.rootMeaningBengali}
                           </h2>
                           <span className="text-xs text-emerald-300 font-medium flex items-center gap-1 mt-0.5">
-                            <Flame className="w-3.5 h-3.5 text-amber-400" />
+                            <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                             কুরআনে পুনরাবৃত্তি: প্রায় {family.frequencyInQuran.toLocaleString('bn-BD')} বার
                           </span>
                         </div>
@@ -309,7 +473,7 @@ export default function VocabularyPage() {
                     </div>
                   </div>
 
-                  {/* Derivatives Grid */}
+                  {/* Derivatives Grid inside Family */}
                   <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-3.5 bg-stone-50/50">
                     {family.derivatives.map((word) => {
                       const isExpanded = Boolean(expandedCards[word.id]);
@@ -324,18 +488,29 @@ export default function VocabularyPage() {
                           }`}
                         >
                           <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <span className="inline-block text-[11px] px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 font-medium border border-stone-200 mb-1.5">
-                                {word.grammarBengali}
-                              </span>
-                              <h3 className="font-bold text-stone-900 text-base sm:text-lg">
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="inline-block text-[11px] px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 font-medium border border-stone-200">
+                                  {word.grammarBengali}
+                                </span>
+                                {word.frequencyInQuran && (
+                                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
+                                    <Flame className="w-3 h-3 text-amber-500 fill-amber-400" />
+                                    প্রায় {word.frequencyInQuran.toLocaleString('bn-BD')} বার
+                                  </span>
+                                )}
+                              </div>
+                              <h3 className="font-bold text-stone-900 text-base sm:text-lg pt-1">
                                 {word.meaningBengali}
                               </h3>
                             </div>
 
                             {/* Arabic Word Display */}
                             <div className="text-right">
-                              <span className="font-quran text-3xl sm:text-4xl text-emerald-950 font-normal leading-relaxed block py-0.5" dir="rtl">
+                              <span
+                                className="font-quran text-3xl sm:text-4xl text-emerald-950 font-normal leading-relaxed block py-0.5"
+                                dir="rtl"
+                              >
                                 {word.arabic}
                               </span>
                             </div>
@@ -352,7 +527,10 @@ export default function VocabularyPage() {
                                       {word.exampleSurahBengali}
                                     </span>
                                   </div>
-                                  <p className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1" dir="rtl">
+                                  <p
+                                    className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1"
+                                    dir="rtl"
+                                  >
                                     {word.quranExample}
                                   </p>
                                 </div>
@@ -368,6 +546,95 @@ export default function VocabularyPage() {
                       );
                     })}
                   </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          /* View Mode 2: Flat List of All Derivative Words sorted directly */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {allFilteredWords.map((word, index) => {
+              const isExpanded = Boolean(expandedCards[word.id]);
+              return (
+                <div
+                  key={word.id}
+                  onClick={() => toggleExpand(word.id)}
+                  className={`bg-white cursor-pointer transition-all rounded-2xl p-4 sm:p-5 border select-none ${
+                    isExpanded
+                      ? 'border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
+                      : 'border-stone-200 hover:border-stone-300 hover:shadow-xs'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-1.5">
+                      {/* Top Badges: Root & Frequency */}
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {/* Rank Badge */}
+                        <span className="text-[10px] font-bold text-stone-400 bg-stone-100 px-1.5 py-0.5 rounded">
+                          #{index + 1}
+                        </span>
+
+                        {/* Root Pill */}
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+                          মূল: <span className="font-quran font-bold text-xs" dir="rtl">{word.rootLettersArabic}</span>
+                        </span>
+
+                        {/* Frequency Pill */}
+                        {word.frequencyInQuran && (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
+                            <Flame className="w-3 h-3 text-amber-500 fill-amber-400" />
+                            প্রায় {word.frequencyInQuran.toLocaleString('bn-BD')} বার
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="pt-0.5">
+                        <span className="inline-block text-[11px] text-stone-500">
+                          {word.grammarBengali}
+                        </span>
+                        <h3 className="font-bold text-stone-900 text-base sm:text-lg">
+                          {word.meaningBengali}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Arabic Word Display */}
+                    <div className="text-right">
+                      <span
+                        className="font-quran text-3xl sm:text-4xl text-emerald-950 font-normal leading-relaxed block py-0.5"
+                        dir="rtl"
+                      >
+                        {word.arabic}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Quranic Ayah Example (Expandable) */}
+                  {word.quranExample && (
+                    <div className="mt-3 pt-3 border-t border-stone-100">
+                      {isExpanded ? (
+                        <div className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
+                          <div className="text-xs text-emerald-800 font-bold flex items-center justify-between">
+                            <span>কুরআনিক আয়াত উদাহরণ:</span>
+                            <span className="text-[11px] text-stone-500 font-sans font-normal">
+                              {word.exampleSurahBengali}
+                            </span>
+                          </div>
+                          <p
+                            className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1"
+                            dir="rtl"
+                          >
+                            {word.quranExample}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-between text-[11px] text-stone-400 hover:text-emerald-700 transition-colors">
+                          <span>আয়াতের উদাহরণ দেখতে ট্যাপ করুন</span>
+                          <ChevronDown className="w-3.5 h-3.5" />
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
