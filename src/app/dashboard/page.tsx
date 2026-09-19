@@ -22,7 +22,7 @@ export default function DashboardPage() {
   );
 
   const completedLessons = profile?.completedLessons ?? ['module-01-lesson-01'];
-  const unlockedModule = profile?.unlockedModule ?? 2;
+  const unlockedModule = profile?.unlockedModule ?? 3;
 
   return (
     <div className="min-h-screen bg-stone-50 py-8 px-4 sm:px-6">
@@ -215,6 +215,8 @@ export default function DashboardPage() {
                   ? '/learn/module-01-lesson-01'
                   : module.moduleNumber === 2
                   ? '/learn/module-02-lesson-06'
+                  : module.moduleNumber === 3
+                  ? '/learn/module-03-lesson-11'
                   : '#';
 
               return (
@@ -336,6 +338,21 @@ export default function DashboardPage() {
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
                               <span>পাঠ ১০ (মডিউল ২ যাচাই) • নতুন</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 3 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ৩-এর প্রস্তুতকৃত পাঠ:</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-03-lesson-11"
+                              className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                              <span>পাঠ ১১ (৪ প্রধান হরফ: فِي, مِنْ, إِلَى, عَلَى) • নতুন</span>
                             </Link>
                           </div>
                         </div>
