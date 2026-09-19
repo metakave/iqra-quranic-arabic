@@ -129,7 +129,7 @@ export default function HomePage() {
               <div className="border-t border-emerald-200/60 pt-2 text-stone-900 font-bold text-sm" dir="ltr">
                 “আমাদেরকে পথ দেখান”
               </div>
-              <p className="text-[11px] text-stone-500 font-sans" dir="ltr">
+              <p className="text-[13px] text-stone-500 font-sans" dir="ltr">
                 اهْدِ কাজের নির্দেশ হওয়ায় نَا মানে <strong>“আমাদেরকে”</strong> (কর্ম)
               </p>
             </div>
@@ -145,7 +145,7 @@ export default function HomePage() {
               <div className="border-t border-amber-200/60 pt-2 text-stone-900 font-bold text-sm" dir="ltr">
                 “আমাদের প্রতিপালক”
               </div>
-              <p className="text-[11px] text-stone-500 font-sans" dir="ltr">
+              <p className="text-[13px] text-stone-500 font-sans" dir="ltr">
                 رَبّ নাম/বিশেষ্য হওয়ায় نَا মানে <strong>“আমাদের”</strong> (মালিকানা)
               </p>
             </div>

@@ -102,7 +102,7 @@ export default function PracticePage() {
                     <h3 className="text-xl font-bold text-emerald-950">
                       {currentCard.bengaliMeaning}
                     </h3>
-                    <p className="text-[15px] text-stone-700 leading-relaxed pt-1.5">
+                    <p className="text-[17px] text-stone-700 leading-relaxed pt-1.5">
                       💡 <strong className="font-bold text-stone-900">নোট:</strong> {currentCard.attachmentNoteBengali}
                     </p>
                   </div>

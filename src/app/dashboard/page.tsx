@@ -53,7 +53,7 @@ export default function DashboardPage() {
                   <Flame className="w-5 h-5 fill-amber-400" />
                   <span>{profile?.streakDays ?? 1}</span>
                 </div>
-                <span className="text-[11px] text-stone-400 font-medium">দিনের স্ট্রিক</span>
+                <span className="text-[13px] text-stone-400 font-medium">দিনের স্ট্রিক</span>
               </div>
 
               {/* Total XP */}
@@ -62,7 +62,7 @@ export default function DashboardPage() {
                   <Zap className="w-5 h-5 fill-emerald-400" />
                   <span>{totalXp}</span>
                 </div>
-                <span className="text-[11px] text-stone-400 font-medium">মোট XP</span>
+                <span className="text-[13px] text-stone-400 font-medium">মোট XP</span>
               </div>
 
               {/* Badges Count */}
@@ -71,7 +71,7 @@ export default function DashboardPage() {
                   <Award className="w-5 h-5" />
                   <span>{profile?.badges?.length ?? 2}</span>
                 </div>
-                <span className="text-[11px] text-stone-400 font-medium">অর্জিত ব্যাজ</span>
+                <span className="text-[13px] text-stone-400 font-medium">অর্জিত ব্যাজ</span>
               </div>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function DashboardPage() {
                   <h4 className="font-bold text-stone-900 text-sm">
                     {badge.titleBengali}
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5">
+                  <p className="text-[13px] text-stone-500 mt-0.5">
                     {badge.descriptionBengali}
                   </p>
                 </div>
@@ -150,7 +150,7 @@ export default function DashboardPage() {
                 <h4 className="font-semibold text-stone-600 text-xs">
                   পরবর্তী ব্যাজ: চেকপয়েন্ট A বিজয়ী
                 </h4>
-                <p className="text-[10px] text-stone-400 mt-0.5">
+                <p className="text-[12px] text-stone-400 mt-0.5">
                   সপ্তাহ ৪-এর চেকপয়েন্টে ৮৫%+ পেলে আনলক হবে
                 </p>
               </div>
@@ -165,7 +165,7 @@ export default function DashboardPage() {
               ق
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 text-[11px] text-emerald-300 font-semibold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-1.5 text-[13px] text-emerald-300 font-semibold uppercase tracking-wider">
                 <Sparkles className="w-3 h-3 text-emerald-400" />
                 <span>নতুন ফিচার</span>
               </div>
@@ -265,7 +265,7 @@ export default function DashboardPage() {
 
                       {module.moduleNumber === 1 && (
                         <div className="pt-2">
-                          <div className="text-[11px] font-bold text-stone-500 mb-1.5">মডিউল ১-এর প্রস্তুতকৃত পাঠসমূহ:</div>
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ১-এর প্রস্তুতকৃত পাঠসমূহ:</div>
                           <div className="flex flex-wrap gap-2">
                             <Link
                               href="/learn/module-01-lesson-01"
@@ -304,7 +304,7 @@ export default function DashboardPage() {
 
                       {module.moduleNumber === 2 && (
                         <div className="pt-2">
-                          <div className="text-[11px] font-bold text-stone-500 mb-1.5">মডিউল ২-এর প্রস্তুতকৃত পাঠ:</div>
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ২-এর প্রস্তুতকৃত পাঠ:</div>
                           <div className="flex flex-wrap gap-2">
                             <Link
                               href="/learn/module-02-lesson-06"

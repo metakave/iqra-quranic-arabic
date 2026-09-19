@@ -83,7 +83,7 @@ export default function ChunkBreakdown({
                 <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-stone-200/80 text-stone-600 font-sans mb-2" dir="ltr">
                   অংশ {idx + 1}
                 </span>
-                <h3 className="font-quran text-4xl sm:text-[38px] text-emerald-950 font-normal leading-relaxed py-1.5">
+                <h3 className="font-quran text-4xl sm:text-[42px] text-emerald-950 font-normal leading-relaxed py-1.5">
                   {chunk.arabicText}
                 </h3>
               </div>
@@ -96,7 +96,7 @@ export default function ChunkBreakdown({
                       {chunk.meaningBengali}
                     </p>
                     <span
-                      className={`inline-block text-[11px] font-medium px-2 py-0.5 rounded-md border ${activeColor}`}
+                      className={`inline-block text-[13px] font-medium px-2 py-0.5 rounded-md border ${activeColor}`}
                     >
                       {chunk.roleBengali}
                     </span>

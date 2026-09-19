@@ -191,7 +191,7 @@ export default function OnboardingPage() {
                     <h3 className="font-bold text-stone-900 text-base truncate">
                       {name || supabaseUser.user_metadata?.full_name || 'কুরআন শিক্ষার্থী'}
                     </h3>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full shrink-0">
+                    <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full shrink-0">
                       <CheckCircle className="w-3 h-3 text-emerald-600" />
                       Google অ্যাকাউন্ট সংযুক্ত
                     </span>
@@ -214,7 +214,7 @@ export default function OnboardingPage() {
               </button>
             </div>
 
-            <div className="pt-2 border-t border-emerald-200/70 flex items-center gap-1.5 text-[11px] text-emerald-800">
+            <div className="pt-2 border-t border-emerald-200/70 flex items-center gap-1.5 text-[13px] text-emerald-800">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               <span>আপনার গুগল অ্যাকাউন্টের সাথে প্রোফাইল ও অগ্রগতি সরাসরি সুপ্রাবেসে (Supabase) সংরক্ষিত হচ্ছে।</span>
             </div>
@@ -247,7 +247,7 @@ export default function OnboardingPage() {
               </svg>
               <span>{isSigningIn ? 'সংযোগ স্থাপন করা হচ্ছে...' : 'গুগল (Google) অ্যাকাউন্ট দিয়ে সাইন-ইন করুন'}</span>
             </button>
-            <div className="flex items-center gap-1.5 text-[11px] text-stone-500 justify-center">
+            <div className="flex items-center gap-1.5 text-[13px] text-stone-500 justify-center">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>কোনো পাসওয়ার্ড মনে রাখার প্রয়োজন নেই • নিরাপদ ও সহজ</span>
             </div>
@@ -263,7 +263,7 @@ export default function OnboardingPage() {
                   আপনার নাম
                 </label>
                 {supabaseUser && (
-                  <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                  <span className="text-[12px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
                     Google থেকে প্রাপ্ত
                   </span>
                 )}
@@ -284,7 +284,7 @@ export default function OnboardingPage() {
                   ইমেইল ঠিকানা
                 </label>
                 {supabaseUser && (
-                  <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                  <span className="text-[12px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
                     যাচাইকৃত ইমেইল
                   </span>
                 )}
@@ -321,7 +321,7 @@ export default function OnboardingPage() {
                     className="sr-only"
                   />
                   <span className="text-sm font-semibold mb-1">হরকত দেখে পড়তে পারি ✓</span>
-                  <span className="text-[11px] font-normal text-stone-500">
+                  <span className="text-[13px] font-normal text-stone-500">
                     কুরআনের যেকোনো আয়াত শুদ্ধভাবে দেখে পড়তে পারি (কোর্সের উপযুক্ত)
                   </span>
                 </label>
@@ -342,7 +342,7 @@ export default function OnboardingPage() {
                     className="sr-only"
                   />
                   <span className="text-sm font-semibold mb-1">ধীরে ধীরে পড়তে পারি</span>
-                  <span className="text-[11px] font-normal text-stone-500">
+                  <span className="text-[13px] font-normal text-stone-500">
                     অক্ষর চিনি কিন্তু দ্রুত পড়তে একটু সময় লাগে
                   </span>
                 </label>
@@ -372,7 +372,7 @@ export default function OnboardingPage() {
                   >
                     <span className="block text-sm font-semibold">{item.label}</span>
                     <span
-                      className={`text-[10px] block mt-0.5 ${
+                      className={`text-[12px] block mt-0.5 ${
                         dailyTarget === item.mins ? 'text-emerald-200' : 'text-stone-500'
                       }`}
                     >

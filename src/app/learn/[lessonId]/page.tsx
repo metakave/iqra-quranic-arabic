@@ -172,7 +172,7 @@ export default function LessonPage() {
                 </p>
 
                 <div className="p-4 rounded-xl bg-white border border-stone-200 text-center space-y-1">
-                  <div className="font-quran text-4xl sm:text-[38px] text-emerald-950 leading-relaxed">
+                  <div className="font-quran text-4xl sm:text-[42px] text-emerald-950 leading-relaxed">
                     {lesson.preCheck.diagnosticAyah.arabicText}
                   </div>
                   <div className="text-xs text-stone-400 font-sans">
@@ -537,7 +537,7 @@ export default function LessonPage() {
                       </h4>
 
                       {exercise.arabicPrompt && (
-                        <div className="font-quran text-3xl sm:text-[34px] text-emerald-950 p-3 bg-white rounded-xl border border-stone-200 inline-block leading-relaxed">
+                        <div className="font-quran text-3xl sm:text-[38px] text-emerald-950 p-3 bg-white rounded-xl border border-stone-200 inline-block leading-relaxed">
                           {exercise.arabicPrompt}
                         </div>
                       )}

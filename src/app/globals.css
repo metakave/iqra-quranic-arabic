@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    font-size: 18px; /* Globally increases font size by 2 points (16px/12pt -> 18px/14pt) */
+  }
+
   :root {
     --font-bengali-fallback: "Noto Serif Bengali", "Hind Siliguri", serif;
     --font-arabic-fallback: "Amiri Quran", "Amiri", "Scheherazade New", serif;

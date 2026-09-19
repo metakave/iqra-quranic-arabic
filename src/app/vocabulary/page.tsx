@@ -185,19 +185,19 @@ export default function VocabularyPage() {
               <span className="text-xl sm:text-2xl font-bold text-emerald-400 block">
                 {totalRoots}টি
               </span>
-              <span className="text-[11px] sm:text-xs text-stone-400">মূল শব্দ পরিবার</span>
+              <span className="text-xs sm:text-sm text-stone-400">মূল শব্দ পরিবার</span>
             </div>
             <div className="bg-stone-800/80 border border-stone-700 p-3 rounded-2xl">
               <span className="text-xl sm:text-2xl font-bold text-teal-300 block">
                 {totalDerivatives}টি
               </span>
-              <span className="text-[11px] sm:text-xs text-stone-400">সর্বাধিক ব্যবহৃত রূপ</span>
+              <span className="text-xs sm:text-sm text-stone-400">সর্বাধিক ব্যবহৃত রূপ</span>
             </div>
             <div className="bg-stone-800/80 border border-stone-700 p-3 rounded-2xl">
               <span className="text-xl sm:text-2xl font-bold text-amber-400 block">
                 {totalFrequency.toLocaleString('bn-BD')}+
               </span>
-              <span className="text-[11px] sm:text-xs text-stone-400">কুরআনে পুনরাবৃত্তি</span>
+              <span className="text-xs sm:text-sm text-stone-400">কুরআনে পুনরাবৃত্তি</span>
             </div>
           </div>
         </div>
@@ -255,7 +255,7 @@ export default function VocabularyPage() {
                     : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
                 }`}
               >
-                <span className="font-quran text-sm mr-1 font-bold" dir="rtl">{rf.rootLettersArabic}</span>
+                <span className="font-quran text-base mr-1 font-bold" dir="rtl">{rf.rootLettersArabic}</span>
                 <span>({rf.derivatives.length})</span>
               </button>
             ))}
@@ -406,7 +406,7 @@ export default function VocabularyPage() {
               {sortLabels[sortBy]}
             </span>
           </div>
-          <span className="text-[11px] text-stone-400">
+          <span className="text-[13px] text-stone-400">
             কার্ডে ট্যাপ করে কুরআনের বাস্তব আয়াত ও উদাহরণ দেখুন
           </span>
         </div>
@@ -490,11 +490,11 @@ export default function VocabularyPage() {
                           <div className="flex items-start justify-between gap-3">
                             <div className="space-y-1">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <span className="inline-block text-[11px] px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 font-medium border border-stone-200">
+                                <span className="inline-block text-[13px] px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 font-medium border border-stone-200">
                                   {word.grammarBengali}
                                 </span>
                                 {word.frequencyInQuran && (
-                                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
+                                  <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
                                     <Flame className="w-3 h-3 text-amber-500 fill-amber-400" />
                                     প্রায় {word.frequencyInQuran.toLocaleString('bn-BD')} বার
                                   </span>
@@ -523,7 +523,7 @@ export default function VocabularyPage() {
                                 <div className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
                                   <div className="text-xs text-emerald-800 font-bold flex items-center justify-between">
                                     <span>কুরআনিক আয়াত উদাহরণ:</span>
-                                    <span className="text-[11px] text-stone-500 font-sans font-normal">
+                                    <span className="text-[13px] text-stone-500 font-sans font-normal">
                                       {word.exampleSurahBengali}
                                     </span>
                                   </div>
@@ -535,7 +535,7 @@ export default function VocabularyPage() {
                                   </p>
                                 </div>
                               ) : (
-                                <div className="flex items-center justify-between text-[11px] text-stone-400 hover:text-emerald-700 transition-colors">
+                                <div className="flex items-center justify-between text-[13px] text-stone-400 hover:text-emerald-700 transition-colors">
                                   <span>আয়াতের উদাহরণ দেখতে ট্যাপ করুন</span>
                                   <ChevronDown className="w-3.5 h-3.5" />
                                 </div>
@@ -570,18 +570,18 @@ export default function VocabularyPage() {
                       {/* Top Badges: Root & Frequency */}
                       <div className="flex items-center gap-1.5 flex-wrap">
                         {/* Rank Badge */}
-                        <span className="text-[10px] font-bold text-stone-400 bg-stone-100 px-1.5 py-0.5 rounded">
+                        <span className="text-[12px] font-bold text-stone-400 bg-stone-100 px-1.5 py-0.5 rounded">
                           #{index + 1}
                         </span>
 
                         {/* Root Pill */}
-                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
-                          মূল: <span className="font-quran font-bold text-xs" dir="rtl">{word.rootLettersArabic}</span>
+                        <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+                          মূল: <span className="font-quran font-bold text-sm" dir="rtl">{word.rootLettersArabic}</span>
                         </span>
 
                         {/* Frequency Pill */}
                         {word.frequencyInQuran && (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
+                          <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
                             <Flame className="w-3 h-3 text-amber-500 fill-amber-400" />
                             প্রায় {word.frequencyInQuran.toLocaleString('bn-BD')} বার
                           </span>
@@ -589,7 +589,7 @@ export default function VocabularyPage() {
                       </div>
 
                       <div className="pt-0.5">
-                        <span className="inline-block text-[11px] text-stone-500">
+                        <span className="inline-block text-[13px] text-stone-500">
                           {word.grammarBengali}
                         </span>
                         <h3 className="font-bold text-stone-900 text-base sm:text-lg">
@@ -616,7 +616,7 @@ export default function VocabularyPage() {
                         <div className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
                           <div className="text-xs text-emerald-800 font-bold flex items-center justify-between">
                             <span>কুরআনিক আয়াত উদাহরণ:</span>
-                            <span className="text-[11px] text-stone-500 font-sans font-normal">
+                            <span className="text-[13px] text-stone-500 font-sans font-normal">
                               {word.exampleSurahBengali}
                             </span>
                           </div>
@@ -628,7 +628,7 @@ export default function VocabularyPage() {
                           </p>
                         </div>
                       ) : (
-                        <div className="flex items-center justify-between text-[11px] text-stone-400 hover:text-emerald-700 transition-colors">
+                        <div className="flex items-center justify-between text-[13px] text-stone-400 hover:text-emerald-700 transition-colors">
                           <span>আয়াতের উদাহরণ দেখতে ট্যাপ করুন</span>
                           <ChevronDown className="w-3.5 h-3.5" />
                         </div>

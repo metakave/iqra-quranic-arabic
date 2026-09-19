@@ -55,7 +55,7 @@ export default function RootLayout({
                 <span className="font-bold text-stone-800 text-base block leading-tight">
                   ইক্বরা কোরানের আরবী
                 </span>
-                <span className="text-[10px] text-stone-500 font-sans tracking-wider uppercase block">
+                <span className="text-[12px] text-stone-500 font-sans tracking-wider uppercase block">
                   IQRA Quranic Arabic
                 </span>
               </div>
