@@ -66,6 +66,7 @@ export default function LessonPage() {
     'module-02-lesson-06': 'module-02-lesson-07',
     'module-02-lesson-07': 'module-02-lesson-08',
     'module-02-lesson-08': 'module-02-lesson-09',
+    'module-02-lesson-09': 'module-02-lesson-10',
   };
 
   return (
