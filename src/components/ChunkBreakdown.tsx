@@ -119,7 +119,7 @@ export default function ChunkBreakdown({
           <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
           <div>
             <span className="font-bold block text-amber-900 mb-0.5">
-              উস্তাদের পর্যবেক্ষণ (Observation):
+              পর্যবেক্ষণ:
             </span>
             <p className="text-stone-700">{teachingNoteBengali}</p>
           </div>
