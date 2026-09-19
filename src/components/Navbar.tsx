@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Flame, Zap, BookOpen, Clock, User, Compass } from 'lucide-react';
+import { Flame, Zap, BookOpen, Clock, User, Compass, BookMarked } from 'lucide-react';
 import { getUserProfile } from '@/lib/gamification';
 import { UserProfile } from '@/types/curriculum';
 
@@ -20,9 +20,10 @@ export default function Navbar() {
   }, [pathname]);
 
   const navLinks = [
-    { href: '/dashboard', label: 'পাঠশালা (ড্যাশবোর্ড)', icon: BookOpen },
-    { href: '/practice', label: 'দৈনিক অনুশীলন', icon: Clock },
-    { href: '/#curriculum', label: 'পাঠ্যক্রম (২৪ সপ্তাহ)', icon: Compass },
+    { href: '/dashboard', label: 'পাঠশালা', icon: BookOpen },
+    { href: '/vocabulary', label: 'শব্দভান্ডার', icon: BookMarked },
+    { href: '/practice', label: 'অনুশীলন', icon: Clock },
+    { href: '/#curriculum', label: 'পাঠ্যক্রম', icon: Compass },
   ];
 
   return (

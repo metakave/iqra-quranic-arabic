@@ -65,7 +65,15 @@ export default function HomePage() {
               className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-stone-800/90 hover:bg-stone-700 text-stone-200 font-semibold text-base border border-stone-700 flex items-center justify-center gap-2 transition-colors"
             >
               <BookOpen className="w-4 h-4 text-emerald-400" />
-              <span>প্রথম পাঠের ডেমো দেখুন (সূরা ফাতিহা)</span>
+              <span>প্রথম পাঠের ডেমো</span>
+            </Link>
+
+            <Link
+              href="/vocabulary"
+              className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 font-semibold text-base border border-emerald-700/60 flex items-center justify-center gap-2 transition-colors"
+            >
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>কোরানের শব্দভান্ডার</span>
             </Link>
           </div>
 

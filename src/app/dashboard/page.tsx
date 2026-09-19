@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { COURSE_MODULES } from '@/data/courseCurriculum';
 import { getUserProfile, calculateLevel } from '@/lib/gamification';
 import { UserProfile } from '@/types/curriculum';
-import { Flame, Zap, Award, BookOpen, Clock, Lock, CheckCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Flame, Zap, Award, BookOpen, Clock, Lock, CheckCircle, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function DashboardPage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -156,6 +156,34 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Quran Vocabulary Spotlight Banner */}
+        <div className="bg-gradient-to-r from-stone-900 via-stone-800 to-emerald-950 p-5 rounded-3xl border border-stone-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
+          <div className="flex items-center gap-3.5">
+            <div className="h-12 w-12 rounded-2xl bg-emerald-600/30 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-quran text-2xl font-bold shrink-0">
+              ق
+            </div>
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-[11px] text-emerald-300 font-semibold uppercase tracking-wider">
+                <Sparkles className="w-3 h-3 text-emerald-400" />
+                <span>নতুন ফিচার</span>
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-stone-100">
+                কোরানের শব্দভান্ডার (Root Words & Derivatives)
+              </h3>
+              <p className="text-xs text-stone-300">
+                কুরআনের ৮০% অংশ জুড়ে থাকা প্রধান মূল শব্দ পরিবার ও তাদের বিভিন্ন রূপান্তর।
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/vocabulary"
+            className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shrink-0 transition-colors"
+          >
+            <span>শব্দভান্ডার এক্সপ্লোর করুন</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
         {/* 24-Module / 120-Lesson Curriculum Pathway */}
