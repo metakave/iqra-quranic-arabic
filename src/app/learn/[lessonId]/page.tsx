@@ -216,11 +216,13 @@ export default function LessonPage() {
 
               {/* Uncut Quranic Verse Display */}
               <div className="quran-verse-card p-8 text-center my-6">
-                <div className="font-quran text-5xl sm:text-6xl text-stone-900 mb-4 leading-loose">
+                <div className="font-quran text-4xl sm:text-5xl text-stone-900 mb-4 leading-loose">
                   {lesson.steps.dekhun.arabicText}
                 </div>
                 <div className="text-xs text-stone-500 flex items-center justify-center gap-1 font-sans">
-                  <span>কুরআন শরীফ • {lesson.anchorAyah.surahNameBengali} ১:২</span>
+                  <span>
+                    কুরআন শরীফ • {lesson.anchorAyah.surahNameBengali} ({lesson.anchorAyah.surahNumber}:{lesson.anchorAyah.ayahNumber})
+                  </span>
                 </div>
               </div>
 
