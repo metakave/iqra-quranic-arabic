@@ -16,9 +16,11 @@
   font-family: var(--font-arabic-quran), var(--font-arabic-fallback);
   direction: rtl;
   text-align: right;
-  line-height: 2.3;
+  line-height: 2.4;
   letter-spacing: 0.02em;
   font-feature-settings: "cv01" on, "cv02" on, "kern" on;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
 }
 
 /* Quranic verse pill styles */

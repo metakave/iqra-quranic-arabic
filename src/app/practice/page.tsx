@@ -87,7 +87,7 @@ export default function PracticePage() {
 
               {/* Arabic Phrase */}
               <div className="py-6 space-y-3">
-                <div className="font-quran text-4xl sm:text-5xl text-stone-900 font-normal leading-loose">
+                <div className="font-quran text-5xl sm:text-6xl text-stone-900 font-normal leading-loose">
                   {currentCard.arabicPhrase}
                 </div>
                 <div className="text-xs text-stone-500 font-sans">

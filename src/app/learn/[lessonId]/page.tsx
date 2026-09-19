@@ -170,7 +170,7 @@ export default function LessonPage() {
                 </p>
 
                 <div className="p-4 rounded-xl bg-white border border-stone-200 text-center space-y-1">
-                  <div className="font-quran text-3xl text-emerald-950">
+                  <div className="font-quran text-4xl sm:text-[38px] text-emerald-950 leading-relaxed">
                     {lesson.preCheck.diagnosticAyah.arabicText}
                   </div>
                   <div className="text-xs text-stone-400 font-sans">
@@ -210,7 +210,7 @@ export default function LessonPage() {
 
               {/* Uncut Quranic Verse Display */}
               <div className="quran-verse-card p-8 text-center my-6">
-                <div className="font-quran text-4xl sm:text-5xl text-stone-900 mb-4 leading-loose">
+                <div className="font-quran text-5xl sm:text-6xl text-stone-900 mb-4 leading-loose">
                   {lesson.steps.dekhun.arabicText}
                 </div>
                 <div className="text-xs text-stone-500 flex items-center justify-center gap-1 font-sans">
@@ -304,7 +304,7 @@ export default function LessonPage() {
                     key={idx}
                     className="p-4 sm:p-5 rounded-2xl bg-stone-50 border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                   >
-                    <div className="font-bold text-emerald-950 text-base">
+                    <div className="font-quran text-2xl sm:text-3xl text-emerald-950 font-normal py-0.5 leading-relaxed" dir="rtl">
                       {c.fromText}
                     </div>
                     <div className="text-stone-700 text-xs sm:text-sm bg-white px-3 py-1.5 rounded-xl border border-stone-200">
@@ -378,7 +378,7 @@ export default function LessonPage() {
                   </div>
 
                   <div className="p-4 bg-white rounded-xl border border-emerald-200 text-center">
-                    <div className="font-quran text-3xl sm:text-4xl text-emerald-950 font-normal py-1">
+                    <div className="font-quran text-4xl sm:text-5xl text-emerald-950 font-normal py-1 leading-relaxed">
                       {lesson.steps.transferApplication.arabicText}
                     </div>
                   </div>
@@ -394,7 +394,7 @@ export default function LessonPage() {
                         key={idx}
                         className="bg-white p-2.5 rounded-xl border border-emerald-200 text-center"
                       >
-                        <span className="font-quran text-lg text-emerald-900 block">
+                        <span className="font-quran text-2xl text-emerald-900 block leading-relaxed">
                           {v.arabic}
                         </span>
                         <span className="text-xs text-stone-700 font-sans block mt-1" dir="ltr">
@@ -535,7 +535,7 @@ export default function LessonPage() {
                       </h4>
 
                       {exercise.arabicPrompt && (
-                        <div className="font-quran text-2xl text-emerald-950 p-3 bg-white rounded-xl border border-stone-200 inline-block">
+                        <div className="font-quran text-3xl sm:text-[34px] text-emerald-950 p-3 bg-white rounded-xl border border-stone-200 inline-block leading-relaxed">
                           {exercise.arabicPrompt}
                         </div>
                       )}
