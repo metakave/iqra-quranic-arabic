@@ -34,7 +34,7 @@ export default function HomePage() {
 
           {/* Main Title */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-100 leading-tight">
-            বুঝে পড়ি কুরআন
+            ইক্বরা কোরানের আরবী
           </h1>
 
           <p className="text-lg sm:text-2xl text-emerald-300 font-medium max-w-2xl mx-auto leading-relaxed">

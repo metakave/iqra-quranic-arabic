@@ -35,7 +35,7 @@ export default function Navbar() {
           </div>
           <div>
             <span className="font-bold text-lg sm:text-xl text-stone-100 tracking-tight block leading-tight">
-              বুঝে পড়ি কুরআন
+              ইক্বরা কোরানের আরবী
             </span>
             <span className="text-[10px] text-emerald-400 font-sans tracking-wide uppercase hidden sm:block">
               Quranic Arabic in Bengali

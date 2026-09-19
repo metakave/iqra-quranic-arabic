@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ইক্বরা কোরানের আরবী (Iqra Quranic Arabic)
+
+বাংলাভাষীদের জন্য ধাপে ধাপে কুরআনের আরবি সরাসরি বুঝে পড়ার আধুনিক স্ব-শিক্ষণ ওয়েব প্ল্যাটফর্ম।
 
 ## Getting Started
 
