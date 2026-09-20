@@ -24,6 +24,23 @@ interface LessonClientProps {
   lessonId?: string;
 }
 
+function renderContrastOption(text: string) {
+  const match = text.match(/^([\u0600-\u06FF\s۝۞ۖۗۚۛۜ]+)\s*(\(.*\))$/);
+  if (match) {
+    return (
+      <span className="leading-relaxed inline-block">
+        <span className="font-quran text-[21px] sm:text-[23px] text-inherit inline-block mr-2" dir="rtl">
+          {match[1].trim()}
+        </span>
+        <span className="text-[17px] sm:text-[19px] text-inherit font-medium inline-block" dir="ltr">
+          {match[2].trim()}
+        </span>
+      </span>
+    );
+  }
+  return <span className="text-[17px] sm:text-[19px] leading-relaxed">{text}</span>;
+}
+
 export default function LessonClient({ lesson }: LessonClientProps) {
 
   const [activeStep, setActiveStep] = useState<number>(1);
@@ -371,25 +388,25 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                     <button
                       type="button"
                       onClick={() => setContrastChoice('A')}
-                      className={`p-3.5 rounded-xl border text-sm sm:text-base text-left font-medium transition-all ${
+                      className={`p-3.5 sm:p-4 rounded-xl border text-[17px] sm:text-[19px] text-left font-medium transition-all ${
                         contrastChoice === 'A'
                           ? 'bg-emerald-700 text-white border-emerald-800 font-bold shadow-xs'
                           : 'bg-white hover:bg-stone-50 text-stone-800 border-stone-300'
                       }`}
                     >
-                      {lesson.steps.judun.contrastCheck.optionA}
+                      {renderContrastOption(lesson.steps.judun.contrastCheck.optionA)}
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setContrastChoice('B')}
-                      className={`p-3.5 rounded-xl border text-sm sm:text-base text-left font-medium transition-all ${
+                      className={`p-3.5 sm:p-4 rounded-xl border text-[17px] sm:text-[19px] text-left font-medium transition-all ${
                         contrastChoice === 'B'
                           ? 'bg-amber-700 text-white border-amber-800 font-bold shadow-xs'
                           : 'bg-white hover:bg-stone-50 text-stone-800 border-stone-300'
                       }`}
                     >
-                      {lesson.steps.judun.contrastCheck.optionB}
+                      {renderContrastOption(lesson.steps.judun.contrastCheck.optionB)}
                     </button>
                   </div>
 
