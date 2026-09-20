@@ -9,6 +9,8 @@ interface AudioPronounceButtonProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   label?: string;
+  surah?: number | string;
+  ayah?: number | string;
 }
 
 export default function AudioPronounceButton({
@@ -16,13 +18,10 @@ export default function AudioPronounceButton({
   size = 'sm',
   className = '',
   label = 'উচ্চারণ শুনুন',
+  surah,
+  ayah,
 }: AudioPronounceButtonProps) {
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [isSupported, setIsSupported] = useState(true);
-
-  useEffect(() => {
-    setIsSupported(isSpeechSynthesisSupported());
-  }, []);
 
   // Safety fallback: ensure isSpeaking resets to false even if browser audio interrupts or fails silently
   useEffect(() => {
@@ -30,7 +29,7 @@ export default function AudioPronounceButton({
     if (isSpeaking) {
       timer = setTimeout(() => {
         setIsSpeaking(false);
-      }, 7000);
+      }, 10000);
     }
     return () => {
       if (timer) clearTimeout(timer);
@@ -44,17 +43,14 @@ export default function AudioPronounceButton({
     const triggered = playArabicSpeech(
       text,
       () => setIsSpeaking(true),
-      () => setIsSpeaking(false)
+      () => setIsSpeaking(false),
+      { surah, ayah }
     );
 
     if (!triggered) {
       setIsSpeaking(false);
     }
   };
-
-  if (!isSupported) {
-    return null;
-  }
 
   const iconSizes = {
     sm: 'w-3.5 h-3.5',

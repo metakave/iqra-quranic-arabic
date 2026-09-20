@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { getSRSCards, updateSRSCard, awardXp } from '@/lib/gamification';
 import { SRSCard } from '@/types/curriculum';
 import { RotateCw, CheckCircle2, XCircle, ArrowLeft, Zap, Sparkles, Clock } from 'lucide-react';
-import QuranVerseLink from '@/components/QuranVerseLink';
+import QuranVerseLink, { parseQuranVerseReferences } from '@/components/QuranVerseLink';
 import AudioPronounceButton from '@/components/AudioPronounceButton';
 
 export default function PracticePage() {
@@ -20,6 +20,7 @@ export default function PracticePage() {
   }, []);
 
   const currentCard = cards[currentIndex];
+  const srsVerse = currentCard?.reference ? parseQuranVerseReferences(currentCard.reference)[0] : undefined;
 
   const handleReview = (remembered: boolean) => {
     if (!currentCard) return;
@@ -93,7 +94,13 @@ export default function PracticePage() {
                   <div className="font-quran text-5xl sm:text-6xl text-stone-900 font-normal leading-loose">
                     {currentCard.arabicPhrase}
                   </div>
-                  <AudioPronounceButton text={currentCard.arabicPhrase} size="md" label="উচ্চারণ শুনুন" />
+                  <AudioPronounceButton
+                    text={currentCard.arabicPhrase}
+                    surah={srsVerse?.surah}
+                    ayah={srsVerse?.ayah}
+                    size="md"
+                    label="উচ্চারণ শুনুন"
+                  />
                 </div>
                 <div className="text-xs text-stone-500 font-sans">
                   <QuranVerseLink

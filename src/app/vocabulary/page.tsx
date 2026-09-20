@@ -18,7 +18,7 @@ import {
   ArrowUpDown,
 } from 'lucide-react';
 import { QURAN_ROOT_FAMILIES, RootFamily, DerivativeWord } from '@/data/quranVocabulary';
-import QuranVerseLink from '@/components/QuranVerseLink';
+import QuranVerseLink, { parseQuranVerseReferences } from '@/components/QuranVerseLink';
 import AudioPronounceButton from '@/components/AudioPronounceButton';
 
 type SortOption = 'freq_desc' | 'freq_asc' | 'alphabetical';
@@ -665,6 +665,7 @@ export default function VocabularyPage() {
                   <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-3.5 bg-stone-50/50">
                     {family.derivatives.map((word) => {
                       const isExpanded = Boolean(expandedCards[word.id]);
+                      const ayahRef = word.exampleSurahBengali ? parseQuranVerseReferences(word.exampleSurahBengali)[0] : undefined;
                       return (
                         <div
                           key={word.id}
@@ -732,7 +733,13 @@ export default function VocabularyPage() {
                                     </div>
                                   </div>
                                   <div className="flex items-start justify-between gap-2.5 pt-1">
-                                    <AudioPronounceButton text={word.quranExample} label="আয়াতের তিলাওয়াত শুনুন" size="sm" />
+                                    <AudioPronounceButton
+                                      text={word.quranExample}
+                                      surah={ayahRef?.surah}
+                                      ayah={ayahRef?.ayah}
+                                      label="আয়াতের তিলাওয়াত শুনুন"
+                                      size="sm"
+                                    />
                                     <p
                                       className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1 flex-1"
                                       dir="rtl"
@@ -762,6 +769,7 @@ export default function VocabularyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {allFilteredWords.map((word, index) => {
               const isExpanded = Boolean(expandedCards[word.id]);
+              const ayahRef = word.exampleSurahBengali ? parseQuranVerseReferences(word.exampleSurahBengali)[0] : undefined;
               return (
                 <div
                   key={word.id}
@@ -844,7 +852,13 @@ export default function VocabularyPage() {
                             </div>
                           </div>
                           <div className="flex items-start justify-between gap-2.5 pt-1">
-                            <AudioPronounceButton text={word.quranExample} label="আয়াতের তিলাওয়াত শুনুন" size="sm" />
+                            <AudioPronounceButton
+                              text={word.quranExample}
+                              surah={ayahRef?.surah}
+                              ayah={ayahRef?.ayah}
+                              label="আয়াতের তিলাওয়াত শুনুন"
+                              size="sm"
+                            />
                             <p
                               className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1 flex-1"
                               dir="rtl"
