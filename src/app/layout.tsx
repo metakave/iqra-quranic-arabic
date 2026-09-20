@@ -42,6 +42,10 @@ export default function RootLayout({
       dir="ltr"
       className={`${notoSerifBengali.variable} ${amiriQuran.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://verses.quran.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://verses.quran.com" />
+      </head>
       <body className="min-h-full flex flex-col font-bengali bg-stone-50 text-stone-900 selection:bg-emerald-200 selection:text-emerald-950">
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>

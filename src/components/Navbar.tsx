@@ -15,10 +15,13 @@ export default function Navbar() {
   const [googleUser, setGoogleUser] = useState<SupabaseUser | null>(null);
 
   useEffect(() => {
-    setProfile(getUserProfile());
     // Listen to storage changes to update live
     const handleStorage = () => setProfile(getUserProfile());
     window.addEventListener('storage', handleStorage);
+
+    const rafId = requestAnimationFrame(() => {
+      setProfile(getUserProfile());
+    });
 
     // Sync authenticated Supabase user
     if (isSupabaseConfigured && supabase) {
@@ -29,12 +32,16 @@ export default function Navbar() {
         setGoogleUser(session?.user ?? null);
       });
       return () => {
+        cancelAnimationFrame(rafId);
         window.removeEventListener('storage', handleStorage);
         subscription.unsubscribe();
       };
     }
 
-    return () => window.removeEventListener('storage', handleStorage);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('storage', handleStorage);
+    };
   }, [pathname]);
 
   const navLinks = [

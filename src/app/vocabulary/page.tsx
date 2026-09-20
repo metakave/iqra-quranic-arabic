@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   Search,
@@ -12,17 +12,126 @@ import {
   ArrowRight,
   ChevronDown,
   Flame,
-  ArrowDownNarrowWide,
   ArrowUpNarrowWide,
   ArrowDownAZ,
   ArrowUpDown,
 } from 'lucide-react';
-import { QURAN_ROOT_FAMILIES, RootFamily, DerivativeWord } from '@/data/quranVocabulary';
+import { QURAN_ROOT_FAMILIES, DerivativeWord } from '@/data/quranVocabulary';
 import QuranVerseLink, { parseQuranVerseReferences } from '@/components/QuranVerseLink';
 import AudioPronounceButton from '@/components/AudioPronounceButton';
 
 type SortOption = 'freq_desc' | 'freq_asc' | 'alphabetical';
 type ViewMode = 'family' | 'words';
+
+function filterAndSortFamilies(
+  searchQuery: string,
+  selectedRootId: string,
+  selectedCategory: string,
+  sortBy: SortOption
+) {
+  const matched = QURAN_ROOT_FAMILIES.filter((family) => {
+    if (selectedRootId !== 'all' && family.id !== selectedRootId) {
+      return false;
+    }
+    return true;
+  }).map((family) => {
+    const filteredDerivatives = family.derivatives
+      .filter((word) => {
+        if (selectedCategory !== 'all') {
+          if (selectedCategory === 'verb') {
+            if (!['past_verb', 'present_verb', 'imperative_verb'].includes(word.category)) {
+              return false;
+            }
+          } else if (word.category !== selectedCategory) {
+            return false;
+          }
+        }
+
+        if (searchQuery.trim()) {
+          const q = searchQuery.toLowerCase().trim();
+          const matchesArabic = word.arabic.includes(q);
+          const matchesMeaning = word.meaningBengali.toLowerCase().includes(q);
+          const matchesGrammar = word.grammarBengali.toLowerCase().includes(q);
+          const matchesRoot = family.rootLettersArabic.includes(q);
+          const matchesRootMeaning = family.rootMeaningBengali.toLowerCase().includes(q);
+
+          return matchesArabic || matchesMeaning || matchesGrammar || matchesRoot || matchesRootMeaning;
+        }
+
+        return true;
+      })
+      .sort((a, b) => {
+        if (sortBy === 'freq_desc') {
+          return (b.frequencyInQuran ?? 0) - (a.frequencyInQuran ?? 0);
+        }
+        if (sortBy === 'freq_asc') {
+          return (a.frequencyInQuran ?? 0) - (b.frequencyInQuran ?? 0);
+        }
+        if (sortBy === 'alphabetical') {
+          return a.arabic.localeCompare(b.arabic, 'ar');
+        }
+        return 0;
+      });
+
+    return {
+      ...family,
+      derivatives: filteredDerivatives,
+    };
+  }).filter((family) => family.derivatives.length > 0);
+
+  return [...matched].sort((a, b) => {
+    if (sortBy === 'freq_desc') {
+      return b.frequencyInQuran - a.frequencyInQuran;
+    }
+    if (sortBy === 'freq_asc') {
+      return a.frequencyInQuran - b.frequencyInQuran;
+    }
+    if (sortBy === 'alphabetical') {
+      return a.rootLettersArabic.localeCompare(b.rootLettersArabic, 'ar');
+    }
+    return 0;
+  });
+}
+
+function computeFilteredVocabulary(
+  searchQuery: string,
+  selectedRootId: string,
+  selectedCategory: string,
+  sortBy: SortOption
+) {
+  const families = filterAndSortFamilies(searchQuery, selectedRootId, selectedCategory, sortBy);
+  const list: (DerivativeWord & {
+    rootLettersArabic: string;
+    rootMeaningBengali: string;
+    rootFamilyId: string;
+  })[] = [];
+
+  families.forEach((family) => {
+    family.derivatives.forEach((word) => {
+      list.push({
+        ...word,
+        rootLettersArabic: family.rootLettersArabic,
+        rootMeaningBengali: family.rootMeaningBengali,
+        rootFamilyId: family.id,
+      });
+    });
+  });
+
+  const words = list.sort((a, b) => {
+    if (sortBy === 'freq_desc') {
+      return (b.frequencyInQuran ?? 0) - (a.frequencyInQuran ?? 0);
+    }
+    if (sortBy === 'freq_asc') {
+      return (a.frequencyInQuran ?? 0) - (b.frequencyInQuran ?? 0);
+    }
+    if (sortBy === 'alphabetical') {
+      return a.arabic.localeCompare(b.arabic, 'ar');
+    }
+    return 0;
+  });
+
+  return { filteredFamilies: families, allFilteredWords: words };
+}
 
 export default function VocabularyPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -68,7 +177,9 @@ export default function VocabularyPage() {
   }, []);
 
   useEffect(() => {
-    calculateThreeLinesHeight();
+    const rafId = requestAnimationFrame(() => {
+      calculateThreeLinesHeight();
+    });
 
     const timeoutId = setTimeout(calculateThreeLinesHeight, 100);
 
@@ -84,6 +195,7 @@ export default function VocabularyPage() {
     window.addEventListener('resize', calculateThreeLinesHeight);
 
     return () => {
+      cancelAnimationFrame(rafId);
       clearTimeout(timeoutId);
       if (resizeObserver) resizeObserver.disconnect();
       window.removeEventListener('resize', calculateThreeLinesHeight);
@@ -97,125 +209,30 @@ export default function VocabularyPage() {
     }));
   };
 
-  // Compute statistics
-  const totalRoots = QURAN_ROOT_FAMILIES.length;
-  const totalDerivatives = QURAN_ROOT_FAMILIES.reduce(
-    (sum, r) => sum + r.derivatives.length,
-    0
-  );
-  const totalFrequency = QURAN_ROOT_FAMILIES.reduce(
-    (sum, r) => sum + r.frequencyInQuran,
+  const totalQuranWordsCount = QURAN_ROOT_FAMILIES.reduce(
+    (acc, family) => acc + family.frequencyInQuran,
     0
   );
 
+  const totalRoots = QURAN_ROOT_FAMILIES.length;
+  const totalDerivatives = QURAN_ROOT_FAMILIES.reduce(
+    (acc, family) => acc + family.derivatives.length,
+    0
+  );
+
+  const totalFrequency = totalQuranWordsCount;
   const QURAN_TOTAL_WORDS = 77439;
   const coveragePercent = Math.min(
     100,
     parseFloat(((totalFrequency / QURAN_TOTAL_WORDS) * 100).toFixed(1))
   );
 
-  // Filter and sort logic for families
-  const filteredFamilies = useMemo(() => {
-    const matched = QURAN_ROOT_FAMILIES.filter((family) => {
-      if (selectedRootId !== 'all' && family.id !== selectedRootId) {
-        return false;
-      }
-      return true;
-    }).map((family) => {
-      let filteredDerivatives = family.derivatives.filter((word) => {
-        // Category filter
-        if (selectedCategory !== 'all') {
-          if (selectedCategory === 'verb') {
-            if (!['past_verb', 'present_verb', 'imperative_verb'].includes(word.category)) {
-              return false;
-            }
-          } else if (word.category !== selectedCategory) {
-            return false;
-          }
-        }
-
-        // Search query filter (matches Arabic, Bengali meaning, grammar, or root)
-        if (searchQuery.trim()) {
-          const q = searchQuery.toLowerCase().trim();
-          const matchesArabic = word.arabic.includes(q);
-          const matchesMeaning = word.meaningBengali.toLowerCase().includes(q);
-          const matchesGrammar = word.grammarBengali.toLowerCase().includes(q);
-          const matchesRoot = family.rootLettersArabic.includes(q);
-          const matchesRootMeaning = family.rootMeaningBengali.toLowerCase().includes(q);
-
-          return matchesArabic || matchesMeaning || matchesGrammar || matchesRoot || matchesRootMeaning;
-        }
-
-        return true;
-      });
-
-      // Sort derivatives within each family
-      filteredDerivatives = [...filteredDerivatives].sort((a, b) => {
-        if (sortBy === 'freq_desc') {
-          return (b.frequencyInQuran ?? 0) - (a.frequencyInQuran ?? 0);
-        }
-        if (sortBy === 'freq_asc') {
-          return (a.frequencyInQuran ?? 0) - (b.frequencyInQuran ?? 0);
-        }
-        if (sortBy === 'alphabetical') {
-          return a.arabic.localeCompare(b.arabic, 'ar');
-        }
-        return 0;
-      });
-
-      return {
-        ...family,
-        derivatives: filteredDerivatives,
-      };
-    }).filter((family) => family.derivatives.length > 0);
-
-    // Sort families
-    return matched.sort((a, b) => {
-      if (sortBy === 'freq_desc') {
-        return b.frequencyInQuran - a.frequencyInQuran;
-      }
-      if (sortBy === 'freq_asc') {
-        return a.frequencyInQuran - b.frequencyInQuran;
-      }
-      if (sortBy === 'alphabetical') {
-        return a.rootLettersArabic.localeCompare(b.rootLettersArabic, 'ar');
-      }
-      return 0;
-    });
-  }, [searchQuery, selectedRootId, selectedCategory, sortBy]);
-
-  // Flattened words for 'words' view mode
-  const allFilteredWords = useMemo(() => {
-    const list: (DerivativeWord & {
-      rootLettersArabic: string;
-      rootMeaningBengali: string;
-      rootFamilyId: string;
-    })[] = [];
-
-    filteredFamilies.forEach((family) => {
-      family.derivatives.forEach((word) => {
-        list.push({
-          ...word,
-          rootLettersArabic: family.rootLettersArabic,
-          rootMeaningBengali: family.rootMeaningBengali,
-          rootFamilyId: family.id,
-        });
-      });
-    });
-
-    return list.sort((a, b) => {
-      if (sortBy === 'freq_desc') {
-        return (b.frequencyInQuran ?? 0) - (a.frequencyInQuran ?? 0);
-      }
-      if (sortBy === 'freq_asc') {
-        return (a.frequencyInQuran ?? 0) - (b.frequencyInQuran ?? 0);
-      }
-      if (sortBy === 'alphabetical') {
-        return a.arabic.localeCompare(b.arabic, 'ar');
-      }
-      return 0;
-    });
-  }, [filteredFamilies, sortBy]);
+  const { filteredFamilies, allFilteredWords } = computeFilteredVocabulary(
+    searchQuery,
+    selectedRootId,
+    selectedCategory,
+    sortBy
+  );
 
   const totalMatches = allFilteredWords.length;
 

@@ -1,23 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { getSRSCards, updateSRSCard, awardXp } from '@/lib/gamification';
+import { awardXp } from '@/lib/gamification';
+import { getSRSCards, updateSRSCard } from '@/lib/srs';
 import { SRSCard } from '@/types/curriculum';
 import { RotateCw, CheckCircle2, XCircle, ArrowLeft, Zap, Sparkles, Clock } from 'lucide-react';
 import QuranVerseLink, { parseQuranVerseReferences } from '@/components/QuranVerseLink';
 import AudioPronounceButton from '@/components/AudioPronounceButton';
 
 export default function PracticePage() {
-  const [cards, setCards] = useState<SRSCard[]>([]);
+  const [cards] = useState<SRSCard[]>(getSRSCards);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [completedCount, setCompletedCount] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-
-  useEffect(() => {
-    setCards(getSRSCards());
-  }, []);
 
   const currentCard = cards[currentIndex];
   const srsVerse = currentCard?.reference ? parseQuranVerseReferences(currentCard.reference)[0] : undefined;

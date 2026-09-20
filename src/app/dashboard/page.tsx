@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { COURSE_MODULES } from '@/data/courseCurriculum';
 import { getUserProfile, calculateLevel } from '@/lib/gamification';
@@ -8,11 +8,7 @@ import { UserProfile } from '@/types/curriculum';
 import { Flame, Zap, Award, BookOpen, Clock, Lock, CheckCircle, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function DashboardPage() {
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-
-  useEffect(() => {
-    setProfile(getUserProfile());
-  }, []);
+  const [profile] = useState<UserProfile | null>(getUserProfile);
 
   const totalXp = profile?.totalXp ?? 150;
   const { level, nextLevelXp, currentLevelMinXp } = calculateLevel(totalXp);

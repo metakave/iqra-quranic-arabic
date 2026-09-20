@@ -5,15 +5,29 @@ import { useRouter } from 'next/navigation';
 import { signInWithGoogle, signOutUser, supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { getUserProfile, saveUserProfile } from '@/lib/gamification';
 import { fetchRemoteUserProfile } from '@/lib/supabaseSync';
-import { CheckCircle, ArrowRight, ShieldCheck, LogOut, Sparkles, UserCheck } from 'lucide-react';
+import { CheckCircle, ArrowRight, ShieldCheck, LogOut } from 'lucide-react';
 import type { User } from '@supabase/supabase-js';
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [readingLevel, setReadingLevel] = useState<'fluent_decoding' | 'intermediate' | 'beginner'>('fluent_decoding');
-  const [dailyTarget, setDailyTarget] = useState<number>(30);
+  const [name, setName] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    const p = getUserProfile();
+    return p?.name && p.name !== 'কুরআন শিক্ষার্থী' ? p.name : '';
+  });
+  const [email, setEmail] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    const p = getUserProfile();
+    return p?.email && p.email !== 'learner@example.com' ? p.email : '';
+  });
+  const [readingLevel, setReadingLevel] = useState<'fluent_decoding' | 'intermediate' | 'beginner'>(() => {
+    if (typeof window === 'undefined') return 'fluent_decoding';
+    return getUserProfile()?.arabicReadingLevel || 'fluent_decoding';
+  });
+  const [dailyTarget, setDailyTarget] = useState<number>(() => {
+    if (typeof window === 'undefined') return 30;
+    return getUserProfile()?.dailyTargetMinutes || 30;
+  });
   const [isSaved, setIsSaved] = useState(false);
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -23,16 +37,7 @@ export default function OnboardingPage() {
   const [avatarUrl, setAvatarUrl] = useState<string>('');
 
   useEffect(() => {
-    // 1. Initial local profile fallback
-    const localProfile = getUserProfile();
-    if (localProfile) {
-      if (localProfile.name && localProfile.name !== 'কুরআন শিক্ষার্থী') setName(localProfile.name);
-      if (localProfile.email && localProfile.email !== 'learner@example.com') setEmail(localProfile.email);
-      setReadingLevel(localProfile.arabicReadingLevel);
-      setDailyTarget(localProfile.dailyTargetMinutes);
-    }
-
-    // 2. Fetch authenticated Supabase user
+    // Fetch authenticated Supabase user
     async function loadAuth() {
       if (isSupabaseConfigured && supabase) {
         try {

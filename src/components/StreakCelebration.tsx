@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import confetti from 'canvas-confetti';
 import { Award, ArrowRight, Zap, Flame } from 'lucide-react';
 import Link from 'next/link';
 
@@ -22,16 +21,19 @@ export default function StreakCelebration({
 }: StreakCelebrationProps) {
   useEffect(() => {
     if (isOpen) {
-      try {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#047857', '#10b981', '#f59e0b', '#fbbf24', '#3b82f6'],
+      import('canvas-confetti')
+        .then((module) => {
+          const confetti = module.default;
+          confetti({
+            particleCount: 80,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#047857', '#10b981', '#f59e0b', '#fbbf24', '#3b82f6'],
+          });
+        })
+        .catch(() => {
+          // Safe fallback if canvas is unavailable
         });
-      } catch {
-        // Safe fallback if canvas is unavailable
-      }
     }
   }, [isOpen]);
 

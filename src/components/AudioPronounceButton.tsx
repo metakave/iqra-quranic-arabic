@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
-import { playArabicSpeech, isSpeechSynthesisSupported } from '@/lib/arabicSpeech';
+import { Volume2 } from 'lucide-react';
+import { playArabicSpeech } from '@/lib/arabicSpeech';
 
 interface AudioPronounceButtonProps {
   text: string;
