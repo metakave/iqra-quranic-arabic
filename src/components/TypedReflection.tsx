@@ -39,24 +39,24 @@ export default function TypedReflection({
     <div className="space-y-6">
       {/* Question & Prompt */}
       <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl">
-        <p className="text-base text-stone-800 font-semibold mb-2 leading-relaxed">
+        <p className="text-base sm:text-lg text-stone-800 font-semibold mb-2 leading-relaxed">
           {promptBengali}
         </p>
         <div className="flex items-center justify-between">
-          <span className="text-xs text-stone-500">
+          <span className="text-xs sm:text-sm text-stone-500">
             বিনা দ্বিধায় লিখুন—ভুল হওয়া শেখার অন্যতম গুরুত্বপূর্ণ ধাপ।
           </span>
           <button
             type="button"
             onClick={() => setShowHint(!showHint)}
-            className="text-xs text-emerald-700 hover:text-emerald-800 flex items-center gap-1 font-medium"
+            className="text-xs sm:text-sm text-emerald-700 hover:text-emerald-800 flex items-center gap-1 font-medium"
           >
-            <HelpCircle className="w-3.5 h-3.5" />
+            <HelpCircle className="w-4 h-4" />
             <span>{showHint ? 'ইঙ্গিত ঢাকুন' : 'ইঙ্গিত দেখুন'}</span>
           </button>
         </div>
         {showHint && (
-          <div className="mt-3 p-3 bg-emerald-50/70 border border-emerald-200/80 rounded-lg text-xs text-emerald-900 leading-relaxed">
+          <div className="mt-3 p-3 bg-emerald-50/70 border border-emerald-200/80 rounded-lg text-sm sm:text-base text-emerald-900 leading-relaxed">
             💡 <strong>ইঙ্গিত:</strong> {hintBengali}
           </div>
         )}
@@ -71,7 +71,7 @@ export default function TypedReflection({
             disabled={isSubmitted}
             rows={3}
             placeholder={placeholderBengali}
-            className="w-full p-4 rounded-xl border border-stone-300 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 text-stone-900 bg-white placeholder:text-stone-400 text-sm leading-relaxed outline-none transition-all disabled:bg-stone-100 disabled:text-stone-700"
+            className="w-full p-4 rounded-xl border border-stone-300 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 text-stone-900 bg-white placeholder:text-stone-400 text-base leading-relaxed outline-none transition-all disabled:bg-stone-100 disabled:text-stone-700"
           />
         </div>
 
@@ -79,13 +79,13 @@ export default function TypedReflection({
           <button
             type="submit"
             disabled={!inputText.trim()}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-base flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Send className="w-4 h-4" />
             <span>নিজের মতামত জমা দিন ও মিলিয়ে নিন (+১৫ XP)</span>
           </button>
         ) : (
-          <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 text-xs flex items-center gap-2 font-medium">
+          <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 text-sm flex items-center gap-2 font-medium">
             <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>আপনার উত্তর জমা হয়েছে! এবার নিচের প্রামাণ্য ব্যাখ্যার সাথে মিলিয়ে নিন।</span>
           </div>
@@ -100,36 +100,51 @@ export default function TypedReflection({
               <span className="h-6 w-6 rounded-full bg-emerald-700 text-white flex items-center justify-center text-xs font-bold">
                 ✓
               </span>
-              <h4 className="font-bold text-emerald-950 text-base">
+              <h4 className="font-bold text-emerald-950 text-lg">
                 ধাপ ৫: মিলিয়ে নিন (আদর্শ ব্যাখ্যা ও বিশ্লেষণ)
               </h4>
             </div>
 
             <div className="bg-white p-4 rounded-xl border border-emerald-100 mb-4 shadow-2xs">
-              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 block mb-1">
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-emerald-700 block mb-1">
                 অনুমোদিত বাংলা ভাবার্থ:
               </span>
-              <p className="text-base text-stone-900 font-medium leading-relaxed">
+              <p className="text-base sm:text-lg text-stone-900 font-medium leading-relaxed">
                 “{modelExplanationBengali}”
               </p>
             </div>
 
             {/* Grammatical Takeaway */}
-            <div className="bg-emerald-100/60 p-4 rounded-xl text-emerald-950 text-sm leading-relaxed mb-4">
-              <strong className="block text-emerald-900 mb-1">
-                📌 মূল ব্যাকরণিক শিক্ষণীয় (Key Takeaway):
-              </strong>
-              <p>{grammaticalTakeawayBengali}</p>
-            </div>
+            {(() => {
+              const lines = grammaticalTakeawayBengali.includes('\n')
+                ? grammaticalTakeawayBengali.split('\n')
+                : grammaticalTakeawayBengali
+                    .split(/(?=\s+(?:[১-৯]|\d+)\.\s+)/)
+                    .map((s) => s.trim())
+                    .filter(Boolean);
+
+              return (
+                <div className="bg-emerald-100/60 p-4 sm:p-5 rounded-2xl text-emerald-950 text-base sm:text-lg leading-relaxed mb-4">
+                  <strong className="block text-emerald-900 mb-2 text-lg sm:text-xl font-bold">
+                    📌 মূল ব্যাকরণিক শিক্ষণীয় (Key Takeaway):
+                  </strong>
+                  <div className="space-y-2 text-stone-800 text-base sm:text-lg leading-relaxed">
+                    {lines.map((line, idx) => (
+                      <p key={idx}>{line}</p>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Common Mistakes */}
             {commonMistakesBengali.length > 0 && (
-              <div className="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl text-amber-950 text-xs sm:text-sm">
-                <div className="flex items-center gap-1.5 font-bold text-amber-900 mb-2">
+              <div className="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl text-amber-950 text-sm sm:text-base">
+                <div className="flex items-center gap-1.5 font-bold text-amber-900 mb-2 text-sm sm:text-base">
                   <AlertCircle className="w-4 h-4 text-amber-600" />
                   <span>সাধারণ ভুল (যা এড়িয়ে চলবেন):</span>
                 </div>
-                <ul className="list-disc list-inside space-y-1 text-stone-700">
+                <ul className="list-disc list-inside space-y-1.5 text-stone-700 text-sm sm:text-base">
                   {commonMistakesBengali.map((mistake, i) => (
                     <li key={i}>{mistake}</li>
                   ))}

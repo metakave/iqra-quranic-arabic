@@ -41,15 +41,15 @@ export default function ChunkBreakdown({
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <p className="text-xs sm:text-sm text-stone-600 font-medium">
+        <p className="text-sm sm:text-base text-stone-600 font-medium">
           💡 প্রতিটি আরবি অংশের ওপর স্পর্শ বা ক্লিক করে অর্থ ও ব্যাকরণিক ভূমিকা দেখুন:
         </p>
         <button
           type="button"
           onClick={handleRevealAll}
-          className="text-xs text-emerald-700 hover:text-emerald-800 font-semibold underline underline-offset-4 flex items-center gap-1"
+          className="text-sm text-emerald-700 hover:text-emerald-800 font-semibold underline underline-offset-4 flex items-center gap-1.5"
         >
-          <Eye className="w-3.5 h-3.5" />
+          <Eye className="w-4 h-4" />
           <span>{allRevealed ? 'সব ঢাকুন' : 'সব উন্মুক্ত করুন'}</span>
         </button>
       </div>
@@ -80,7 +80,7 @@ export default function ChunkBreakdown({
             >
               {/* Arabic chunk */}
               <div>
-                <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-stone-200/80 text-stone-600 font-sans mb-2" dir="ltr">
+                <span className="inline-block text-xs sm:text-sm px-2.5 py-0.5 rounded-full bg-stone-200/80 text-stone-600 font-sans mb-2" dir="ltr">
                   অংশ {idx + 1}
                 </span>
                 <h3 className="font-quran text-4xl sm:text-[42px] text-emerald-950 font-normal leading-relaxed py-1.5">
@@ -92,18 +92,18 @@ export default function ChunkBreakdown({
               <div className="mt-3 pt-3 border-t border-stone-100" dir="ltr">
                 {isRevealed ? (
                   <div className="space-y-1.5 animate-fadeIn">
-                    <p className="font-bold text-stone-900 text-base">
+                    <p className="font-bold text-stone-900 text-lg">
                       {chunk.meaningBengali}
                     </p>
                     <span
-                      className={`inline-block text-[13px] font-medium px-2 py-0.5 rounded-md border ${activeColor}`}
+                      className={`inline-block text-sm sm:text-[15px] font-medium px-2.5 py-1 rounded-md border ${activeColor}`}
                     >
                       {chunk.roleBengali}
                     </span>
                   </div>
                 ) : (
-                  <div className="text-stone-400 text-xs flex items-center justify-center gap-1 py-2">
-                    <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                  <div className="text-stone-400 text-sm flex items-center justify-center gap-1.5 py-2">
+                    <Sparkles className="w-4 h-4 text-amber-500" />
                     <span>অর্থ দেখতে ট্যাপ করুন</span>
                   </div>
                 )}
@@ -114,17 +114,30 @@ export default function ChunkBreakdown({
       </div>
 
       {/* Teacher's Pedagogical Note */}
-      {teachingNoteBengali && (
-        <div className="p-4 rounded-xl bg-amber-50/80 border border-amber-200/70 text-amber-950 flex items-start gap-3 text-sm leading-relaxed">
-          <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-          <div>
-            <span className="font-bold block text-amber-900 mb-0.5">
-              পর্যবেক্ষণ:
-            </span>
-            <p className="text-stone-700">{teachingNoteBengali}</p>
+      {teachingNoteBengali && (() => {
+        const lines = teachingNoteBengali.includes('\n')
+          ? teachingNoteBengali.split('\n')
+          : teachingNoteBengali
+              .split(/(?=\s+(?:[১-৯]|\d+)\.\s+)/)
+              .map((s) => s.trim())
+              .filter(Boolean);
+
+        return (
+          <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/70 text-amber-950 flex items-start gap-3.5 text-base sm:text-lg leading-relaxed">
+            <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-1" />
+            <div className="flex-1">
+              <span className="font-bold block text-amber-900 mb-2 text-lg sm:text-xl">
+                পর্যবেক্ষণ:
+              </span>
+              <div className="space-y-2 text-stone-800 text-base sm:text-lg leading-relaxed">
+                {lines.map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 }

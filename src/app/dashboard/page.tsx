@@ -345,20 +345,38 @@ export default function DashboardPage() {
 
                       {module.moduleNumber === 3 && (
                         <div className="pt-2">
-                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ৩-এর প্রস্তুতকৃত পাঠ:</div>
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ৩-এর প্রস্তুতকৃত পাঠসমূহ:</div>
                           <div className="flex flex-wrap gap-2">
                             <Link
                               href="/learn/module-03-lesson-11"
                               className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
                             >
-                              <span>পাঠ ১১ (৪ প্রধান হরফ: فِي, مِنْ, إِلَى, عَلَى)</span>
+                              <span>পাঠ ১১ (فِي, مِنْ, إِلَى, عَلَى)</span>
                             </Link>
                             <Link
                               href="/learn/module-03-lesson-12"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ১২ (যুক্ত হরফ: بِـ, لِـ, وَ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-03-lesson-13"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ১৩ (দুই নামের সম্পর্ক)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-03-lesson-14"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ১৪ (সম্পর্কের শৃঙ্খল)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-03-lesson-15"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ১২ (লেগে থাকা হরফ: بِـ, لِـ, وَ) • নতুন</span>
+                              <span>পাঠ ১৫ (মডিউল ৩ সার্বিক যাচাই) • নতুন</span>
                             </Link>
                           </div>
                         </div>

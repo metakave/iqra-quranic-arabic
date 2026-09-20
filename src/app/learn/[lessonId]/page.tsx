@@ -38,7 +38,7 @@ export default function LessonPage() {
   const stepsList = [
     { num: 1, label: 'দেখুন', desc: 'আয়াত পাঠ' },
     { num: 2, label: 'ভাঙুন', desc: 'অংশ বিশ্লেষণ' },
-    { num: 3, label: 'জুড়ুন', desc: 'সম্পর্ক ও নতুন প্রয়োগ' },
+    { num: 3, label: 'জোড়া দিন', desc: 'সম্পর্ক ও নতুন প্রয়োগ' },
     { num: 4, label: 'বলুন ও মেলান', desc: 'নিজের ভাষায় অর্থ' },
     { num: 5, label: 'মূল্যায়ন', desc: 'পাঠশেষের ৫ প্রশ্ন' },
   ];
@@ -69,6 +69,9 @@ export default function LessonPage() {
     'module-02-lesson-09': 'module-02-lesson-10',
     'module-02-lesson-10': 'module-03-lesson-11',
     'module-03-lesson-11': 'module-03-lesson-12',
+    'module-03-lesson-12': 'module-03-lesson-13',
+    'module-03-lesson-13': 'module-03-lesson-14',
+    'module-03-lesson-14': 'module-03-lesson-15',
   };
 
   return (
@@ -78,18 +81,18 @@ export default function LessonPage() {
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link
             href="/dashboard"
-            className="text-xs sm:text-sm text-stone-600 hover:text-stone-900 flex items-center gap-1 font-medium"
+            className="text-sm sm:text-base text-stone-600 hover:text-stone-900 flex items-center gap-1.5 font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>ড্যাশবোর্ডে ফিরুন</span>
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-full font-semibold">
+            <span className="text-sm bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full font-semibold">
               মডিউল {lesson.moduleNumber} • পাঠ {lesson.lessonNumber}
             </span>
-            <span className="text-xs text-stone-500 hidden sm:flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" />
+            <span className="text-sm text-stone-500 hidden sm:flex items-center gap-1.5">
+              <Clock className="w-4 h-4" />
               <span>পরিকল্পিত {lesson.estimatedMinutes} মিনিট</span>
             </span>
           </div>
@@ -106,17 +109,17 @@ export default function LessonPage() {
                 key={step.num}
                 type="button"
                 onClick={() => setActiveStep(step.num)}
-                className={`flex-1 min-w-[75px] py-1.5 px-2 rounded-xl text-center transition-all ${
+                className={`flex-1 min-w-[75px] py-2 px-2.5 rounded-xl text-center transition-all ${
                   isActive
                     ? 'bg-emerald-800 text-white shadow-xs font-bold'
                     : isDone
                     ? 'bg-emerald-100 text-emerald-900 hover:bg-emerald-200 font-semibold'
-                    : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
+                    : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                 }`}
               >
                 <div className="flex items-center justify-center gap-1">
-                  <span className="text-xs font-sans">{step.num}.</span>
-                  <span className="text-xs">{step.label}</span>
+                  <span className="text-sm font-sans">{step.num}.</span>
+                  <span className="text-sm">{step.label}</span>
                 </div>
               </button>
             );
@@ -127,20 +130,20 @@ export default function LessonPage() {
       <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
         {/* Lesson Header Banner */}
         <div className="bg-gradient-to-br from-stone-900 via-stone-850 to-emerald-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-          <div className="relative z-10 space-y-2">
+          <div className="relative z-10 space-y-2.5">
             <div className="flex items-center gap-2">
-              <span className="text-xs text-emerald-400 font-semibold uppercase tracking-wider">
+              <span className="text-sm text-emerald-400 font-semibold uppercase tracking-wider">
                 {lesson.anchorAyah.surahNameBengali} ({lesson.anchorAyah.surahNumber}:{lesson.anchorAyah.ayahNumber})
               </span>
-              <span className="text-xs text-stone-400">•</span>
-              <span className="text-xs text-stone-300">
-                পদ্ধতি: দেখুন → ভাঙুন → জুড়ুন → বলুন → মিলিয়ে নিন
+              <span className="text-sm text-stone-400">•</span>
+              <span className="text-sm text-stone-300">
+                পদ্ধতি: দেখুন → ভাঙুন → জোড়া দিন → বলুন → মিলিয়ে নিন
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold leading-snug">
+            <h1 className="text-3xl sm:text-4xl font-bold leading-snug">
               {lesson.titleBengali}
             </h1>
-            <p className="text-sm text-stone-300 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-[17px] text-stone-200 max-w-2xl leading-relaxed">
               {lesson.subtitleBengali}
             </p>
           </div>
@@ -158,20 +161,20 @@ export default function LessonPage() {
                 <span className="h-6 w-6 rounded-full bg-amber-100 text-amber-800 text-xs font-bold flex items-center justify-center">
                   ?
                 </span>
-                <span className="font-bold text-sm text-stone-800">
+                <span className="font-bold text-base text-stone-800">
                   শেখার আগের ছোট যাচাই (ঐচ্ছিক প্রাক-মূল্যায়ন)
                 </span>
               </div>
               {showPreCheck ? (
-                <ChevronUp className="w-4 h-4 text-stone-400" />
+                <ChevronUp className="w-5 h-5 text-stone-400" />
               ) : (
-                <ChevronDown className="w-4 h-4 text-stone-400" />
+                <ChevronDown className="w-5 h-5 text-stone-400" />
               )}
             </button>
 
             {showPreCheck && (
               <div className="p-5 border-t border-stone-100 bg-stone-50/60 space-y-4 animate-fadeIn">
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
                   {lesson.preCheck.promptBengali}
                 </p>
 
@@ -179,13 +182,13 @@ export default function LessonPage() {
                   <div className="font-quran text-4xl sm:text-[42px] text-emerald-950 leading-relaxed">
                     {lesson.preCheck.diagnosticAyah.arabicText}
                   </div>
-                  <div className="text-xs text-stone-400 font-sans">
+                  <div className="text-sm text-stone-400 font-sans">
                     {lesson.preCheck.diagnosticAyah.referenceBengali}
                   </div>
                 </div>
 
-                <div className="space-y-1 text-xs text-stone-700 bg-amber-50/70 p-3.5 rounded-xl border border-amber-200/60">
-                  <span className="font-bold block text-amber-900 mb-1">
+                <div className="space-y-1.5 text-sm sm:text-[15px] text-stone-700 bg-amber-50/70 p-4 rounded-xl border border-amber-200/60">
+                  <span className="font-bold block text-amber-900 mb-1.5 text-sm sm:text-base">
                     নিজেকে প্রশ্ন করুন (নম্বর কাটার বিষয় নেই):
                   </span>
                   {lesson.preCheck.diagnosticAyah.guidingQuestions.map((q, i) => (
@@ -203,13 +206,13 @@ export default function LessonPage() {
           {activeStep === 1 && (
             <div className="space-y-6 animate-fadeIn">
               <div className="border-b border-stone-100 pb-4">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
+                <span className="text-sm font-bold text-emerald-700 uppercase tracking-wider">
                   ধাপ ১ • দেখুন (সরাসরি আরবি পাঠ)
                 </span>
-                <h2 className="text-xl font-bold text-stone-900 mt-1">
+                <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   আয়াতটি মনোযোগ দিয়ে পড়ুন
                 </h2>
-                <p className="text-sm text-stone-600 mt-1">
+                <p className="text-base text-stone-600 mt-1">
                   {lesson.steps.dekhun.promptBengali}
                 </p>
               </div>
@@ -219,7 +222,7 @@ export default function LessonPage() {
                 <div className="font-quran text-4xl sm:text-5xl text-stone-900 mb-4 leading-loose">
                   {lesson.steps.dekhun.arabicText}
                 </div>
-                <div className="text-xs text-stone-500 flex items-center justify-center gap-1 font-sans">
+                <div className="text-sm text-stone-500 flex items-center justify-center gap-1.5 font-sans">
                   <span>
                     কুরআন শরীফ • {lesson.anchorAyah.surahNameBengali} ({lesson.anchorAyah.surahNumber}:{lesson.anchorAyah.ayahNumber})
                   </span>
@@ -227,13 +230,13 @@ export default function LessonPage() {
               </div>
 
               {/* Guiding Question */}
-              <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 flex items-start gap-3">
+              <div className="p-4.5 rounded-xl bg-stone-50 border border-stone-200 flex items-start gap-3">
                 <HelpCircle className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-stone-900 text-sm">
+                  <h4 className="font-bold text-stone-900 text-base">
                     চিন্তার সূত্র (Guiding Question):
                   </h4>
-                  <p className="text-stone-700 text-sm mt-0.5">
+                  <p className="text-stone-700 text-base mt-1 leading-relaxed">
                     {lesson.steps.dekhun.guidingQuestionBengali}
                   </p>
                 </div>
@@ -243,7 +246,7 @@ export default function LessonPage() {
                 <button
                   type="button"
                   onClick={() => setActiveStep(2)}
-                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm transition-colors"
+                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base transition-colors"
                 >
                   পরবর্তী ধাপ: ভাঙুন (৩টি অংশ বিশ্লেষণ) →
                 </button>
@@ -255,13 +258,13 @@ export default function LessonPage() {
           {activeStep === 2 && (
             <div className="space-y-6 animate-fadeIn">
               <div className="border-b border-stone-100 pb-4">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
+                <span className="text-sm font-bold text-emerald-700 uppercase tracking-wider">
                   ধাপ ২ • ভাঙুন (অর্থপূর্ণ অংশ বিশ্লেষণ)
                 </span>
-                <h2 className="text-xl font-bold text-stone-900 mt-1">
+                <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   টুকরো চিনে অর্থ বুঝুন
                 </h2>
-                <p className="text-sm text-stone-600 mt-1">
+                <p className="text-base text-stone-600 mt-1">
                   {lesson.steps.bhangun.promptBengali}
                 </p>
               </div>
@@ -275,32 +278,32 @@ export default function LessonPage() {
                 <button
                   type="button"
                   onClick={() => setActiveStep(1)}
-                  className="px-4 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-medium text-xs hover:bg-stone-50"
+                  className="px-4.5 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-medium text-sm hover:bg-stone-50"
                 >
                   ← পূর্ববর্তী ধাপ
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveStep(3)}
-                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm transition-colors"
+                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base transition-colors"
                 >
-                  পরবর্তী ধাপ: জুড়ুন (সম্পর্ক ও নতুন প্রয়োগ) →
+                  পরবর্তী ধাপ: জোড়া দিন (সম্পর্ক ও নতুন প্রয়োগ) →
                 </button>
               </div>
             </div>
           )}
 
-          {/* STEP 3: জুড়ুন & নতুন অংশে প্রয়োগ (Connectors & Transfer Application) */}
+          {/* STEP 3: জোড়া দিন & নতুন অংশে প্রয়োগ (Connectors & Transfer Application) */}
           {activeStep === 3 && (
             <div className="space-y-8 animate-fadeIn">
               <div className="border-b border-stone-100 pb-4">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
-                  ধাপ ৩ • জুড়ুন (অংশ জুড়ে পূর্ণ অর্থ ও নতুন প্রয়োগ)
+                <span className="text-sm font-bold text-emerald-700 uppercase tracking-wider">
+                  ধাপ ৩ • জোড়া দিন (অংশ জুড়ে পূর্ণ অর্থ ও নতুন প্রয়োগ)
                 </span>
-                <h2 className="text-xl font-bold text-stone-900 mt-1">
+                <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   অংশগুলো কীভাবে পরস্পরের সাথে সম্পর্কিত?
                 </h2>
-                <p className="text-sm text-stone-600 mt-1">
+                <p className="text-base text-stone-600 mt-1">
                   {lesson.steps.judun.promptBengali}
                 </p>
               </div>
@@ -315,7 +318,7 @@ export default function LessonPage() {
                     <div className="font-quran text-2xl sm:text-3xl text-emerald-950 font-normal py-0.5 leading-relaxed" dir="rtl">
                       {c.fromText}
                     </div>
-                    <div className="text-stone-700 text-xs sm:text-sm bg-white px-3 py-1.5 rounded-xl border border-stone-200">
+                    <div className="text-stone-800 text-sm sm:text-base bg-white px-3.5 py-2 rounded-xl border border-stone-200 font-medium">
                       💡 {c.relationshipBengali}
                     </div>
                   </div>
@@ -324,12 +327,12 @@ export default function LessonPage() {
 
               {/* Contrast Check (বিভ্রান্তি দূরীকরণ) */}
               {lesson.steps.judun.contrastCheck && (
-                <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 space-y-3">
-                  <div className="flex items-center gap-2 text-amber-900 font-bold text-sm">
-                    <Sparkles className="w-4 h-4 text-amber-600" />
+                <div className="p-5 sm:p-6 rounded-2xl bg-amber-50/70 border border-amber-200/80 space-y-3.5">
+                  <div className="flex items-center gap-2 text-amber-900 font-bold text-base">
+                    <Sparkles className="w-4.5 h-4.5 text-amber-600" />
                     <span>অর্থের সূক্ষ্ম পার্থক্য যাচাই:</span>
                   </div>
-                  <p className="text-xs sm:text-sm text-stone-800">
+                  <p className="text-sm sm:text-base text-stone-800">
                     {lesson.steps.judun.contrastCheck.prompt}
                   </p>
 
@@ -337,7 +340,7 @@ export default function LessonPage() {
                     <button
                       type="button"
                       onClick={() => setContrastChoice('A')}
-                      className={`p-3 rounded-xl border text-xs sm:text-sm text-left font-medium transition-all ${
+                      className={`p-3.5 rounded-xl border text-sm sm:text-base text-left font-medium transition-all ${
                         contrastChoice === 'A'
                           ? 'bg-emerald-700 text-white border-emerald-800 font-bold shadow-xs'
                           : 'bg-white hover:bg-stone-50 text-stone-800 border-stone-300'
@@ -349,7 +352,7 @@ export default function LessonPage() {
                     <button
                       type="button"
                       onClick={() => setContrastChoice('B')}
-                      className={`p-3 rounded-xl border text-xs sm:text-sm text-left font-medium transition-all ${
+                      className={`p-3.5 rounded-xl border text-sm sm:text-base text-left font-medium transition-all ${
                         contrastChoice === 'B'
                           ? 'bg-amber-700 text-white border-amber-800 font-bold shadow-xs'
                           : 'bg-white hover:bg-stone-50 text-stone-800 border-stone-300'
@@ -360,7 +363,7 @@ export default function LessonPage() {
                   </div>
 
                   {contrastChoice && (
-                    <div className="p-3 rounded-xl bg-white border border-amber-200 text-xs text-stone-700 leading-relaxed animate-fadeIn">
+                    <div className="p-3.5 rounded-xl bg-white border border-amber-200 text-sm sm:text-base text-stone-700 leading-relaxed animate-fadeIn">
                       <strong>ফলাফল: </strong>
                       {contrastChoice === lesson.steps.judun.contrastCheck.correctOption ? (
                         <span className="text-emerald-800 font-bold">✓ সঠিক! </span>
@@ -377,10 +380,10 @@ export default function LessonPage() {
               {lesson.steps.transferApplication && (
                 <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/50 border border-emerald-300 space-y-4 shadow-2xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide">
+                    <span className="text-sm font-bold text-emerald-800 uppercase tracking-wide">
                       {lesson.steps.transferApplication.titleBengali}
                     </span>
-                    <span className="text-xs text-stone-500 font-sans">
+                    <span className="text-sm text-stone-500 font-sans">
                       {lesson.steps.transferApplication.referenceBengali}
                     </span>
                   </div>
@@ -391,7 +394,7 @@ export default function LessonPage() {
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-stone-700">
+                  <p className="text-sm sm:text-base text-stone-700">
                     {lesson.steps.transferApplication.promptBengali}
                   </p>
 
@@ -405,7 +408,7 @@ export default function LessonPage() {
                         <span className="font-quran text-2xl text-emerald-900 block leading-relaxed">
                           {v.arabic}
                         </span>
-                        <span className="text-xs text-stone-700 font-sans block mt-1" dir="ltr">
+                        <span className="text-sm text-stone-700 font-sans block mt-1 font-medium" dir="ltr">
                           = {v.meaningBengali}
                         </span>
                       </div>
@@ -417,16 +420,24 @@ export default function LessonPage() {
                       <button
                         type="button"
                         onClick={() => setTransferRevealed(true)}
-                        className="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs"
+                        className="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-xs"
                       >
                         উত্তর দেখুন (আসমানসমূহ ও পৃথিবীর রব)
                       </button>
                     ) : (
-                      <div className="p-3 bg-white rounded-xl border border-emerald-300 text-xs sm:text-sm text-emerald-950 font-bold animate-fadeIn">
+                      <div className="p-4 bg-white rounded-2xl border border-emerald-300 text-base sm:text-lg text-emerald-950 font-bold animate-fadeIn">
                         ✓ সমাধান: “{lesson.steps.transferApplication.solutionBengali}”
-                        <p className="text-xs font-normal text-stone-600 mt-1">
-                          {lesson.steps.transferApplication.teachingNoteBengali}
-                        </p>
+                        <div className="text-base sm:text-lg font-normal text-stone-700 mt-2.5 space-y-2 leading-relaxed">
+                          {(lesson.steps.transferApplication.teachingNoteBengali.includes('\n')
+                            ? lesson.steps.transferApplication.teachingNoteBengali.split('\n')
+                            : lesson.steps.transferApplication.teachingNoteBengali
+                                .split(/(?=\s+(?:[১-৯]|\d+)\.\s+)/)
+                                .map((s) => s.trim())
+                                .filter(Boolean)
+                          ).map((line, idx) => (
+                            <p key={idx}>{line}</p>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -437,14 +448,14 @@ export default function LessonPage() {
                 <button
                   type="button"
                   onClick={() => setActiveStep(2)}
-                  className="px-4 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-medium text-xs hover:bg-stone-50"
+                  className="px-4.5 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-medium text-sm hover:bg-stone-50"
                 >
                   ← পূর্ববর্তী ধাপ
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveStep(4)}
-                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm transition-colors"
+                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base transition-colors"
                 >
                   পরবর্তী ধাপ: বলুন ও মেলান →
                 </button>
@@ -456,13 +467,13 @@ export default function LessonPage() {
           {activeStep === 4 && (
             <div className="space-y-6 animate-fadeIn">
               <div className="border-b border-stone-100 pb-4">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
+                <span className="text-sm font-bold text-emerald-700 uppercase tracking-wider">
                   ধাপ ৪ ও ৫ • বলুন ও মিলিয়ে নিন
                 </span>
-                <h2 className="text-xl font-bold text-stone-900 mt-1">
+                <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   নিজের ভাষায় অর্থ লিখুন
                 </h2>
-                <p className="text-sm text-stone-600 mt-1">
+                <p className="text-base text-stone-600 mt-1">
                   অনুবাদ না দেখে, আরবির তিনটি অংশের সম্পর্ক জুড়ে দিয়ে নিজের ভাষায় অর্থ সংক্ষেপে লিখুন।
                 </p>
               </div>
@@ -480,14 +491,14 @@ export default function LessonPage() {
                 <button
                   type="button"
                   onClick={() => setActiveStep(3)}
-                  className="px-4 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-medium text-xs hover:bg-stone-50"
+                  className="px-4.5 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-medium text-sm hover:bg-stone-50"
                 >
                   ← পূর্ববর্তী ধাপ
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveStep(5)}
-                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm transition-colors"
+                  className="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base transition-colors"
                 >
                   পরবর্তী ধাপ: পাঠশেষের ৫ প্রশ্ন →
                 </button>
@@ -499,13 +510,13 @@ export default function LessonPage() {
           {activeStep === 5 && (
             <div className="space-y-8 animate-fadeIn">
               <div className="border-b border-stone-100 pb-4">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
+                <span className="text-sm font-bold text-emerald-700 uppercase tracking-wider">
                   পাঠশেষের মূল্যায়ন • ৫ প্রশ্ন
                 </span>
-                <h2 className="text-xl font-bold text-stone-900 mt-1">
+                <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   আজকের পাঠের জ্ঞান যাচাই
                 </h2>
-                <p className="text-sm text-stone-600 mt-1">
+                <p className="text-base text-stone-600 mt-1">
                   প্রতিটি প্রশ্নের উত্তর দিন। ৪–৫টি সঠিক হলে আপনি পরবর্তী পাঠের জন্য প্রস্তুত।
                 </p>
               </div>
@@ -519,15 +530,15 @@ export default function LessonPage() {
                   return (
                     <div
                       key={exercise.id}
-                      className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3"
+                      className="p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200 space-y-3.5"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-stone-500 uppercase">
+                        <span className="text-sm font-bold text-stone-500 uppercase">
                           প্রশ্ন {idx + 1}
                         </span>
                         {hasAnswered && (
                           <span
-                            className={`text-xs font-bold px-2 py-0.5 rounded-md ${
+                            className={`text-sm font-bold px-2.5 py-1 rounded-md ${
                               isCorrect
                                 ? 'bg-emerald-100 text-emerald-800'
                                 : 'bg-red-100 text-red-800'
@@ -538,12 +549,12 @@ export default function LessonPage() {
                         )}
                       </div>
 
-                      <h4 className="text-base font-bold text-stone-900">
+                      <h4 className="text-lg sm:text-xl font-bold text-stone-900 leading-snug">
                         {exercise.questionBengali}
                       </h4>
 
                       {exercise.arabicPrompt && (
-                        <div className="font-quran text-3xl sm:text-[38px] text-emerald-950 p-3 bg-white rounded-xl border border-stone-200 inline-block leading-relaxed">
+                        <div className="font-quran text-3xl sm:text-[38px] text-emerald-950 p-3.5 bg-white rounded-xl border border-stone-200 inline-block leading-relaxed">
                           {exercise.arabicPrompt}
                         </div>
                       )}
@@ -557,7 +568,7 @@ export default function LessonPage() {
                               key={optIdx}
                               type="button"
                               onClick={() => handleAnswerSelect(exercise.id, optIdx)}
-                              className={`p-3 rounded-xl border text-xs sm:text-sm text-left font-medium transition-all ${
+                              className={`p-3.5 rounded-xl border text-sm sm:text-base text-left font-medium transition-all ${
                                 isOptSelected
                                   ? 'bg-emerald-700 text-white border-emerald-800 shadow-sm font-semibold'
                                   : 'bg-white hover:bg-stone-100 text-stone-800 border-stone-200'
@@ -573,7 +584,7 @@ export default function LessonPage() {
                       </div>
 
                       {hasAnswered && (
-                        <div className="p-3 rounded-xl bg-stone-100 text-xs text-stone-700 leading-relaxed">
+                        <div className="p-3.5 rounded-xl bg-stone-100 text-sm sm:text-base text-stone-700 leading-relaxed">
                           💡 <strong>ব্যাখ্যা:</strong> {exercise.explanationBengali}
                         </div>
                       )}
@@ -584,19 +595,19 @@ export default function LessonPage() {
 
               {/* Error Diagnosis Help Table (ভুল অনুযায়ী ছোট সহায়তা) */}
               {lesson.errorDiagnosisTable && (
-                <div className="p-5 rounded-2xl bg-stone-100/80 border border-stone-200 space-y-3">
-                  <div className="flex items-center gap-2 text-stone-800 font-bold text-sm">
-                    <AlertCircle className="w-4 h-4 text-emerald-700" />
+                <div className="p-5 sm:p-6 rounded-2xl bg-stone-100/80 border border-stone-200 space-y-3.5">
+                  <div className="flex items-center gap-2 text-stone-800 font-bold text-base">
+                    <AlertCircle className="w-5 h-5 text-emerald-700" />
                     <span>ভুল অনুযায়ী শিক্ষকের ছোট সহায়তা নির্দেশিকা:</span>
                   </div>
 
-                  <div className="divide-y divide-stone-200 text-xs">
+                  <div className="divide-y divide-stone-200 text-sm sm:text-base">
                     {lesson.errorDiagnosisTable.map((d, i) => (
-                      <div key={i} className="py-2.5 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div key={i} className="py-3 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <span className="font-semibold text-stone-700">
                           ভুল ধারণা: {d.misconceptionBengali}
                         </span>
-                        <span className="text-emerald-900 bg-emerald-50 px-2 py-1 rounded-md">
+                        <span className="text-emerald-900 bg-emerald-50 px-2.5 py-1 rounded-md">
                           পরামর্শ: {d.teacherFeedbackBengali}
                         </span>
                       </div>
@@ -607,14 +618,14 @@ export default function LessonPage() {
 
               {/* Complete Lesson CTA */}
               <div className="pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="text-xs text-stone-500">
+                <div className="text-sm sm:text-base text-stone-600">
                   সম্পূর্ণ পাঠ শেষ করলে <strong className="text-emerald-700">+{lesson.xpReward} XP</strong> অর্জন করবেন।
                 </div>
 
                 <button
                   type="button"
                   onClick={handleFinishLesson}
-                  className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-bold text-base shadow-lg flex items-center justify-center gap-2 transition-all"
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-bold text-base sm:text-lg shadow-lg flex items-center justify-center gap-2 transition-all"
                 >
                   <Award className="w-5 h-5 text-amber-300" />
                   <span>পাঠ সম্পন্ন করুন (+{lesson.xpReward} XP)</span>

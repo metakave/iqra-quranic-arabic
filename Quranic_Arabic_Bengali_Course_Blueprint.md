@@ -34,15 +34,15 @@ On a new passage, with adequate Arabic context but without translation, glossary
 
 Independent linguistic comprehension is the objective. Qualification to derive legal rulings or settle disputed interpretation is outside this course’s assessment.
 
-## 3. The teaching method: দেখুন → ভাঙুন → জুড়ুন → বলুন → মিলিয়ে নিন
+## 3. The teaching method: দেখুন → ভাঙুন → জোড়া দিন → বলুন → মিলিয়ে নিন
 
-This is a proposed teaching synthesis, not a claim of a scientifically validated new method.
+Every single lesson strictly follows this 5-stage cadence:
 
-| Step | Learner action | Course support |
-|---|---|---|
-| দেখুন | Read the unaltered Arabic and notice familiar elements | Optional accurate audio; no translation initially |
-| ভাঙুন | Identify meaning-bearing chunks and attached pieces | Tap-to-reveal labels and a separate analysis line |
-| জুড়ুন | Connect actions, people, descriptions and logical links | Short Bengali questions and relationship arrows |
+| Stage | Pedagogical Goal | Student Activity |
+| --- | --- | --- |
+| দেখুন | Encounter uncut Arabic text | Read silently / aloud, spot known markers, no English/Bengali prompt |
+| ভাঙুন | Deconstruct into meaningful chunks | Hover/tap or read color-coded morphology/vocabulary breakdown |
+| জোড়া দিন | Connect actions, people, descriptions and logical links | Short Bengali questions and relationship arrows |
 | বলুন | Explain the meaning in Bengali before seeing the answer | Voice recording or short typed response |
 | মিলিয়ে নিন | Compare with a reviewed explanation, diagnose errors, retry | Acceptable paraphrases and specific correction |
 

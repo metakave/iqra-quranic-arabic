@@ -61,7 +61,7 @@ export default function RootLayout({
               </div>
             </div>
             <p className="text-xs sm:text-sm text-stone-500">
-              ১২০টি পাঠের স্ব-শিক্ষণ পাঠ্যক্রম • পদ্ধতি: দেখুন → ভাঙুন → জুড়ুন → বলুন → মিলিয়ে নিন
+              ১২০টি পাঠের স্ব-শিক্ষণ পাঠ্যক্রম • পদ্ধতি: দেখুন → ভাঙুন → জোড়া দিন → বলুন → মিলিয়ে নিন
             </p>
             <p className="text-xs text-stone-400">
               © {new Date().getFullYear()} সকল স্বত্ব সংরক্ষিত

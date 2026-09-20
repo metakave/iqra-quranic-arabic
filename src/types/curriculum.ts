@@ -63,7 +63,7 @@ export interface LessonContent {
       chunks: Chunk[];
       teachingNoteBengali: string;
     };
-    // 3. জুড়ুন (Connect relationships)
+    // 3. জোড়া দিন (Connect relationships)
     judun: {
       promptBengali: string;
       connectors: Connector[];
