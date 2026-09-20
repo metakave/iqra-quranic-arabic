@@ -430,10 +430,16 @@ export default function DashboardPage() {
                           <div className="flex flex-wrap gap-2">
                             <Link
                               href="/learn/module-05-lesson-21"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ২১ (অতীতের কাজ: আমি ও আমরা [ـْتُ / ـْنَا])</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-05-lesson-22"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ২১ (অতীতের কাজ: আমি ও আমরা [ـْتُ / ـْنَا]) • নতুন</span>
+                              <span>পাঠ ২২ (অতীতের কাজ: তুমি ও তোমরা [ـْتَ / ـْتُمْ]) • নতুন</span>
                             </Link>
                           </div>
                         </div>
