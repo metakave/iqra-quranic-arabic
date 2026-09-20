@@ -233,6 +233,8 @@ export default function DashboardPage() {
                   ? '/learn/module-12-lesson-56'
                   : module.moduleNumber === 13
                   ? '/learn/module-13-lesson-61'
+                  : module.moduleNumber === 14
+                  ? '/learn/module-14-lesson-66'
                   : '#';
 
               return (
@@ -738,6 +740,84 @@ export default function DashboardPage() {
                             >
                               <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
                               <span>পাঠ ৬০ (মধ্যবর্তী ৫০% মূল্যায়ন ও সার্বিক সমন্বয়) • চেকপয়েন্ট</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 13 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ১৩-এর প্রস্তুতকৃত পাঠসমূহ (দুর্বল বর্ণবিশিষ্ট শব্দ):</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-13-lesson-61"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬১ (ক্বালা / ইয়াক্বূলু / ক্বুল পরিবার)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-13-lesson-62"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬২ (দ‘আ / ইয়াদ‘ঊ ও হাদা / ইয়াহদী পরিবার)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-13-lesson-63"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬৩ (ওয়াজাদা / ইয়াজিদু ও ওয়া‘আদা / ইয়া‘ইদু)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-13-lesson-64"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬৪ (দ্বিত্ব ক্রিয়া: দ্বিগুণ মূল বর্ণ সংকুচিত রূপ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-13-lesson-65"
+                              className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-950 px-3 py-1.5 rounded-lg border border-amber-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
+                            >
+                              <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+                              <span>পাঠ ৬৫ (দুর্বল ক্রিয়ার স্থানান্তর ও সার্বিক মূল্যায়ন)</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 14 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ১৪-এর প্রস্তুতকৃত পাঠসমূহ (কে করল আর কার ওপর ঘটল):</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-14-lesson-66"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬৬ (কর্তা বনাম কর্ম: ফায়েল ও মাফউল সংকেত)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-14-lesson-67"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬৭ (উন্নত বাক্যাংশ: অগ্রবর্তী কর্ম ও জোর)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-14-lesson-68"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬৮ (সক্রিয় বনাম নিষ্ক্রিয় ক্রিয়া: মাজহুল রূপ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-14-lesson-69"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৬৯ (দ্বৈত কর্ম ও বিশেষণের ধারাবাহিকতা)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-14-lesson-70"
+                              className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-950 px-3 py-1.5 rounded-lg border border-amber-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
+                            >
+                              <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+                              <span>পাঠ ৭০ (ভূমিকা নির্ণয়ের সার্বিক মূল্যায়ন) • চেকপয়েন্ট</span>
                             </Link>
                           </div>
                         </div>

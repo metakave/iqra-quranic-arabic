@@ -170,6 +170,12 @@ export function completeLesson(lessonId: string, xpReward: number): UserProfile 
       });
     }
   }
+  if (lessonId === 'module-13-lesson-65' && updated.unlockedModule < 14) {
+    updated.unlockedModule = 14;
+  }
+  if (lessonId === 'module-14-lesson-70' && updated.unlockedModule < 15) {
+    updated.unlockedModule = 15;
+  }
 
   saveUserProfile(updated);
   return updated;
