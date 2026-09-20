@@ -506,10 +506,16 @@ export default function DashboardPage() {
                           <div className="flex flex-wrap gap-2">
                             <Link
                               href="/learn/module-07-lesson-31"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩১ (সরাসরি আদেশ ও একবচন: اقْرَأْ ও قُلْ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-07-lesson-32"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ৩১ (সরাসরি আদেশ ও একবচন: اقْرَأْ ও قُلْ) • নতুন</span>
+                              <span>পাঠ ৩২ (বহুবচনের সম্বোধনে আদেশ: اعْبُدُوا ও أَقِيمُوا) • নতুন</span>
                             </Link>
                           </div>
                         </div>
