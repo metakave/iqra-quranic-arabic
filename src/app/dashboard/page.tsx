@@ -408,10 +408,16 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-04-lesson-19"
-                              className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ১৯ (নির্দিষ্টতার সংকেত: الْـ) • নতুন</span>
+                              <span>পাঠ ১৯ (নির্দিষ্টতার সংকেত: الْـ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-04-lesson-20"
+                              className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-950 px-3 py-1.5 rounded-lg border border-amber-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+                              <span>পাঠ ২০ (চেকপয়েন্ট A: মূল্যায়ন ও রূপান্তর) • নতুন</span>
                             </Link>
                           </div>
                         </div>

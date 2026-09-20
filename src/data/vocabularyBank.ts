@@ -745,6 +745,47 @@ export const INITIAL_SRS_CARDS: SRSCard[] = [
     repetitions: 0,
     nextReviewDate: new Date().toISOString().split('T')[0],
   },
+  // Lesson 20: Checkpoint A - Statement vs Phrase Synthesis
+  {
+    id: 'srs-75',
+    arabicPhrase: 'هَٰذَا خَلْقُ اللَّهِ',
+    bengaliMeaning: 'এটি আল্লাহর সৃষ্টি (পূর্ণ বাক্য)',
+    attachmentNoteBengali: 'هَٰذَا (বিষয়) + خَلْقُ اللَّهِ (সম্বন্ধযুক্ত সংবাদ); সূরা লুকমান ৩১:১১',
+    reference: 'সূরা লুকমান ৩১:১১',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
+  {
+    id: 'srs-76',
+    arabicPhrase: 'ذَٰلِكَ الْيَوْمُ الْحَقُّ',
+    bengaliMeaning: 'সেই দিনটিই সুনিশ্চিত সত্য (পূর্ণ বাক্য/ঘোষণা)',
+    attachmentNoteBengali: 'ذَٰلِكَ (দূরবর্তী ইশারা) + নির্দিষ্ট গুণবাচক জোড়; সূরা আন-নাবা ৭৮:৩৯',
+    reference: 'সূরা আন-নাবা ৭৮:৩৯',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
+  {
+    id: 'srs-77',
+    arabicPhrase: 'تِلْكَ حُجَّتُنَا',
+    bengaliMeaning: 'তা ছিল আমাদের দলিল / যুক্তি (পূর্ণ বাক্য)',
+    attachmentNoteBengali: 'تِلْكَ (দূরবর্তী নির্দেশ) + حُجَّتُنَا (আমাদের দলিল); সূরা আল-আন‘আম ৬:৮৩',
+    reference: 'সূরা আল-আন‘আম ৬:৮৩',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
+  {
+    id: 'srs-78',
+    arabicPhrase: 'الْفَوْزُ الْعَظِيمُ',
+    bengaliMeaning: 'মহাসাফল্যটি (বর্ণনামূলক খণ্ড দল)',
+    attachmentNoteBengali: 'উভয় শব্দে ‘الْـ’ থাকায় এটি মওসূফ-সিফাত খণ্ড দল, বাক্য নয়; সূরা আত-তাওবাহ ৯:৭২',
+    reference: 'সূরা আত-তাওবাহ ৯:৭২',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
 ];
 
 
