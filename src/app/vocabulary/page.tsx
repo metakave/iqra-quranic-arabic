@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   Search,
@@ -29,6 +29,64 @@ export default function VocabularyPage() {
   const [sortBy, setSortBy] = useState<SortOption>('freq_desc');
   const [viewMode, setViewMode] = useState<ViewMode>('family');
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
+  const [isRootsExpanded, setIsRootsExpanded] = useState(false);
+  const [collapsedHeight, setCollapsedHeight] = useState<number | null>(null);
+  const [hasRootsOverflow, setHasRootsOverflow] = useState(false);
+  const rootListRef = useRef<HTMLDivElement>(null);
+
+  const calculateThreeLinesHeight = useCallback(() => {
+    if (!rootListRef.current) return;
+    const container = rootListRef.current;
+    const children = Array.from(container.children) as HTMLElement[];
+    if (children.length === 0) return;
+
+    // Group children by distinct line top offsets with 6px tolerance
+    const lineTops: number[] = [];
+    for (const child of children) {
+      const top = child.offsetTop;
+      if (!lineTops.some((t) => Math.abs(t - top) < 6)) {
+        lineTops.push(top);
+      }
+    }
+
+    lineTops.sort((a, b) => a - b);
+
+    if (lineTops.length > 3) {
+      setHasRootsOverflow(true);
+      // Determine bounding bottom of line 3 (index 2)
+      const thirdLineTop = lineTops[2];
+      const thirdLineChildren = children.filter((c) => Math.abs(c.offsetTop - thirdLineTop) < 6);
+      const maxBottom = Math.max(...thirdLineChildren.map((c) => c.offsetTop + c.offsetHeight));
+      const targetHeight = maxBottom - container.offsetTop;
+      setCollapsedHeight(targetHeight);
+    } else {
+      setHasRootsOverflow(false);
+      setCollapsedHeight(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    calculateThreeLinesHeight();
+
+    const timeoutId = setTimeout(calculateThreeLinesHeight, 100);
+
+    const container = rootListRef.current;
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && container) {
+      resizeObserver = new ResizeObserver(() => {
+        calculateThreeLinesHeight();
+      });
+      resizeObserver.observe(container);
+    }
+
+    window.addEventListener('resize', calculateThreeLinesHeight);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', calculateThreeLinesHeight);
+    };
+  }, [calculateThreeLinesHeight]);
 
   const toggleExpand = (id: string) => {
     setExpandedCards((prev) => ({
@@ -228,37 +286,107 @@ export default function VocabularyPage() {
             )}
           </div>
 
-          {/* Root Pills Horizontal Bar */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-            <span className="text-xs font-bold text-stone-500 flex items-center gap-1 shrink-0 mr-1">
-              <Filter className="w-3.5 h-3.5" /> মূল:
-            </span>
-            <button
-              type="button"
-              onClick={() => setSelectedRootId('all')}
-              className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-colors shrink-0 ${
-                selectedRootId === 'all'
-                  ? 'bg-emerald-700 text-white font-bold shadow-xs'
-                  : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
-              }`}
-            >
-              সকল ({totalDerivatives})
-            </button>
-            {QURAN_ROOT_FAMILIES.map((rf) => (
-              <button
-                key={rf.id}
-                type="button"
-                onClick={() => setSelectedRootId(rf.id)}
-                className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-colors shrink-0 ${
-                  selectedRootId === rf.id
-                    ? 'bg-emerald-700 text-white font-bold shadow-xs'
-                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
-                }`}
+          {/* Multi-line Root Words Section with 3-Line Clamping & Show More */}
+          <div className="space-y-2.5 pt-1">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-stone-600">
+                <Filter className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                <span>কুরআনিক মূল শব্দ ({QURAN_ROOT_FAMILIES.length}টি মূল):</span>
+                {selectedRootId !== 'all' && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedRootId('all')}
+                    className="text-[11px] text-emerald-700 hover:text-emerald-800 underline font-semibold ml-1 cursor-pointer"
+                  >
+                    সকল মূল রিসেট
+                  </button>
+                )}
+              </div>
+              {hasRootsOverflow && (
+                <button
+                  type="button"
+                  onClick={() => setIsRootsExpanded((prev) => !prev)}
+                  className="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-900 transition-colors cursor-pointer"
+                >
+                  <span>{isRootsExpanded ? 'সংক্ষেপ করুন' : 'সকল মূল দেখুন'}</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                      isRootsExpanded ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              )}
+            </div>
+
+            <div className="relative">
+              <div
+                ref={rootListRef}
+                className="flex flex-wrap items-center gap-1.5 transition-[max-height] duration-300 ease-in-out overflow-hidden"
+                style={{
+                  maxHeight: isRootsExpanded
+                    ? '2500px'
+                    : collapsedHeight
+                    ? `${collapsedHeight}px`
+                    : '135px',
+                }}
               >
-                <span className="font-quran text-base mr-1 font-bold" dir="rtl">{rf.rootLettersArabic}</span>
-                <span>({rf.derivatives.length})</span>
-              </button>
-            ))}
+                <button
+                  type="button"
+                  onClick={() => setSelectedRootId('all')}
+                  className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-colors cursor-pointer shrink-0 ${
+                    selectedRootId === 'all'
+                      ? 'bg-emerald-700 text-white font-bold shadow-xs ring-2 ring-emerald-600/30'
+                      : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                  }`}
+                >
+                  সকল ({totalDerivatives})
+                </button>
+                {QURAN_ROOT_FAMILIES.map((rf) => (
+                  <button
+                    key={rf.id}
+                    type="button"
+                    onClick={() => setSelectedRootId(rf.id)}
+                    className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-colors cursor-pointer shrink-0 ${
+                      selectedRootId === rf.id
+                        ? 'bg-emerald-700 text-white font-bold shadow-xs ring-2 ring-emerald-600/30'
+                        : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                    }`}
+                  >
+                    <span className="font-quran text-base mr-1 font-bold" dir="rtl">
+                      {rf.rootLettersArabic}
+                    </span>
+                    <span>({rf.derivatives.length})</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Bottom gradient fade when collapsed */}
+              {!isRootsExpanded && hasRootsOverflow && (
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white via-white/80 to-transparent" />
+              )}
+            </div>
+
+            {/* Show More / Show Less Toggle Button for mobile & desktop */}
+            {hasRootsOverflow && (
+              <div className="flex justify-center pt-1">
+                <button
+                  type="button"
+                  onClick={() => setIsRootsExpanded((prev) => !prev)}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 px-4 py-1.5 rounded-full transition-all shadow-2xs hover:shadow-xs cursor-pointer"
+                >
+                  <span>
+                    {isRootsExpanded
+                      ? 'সংক্ষেপ করুন (Show Less)'
+                      : 'আরও মূল শব্দ দেখুন (Show More)'}
+                  </span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 text-emerald-700 transition-transform duration-300 ${
+                      isRootsExpanded ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Sorting & Category Control Toolbar */}
