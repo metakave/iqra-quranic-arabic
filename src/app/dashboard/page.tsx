@@ -221,6 +221,8 @@ export default function DashboardPage() {
                   ? '/learn/module-04-lesson-16'
                   : module.moduleNumber === 5
                   ? '/learn/module-05-lesson-21'
+                  : module.moduleNumber === 6
+                  ? '/learn/module-06-lesson-26'
                   : '#';
 
               return (
@@ -454,10 +456,24 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-05-lesson-25"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ২৫ (মডিউল ৫ সমাপ্তি ও রূপান্তর মূল্যায়ন)</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 6 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ৬-এর প্রস্তুতকৃত পাঠসমূহ:</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-06-lesson-26"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ২৫ (মডিউল ৫ সমাপ্তি ও রূপান্তর মূল্যায়ন) • সমাপ্তি পাঠ</span>
+                              <span>পাঠ ২৬ (বর্তমান কাজ: আমি ও আমরা [أَ / نَ]) • নতুন</span>
                             </Link>
                           </div>
                         </div>
