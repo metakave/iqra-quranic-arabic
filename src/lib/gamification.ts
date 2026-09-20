@@ -152,6 +152,24 @@ export function completeLesson(lessonId: string, xpReward: number): UserProfile 
   if (lessonId === 'module-10-lesson-50' && updated.unlockedModule < 11) {
     updated.unlockedModule = 11;
   }
+  if (lessonId === 'module-11-lesson-55' && updated.unlockedModule < 12) {
+    updated.unlockedModule = 12;
+  }
+  if (lessonId === 'module-12-lesson-60') {
+    if (updated.unlockedModule < 13) {
+      updated.unlockedModule = 13;
+    }
+    const hasBadge = updated.badges.some((b) => b.id === 'b-midterm-mastery');
+    if (!hasBadge) {
+      updated.badges.push({
+        id: 'b-midterm-mastery',
+        titleBengali: 'অর্ধ-কুরআন অভিযাত্রী',
+        descriptionBengali: '২৪ সপ্তাহের প্রথম ৫০% মাইলফলক (৬০টি পাঠ) সফলভাবে সম্পন্ন করেছেন',
+        icon: '👑',
+        unlockedAt: new Date().toISOString().split('T')[0],
+      });
+    }
+  }
 
   saveUserProfile(updated);
   return updated;

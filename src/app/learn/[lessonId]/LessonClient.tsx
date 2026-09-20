@@ -124,6 +124,16 @@ export default function LessonClient({ lesson }: LessonClientProps) {
     'module-10-lesson-47': 'module-10-lesson-48',
     'module-10-lesson-48': 'module-10-lesson-49',
     'module-10-lesson-49': 'module-10-lesson-50',
+    'module-10-lesson-50': 'module-11-lesson-51',
+    'module-11-lesson-51': 'module-11-lesson-52',
+    'module-11-lesson-52': 'module-11-lesson-53',
+    'module-11-lesson-53': 'module-11-lesson-54',
+    'module-11-lesson-54': 'module-11-lesson-55',
+    'module-11-lesson-55': 'module-12-lesson-56',
+    'module-12-lesson-56': 'module-12-lesson-57',
+    'module-12-lesson-57': 'module-12-lesson-58',
+    'module-12-lesson-58': 'module-12-lesson-59',
+    'module-12-lesson-59': 'module-12-lesson-60',
   };
 
   return (

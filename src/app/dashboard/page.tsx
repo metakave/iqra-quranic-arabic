@@ -229,6 +229,10 @@ export default function DashboardPage() {
                   ? '/learn/module-10-lesson-46'
                   : module.moduleNumber === 11
                   ? '/learn/module-11-lesson-51'
+                  : module.moduleNumber === 12
+                  ? '/learn/module-12-lesson-56'
+                  : module.moduleNumber === 13
+                  ? '/learn/module-13-lesson-61'
                   : '#';
 
               return (
@@ -656,6 +660,84 @@ export default function DashboardPage() {
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
                               <span>পাঠ ৫০ (সংযোগ ও যৌক্তিক ধারা সমাপনী মূল্যায়ন) • সমাপনী</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 11 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ১১-এর প্রস্তুতকৃত পাঠসমূহ:</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-11-lesson-51"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫১ (মূল বর্ণ ও মূল ভাব: ك-ت-ب ও ع-ل-م)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-11-lesson-52"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫২ (কাজ বনাম কাজের নাম: ভাববাচক বিশেষ্য/মাস্তার)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-11-lesson-53"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫৩ (কে করল আর কার ওপর ঘটল: ইসমে ফায়েল ও মাফউল)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-11-lesson-54"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫৪ (ক্রিয়ার রূপান্তর ও অর্থের বিস্তার: বাবের পরিচয়)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-11-lesson-55"
+                              className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                              <span>পাঠ ৫৫ (শব্দ পরিবার সমন্বয় ও সমাপনী মূল্যায়ন) • সমাপনী</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 12 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ১২-এর প্রস্তুতকৃত পাঠসমূহ (৫০% মাইলফলক):</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-12-lesson-56"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫৬ (দ্বিবচন: জোড়ার সংকেত ‘ـَانِ’ ও ‘ـَيْنِ’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-12-lesson-57"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫৭ (নিয়মিত বহুবচন: মুমিন ও মুমিনাত ‘ـُونَ/ـَات’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-12-lesson-58"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫৮ (ভগ্ন বহুবচন: ছাঁচভাঙা বহুত্ব ‘كُتُب’ ও ‘رُسُل’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-12-lesson-59"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৫৯ (বহুবচনের সঙ্গতি: অপ্রাণবাচক বহুবচনের স্ত্রীলিঙ্গ রূপ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-12-lesson-60"
+                              className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-950 px-3 py-1.5 rounded-lg border border-amber-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
+                            >
+                              <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+                              <span>পাঠ ৬০ (মধ্যবর্তী ৫০% মূল্যায়ন ও সার্বিক সমন্বয়) • চেকপয়েন্ট</span>
                             </Link>
                           </div>
                         </div>
