@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { QURAN_ROOT_FAMILIES, RootFamily, DerivativeWord } from '@/data/quranVocabulary';
 import QuranVerseLink from '@/components/QuranVerseLink';
+import AudioPronounceButton from '@/components/AudioPronounceButton';
 
 type SortOption = 'freq_desc' | 'freq_asc' | 'alphabetical';
 type ViewMode = 'family' | 'words';
@@ -693,7 +694,8 @@ export default function VocabularyPage() {
                             </div>
 
                             {/* Arabic Word Display */}
-                            <div className="text-right">
+                            <div className="text-right flex items-center gap-2 justify-end">
+                              <AudioPronounceButton text={word.arabic} label={`"${word.arabic}" এর উচ্চারণ শুনুন`} />
                               <span
                                 className="font-quran text-3xl sm:text-4xl text-emerald-950 font-normal leading-relaxed block py-0.5"
                                 dir="rtl"
@@ -717,12 +719,15 @@ export default function VocabularyPage() {
                                       />
                                     )}
                                   </div>
-                                  <p
-                                    className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1"
-                                    dir="rtl"
-                                  >
-                                    {word.quranExample}
-                                  </p>
+                                  <div className="flex items-start justify-between gap-2 pt-1">
+                                    <AudioPronounceButton text={word.quranExample} label="আয়াতের তিলাওয়াত শুনুন" size="sm" />
+                                    <p
+                                      className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1 flex-1"
+                                      dir="rtl"
+                                    >
+                                      {word.quranExample}
+                                    </p>
+                                  </div>
                                 </div>
                               ) : (
                                 <div className="flex items-center justify-between text-[13px] text-stone-400 hover:text-emerald-700 transition-colors">
@@ -789,7 +794,8 @@ export default function VocabularyPage() {
                     </div>
 
                     {/* Arabic Word Display */}
-                    <div className="text-right">
+                    <div className="text-right flex items-center gap-2 justify-end">
+                      <AudioPronounceButton text={word.arabic} label={`"${word.arabic}" এর উচ্চারণ শুনুন`} />
                       <span
                         className="font-quran text-3xl sm:text-4xl text-emerald-950 font-normal leading-relaxed block py-0.5"
                         dir="rtl"
@@ -813,12 +819,15 @@ export default function VocabularyPage() {
                               />
                             )}
                           </div>
-                          <p
-                            className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1"
-                            dir="rtl"
-                          >
-                            {word.quranExample}
-                          </p>
+                          <div className="flex items-start justify-between gap-2 pt-1">
+                            <AudioPronounceButton text={word.quranExample} label="আয়াতের তিলাওয়াত শুনুন" size="sm" />
+                            <p
+                              className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1 flex-1"
+                              dir="rtl"
+                            >
+                              {word.quranExample}
+                            </p>
+                          </div>
                         </div>
                       ) : (
                         <div className="flex items-center justify-between text-[13px] text-stone-400 hover:text-emerald-700 transition-colors">

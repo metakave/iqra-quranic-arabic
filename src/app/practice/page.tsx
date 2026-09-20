@@ -6,6 +6,7 @@ import { getSRSCards, updateSRSCard, awardXp } from '@/lib/gamification';
 import { SRSCard } from '@/types/curriculum';
 import { RotateCw, CheckCircle2, XCircle, ArrowLeft, Zap, Sparkles, Clock } from 'lucide-react';
 import QuranVerseLink from '@/components/QuranVerseLink';
+import AudioPronounceButton from '@/components/AudioPronounceButton';
 
 export default function PracticePage() {
   const [cards, setCards] = useState<SRSCard[]>([]);
@@ -88,8 +89,11 @@ export default function PracticePage() {
 
               {/* Arabic Phrase */}
               <div className="py-6 space-y-3">
-                <div className="font-quran text-5xl sm:text-6xl text-stone-900 font-normal leading-loose">
-                  {currentCard.arabicPhrase}
+                <div className="flex items-center justify-center gap-3">
+                  <div className="font-quran text-5xl sm:text-6xl text-stone-900 font-normal leading-loose">
+                    {currentCard.arabicPhrase}
+                  </div>
+                  <AudioPronounceButton text={currentCard.arabicPhrase} size="md" label="উচ্চারণ শুনুন" />
                 </div>
                 <div className="text-xs text-stone-500 font-sans">
                   <QuranVerseLink
