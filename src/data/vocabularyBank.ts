@@ -786,6 +786,47 @@ export const INITIAL_SRS_CARDS: SRSCard[] = [
     repetitions: 0,
     nextReviewDate: new Date().toISOString().split('T')[0],
   },
+  // Lesson 21: Completed Actions - I & We (فعل ماض: ـْتُ / ـْنَا)
+  {
+    id: 'srs-79',
+    arabicPhrase: 'ظَلَمْتُ نَفْسِي',
+    bengaliMeaning: 'আমি আমার নিজের ওপর অন্যায় করেছি',
+    attachmentNoteBengali: 'ظَلَمْ (অন্যায়) + تُ (আমি) + نَفْسِي (আমার ওপর); পেশযুক্ত ‘তু’ হলো আমি; সূরা আল-ক্বসাস ২৮:১৬',
+    reference: 'সূরা আল-ক্বসাস ২৮:১৬',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
+  {
+    id: 'srs-80',
+    arabicPhrase: 'ظَلَمْنَا أَنْفُسَنَا',
+    bengaliMeaning: 'আমরা নিজেদের ওপর অন্যায় করেছি',
+    attachmentNoteBengali: 'ظَلَمْ (অন্যায়) + نَا (আমরা) = আমরা করেছি; অতীত ক্রিয়ার পর ‘না’ হলো কর্তা; সূরা আল-আ‘রাফ ৭:২৩',
+    reference: 'সূরা আল-আ‘রাফ ৭:২৩',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
+  {
+    id: 'srs-81',
+    arabicPhrase: 'أَنْزَلْنَاهُ',
+    bengaliMeaning: 'আমরা তা অবতীর্ণ করেছি',
+    attachmentNoteBengali: 'أَنْزَلْ (অবতীর্ণ করা) + نَا (আমরা) + هُ (তা); সূরা আল-ক্বদর ৯৭:১',
+    reference: 'সূরা আল-ক্বদর ৯৭:১',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
+  {
+    id: 'srs-82',
+    arabicPhrase: 'خَلَقْنَا الْإِنْسَانَ',
+    bengaliMeaning: 'আমরা মানুষকে সৃষ্টি করেছি',
+    attachmentNoteBengali: 'خَلَقْ (সৃষ্টি করা) + نَا (আমরা) + الْإِنْسَانَ (মানুষকে); সূরা আত-তীন ৯৫:৪',
+    reference: 'সূরা আত-তীন ৯৫:৪',
+    intervalDays: 1,
+    repetitions: 0,
+    nextReviewDate: new Date().toISOString().split('T')[0],
+  },
 ];
 
 
