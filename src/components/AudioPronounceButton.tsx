@@ -24,6 +24,19 @@ export default function AudioPronounceButton({
     setIsSupported(isSpeechSynthesisSupported());
   }, []);
 
+  // Safety fallback: ensure isSpeaking resets to false even if browser audio interrupts or fails silently
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    if (isSpeaking) {
+      timer = setTimeout(() => {
+        setIsSpeaking(false);
+      }, 7000);
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isSpeaking]);
+
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!text || isSpeaking) return;

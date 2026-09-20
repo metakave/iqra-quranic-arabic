@@ -219,6 +219,8 @@ export default function DashboardPage() {
                   ? '/learn/module-03-lesson-11'
                   : module.moduleNumber === 4
                   ? '/learn/module-04-lesson-16'
+                  : module.moduleNumber === 5
+                  ? '/learn/module-05-lesson-21'
                   : '#';
 
               return (

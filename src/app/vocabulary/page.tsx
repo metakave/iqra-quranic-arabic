@@ -362,7 +362,7 @@ export default function VocabularyPage() {
                 className="flex flex-wrap items-center gap-1.5 transition-[max-height] duration-300 ease-in-out overflow-hidden"
                 style={{
                   maxHeight: isRootsExpanded
-                    ? '2500px'
+                    ? 'none'
                     : collapsedHeight
                     ? `${collapsedHeight}px`
                     : '135px',
@@ -709,17 +709,29 @@ export default function VocabularyPage() {
                           {word.quranExample && (
                             <div className="mt-3 pt-3 border-t border-stone-100">
                               {isExpanded ? (
-                                <div className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
+                                <div
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3.5 rounded-xl border border-emerald-200/70"
+                                >
                                   <div className="text-xs text-emerald-800 font-bold flex items-center justify-between">
                                     <span>কুরআনিক আয়াত উদাহরণ:</span>
-                                    {word.exampleSurahBengali && (
-                                      <QuranVerseLink
-                                        reference={word.exampleSurahBengali}
-                                        className="text-[13px] text-emerald-800 hover:text-emerald-950 font-sans font-medium"
-                                      />
-                                    )}
+                                    <div className="flex items-center gap-2">
+                                      {word.exampleSurahBengali && (
+                                        <QuranVerseLink
+                                          reference={word.exampleSurahBengali}
+                                          className="text-[13px] text-emerald-800 hover:text-emerald-950 font-sans font-medium"
+                                        />
+                                      )}
+                                      <button
+                                        type="button"
+                                        onClick={() => toggleExpand(word.id)}
+                                        className="text-[11px] text-stone-500 hover:text-stone-800 underline font-normal cursor-pointer ml-1"
+                                      >
+                                        সংক্ষেপ করুন
+                                      </button>
+                                    </div>
                                   </div>
-                                  <div className="flex items-start justify-between gap-2 pt-1">
+                                  <div className="flex items-start justify-between gap-2.5 pt-1">
                                     <AudioPronounceButton text={word.quranExample} label="আয়াতের তিলাওয়াত শুনুন" size="sm" />
                                     <p
                                       className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1 flex-1"
@@ -809,17 +821,29 @@ export default function VocabularyPage() {
                   {word.quranExample && (
                     <div className="mt-3 pt-3 border-t border-stone-100">
                       {isExpanded ? (
-                        <div className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
+                        <div
+                          onClick={(e) => e.stopPropagation()}
+                          className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3.5 rounded-xl border border-emerald-200/70"
+                        >
                           <div className="text-xs text-emerald-800 font-bold flex items-center justify-between">
                             <span>কুরআনিক আয়াত উদাহরণ:</span>
-                            {word.exampleSurahBengali && (
-                              <QuranVerseLink
-                                reference={word.exampleSurahBengali}
-                                className="text-[13px] text-emerald-800 hover:text-emerald-950 font-sans font-medium"
-                              />
-                            )}
+                            <div className="flex items-center gap-2">
+                              {word.exampleSurahBengali && (
+                                <QuranVerseLink
+                                  reference={word.exampleSurahBengali}
+                                  className="text-[13px] text-emerald-800 hover:text-emerald-950 font-sans font-medium"
+                                />
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => toggleExpand(word.id)}
+                                className="text-[11px] text-stone-500 hover:text-stone-800 underline font-normal cursor-pointer ml-1"
+                              >
+                                সংক্ষেপ করুন
+                              </button>
+                            </div>
                           </div>
-                          <div className="flex items-start justify-between gap-2 pt-1">
+                          <div className="flex items-start justify-between gap-2.5 pt-1">
                             <AudioPronounceButton text={word.quranExample} label="আয়াতের তিলাওয়াত শুনুন" size="sm" />
                             <p
                               className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1 flex-1"

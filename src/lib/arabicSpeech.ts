@@ -67,31 +67,41 @@ export function playArabicSpeech(
     utterance.voice = voice;
   }
 
+  let ended = false;
+  const safeEnd = () => {
+    if (!ended) {
+      ended = true;
+      onEnd?.();
+    }
+  };
+
   utterance.onstart = () => {
     onStart?.();
   };
 
-  utterance.onend = () => {
-    onEnd?.();
-  };
+  utterance.onend = safeEnd;
 
   utterance.onerror = (e) => {
-    // Interrupted errors happen normally on cancel()
     if (e.error !== 'interrupted') {
       console.warn('Arabic SpeechSynthesis error:', e);
     }
-    onEnd?.();
+    safeEnd();
   };
 
-  // Workaround for Chrome bug where voice list might be async
-  if (window.speechSynthesis.getVoices().length === 0) {
-    window.speechSynthesis.onvoiceschanged = () => {
-      const reloadedVoice = getBestArabicVoice();
-      if (reloadedVoice) utterance.voice = reloadedVoice;
-      window.speechSynthesis.speak(utterance);
-    };
-  } else {
+  // Safety fallback timeout in case browser never fires onend (e.g. mobile Safari / background tab)
+  setTimeout(() => {
+    if (!ended) {
+      safeEnd();
+    }
+  }, 8000);
+
+  // Try to speak immediately - browser handles voice fallback automatically
+  try {
     window.speechSynthesis.speak(utterance);
+  } catch (err) {
+    console.error('Failed to trigger speech synthesis:', err);
+    safeEnd();
+    return false;
   }
 
   return true;
