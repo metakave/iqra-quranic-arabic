@@ -518,10 +518,16 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-07-lesson-33"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩৩ (কুরআনিক দোয়ার কাঠামো: رَبَّنَا آتِنَا ও اهْدِنَا)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-07-lesson-34"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ৩৩ (কুরআনিক দোয়ার কাঠামো: رَبَّنَا آتِنَا ও اهْدِنَا) • নতুন</span>
+                              <span>পাঠ ৩৪ (আদেশ বনাম বর্ণনা: يُقِيمُونَ বনাম أَقِيمُوا) • নতুন</span>
                             </Link>
                           </div>
                         </div>
