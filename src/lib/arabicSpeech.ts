@@ -80,6 +80,7 @@ export function playArabicSpeech(
     try {
       currentAudio.pause();
       currentAudio.currentTime = 0;
+      currentAudio.src = '';
     } catch {
       // ignore
     }
@@ -117,28 +118,44 @@ export function playArabicSpeech(
   const aNum = options?.ayah ? parseInt(String(options.ayah), 10) : NaN;
 
   if (!isNaN(sNum) && !isNaN(aNum) && sNum >= 1 && sNum <= 114 && aNum >= 1 && aNum <= 286) {
-    const sPad = String(sNum).padStart(3, '0');
-    const aPad = String(aNum).padStart(3, '0');
-    // Authentic high-quality recitation by Mishary Alafasy
-    audioUrl = `https://verses.quran.com/Alafasy/mp3/${sPad}${aPad}.mp3`;
+    // High-quality Mishary Alafasy Quran recitation via same-origin proxy
+    audioUrl = `/api/audio?surah=${sNum}&ayah=${aNum}`;
   } else {
-    // High quality Arabic word pronunciation stream via Google TTS
-    audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=ar&client=tw-ob`;
+    // High quality Arabic word pronunciation stream via same-origin proxy (prevents Chrome cross-site block)
+    audioUrl = `/api/audio?text=${encodeURIComponent(cleanText)}`;
   }
 
   try {
     const audio = new Audio(audioUrl);
+    audio.preload = 'auto';
     currentAudio = audio;
 
-    audio.onplay = () => {
-      onStart?.();
-    };
+    // Immediately trigger onStart for responsive UI feedback
+    onStart?.();
 
     audio.onended = safeEnd;
 
     audio.onerror = () => {
-      // If direct audio URL had network or CORS error, fall back to Web Speech API
-      trySpeechSynthesis(cleanText, onStart, safeEnd);
+      // If same-origin proxy fails, try direct EveryAyah for verses or direct TTS for words
+      let fallbackUrl = '';
+      if (!isNaN(sNum) && !isNaN(aNum)) {
+        const sPad = String(sNum).padStart(3, '0');
+        const aPad = String(aNum).padStart(3, '0');
+        fallbackUrl = `https://everyayah.com/data/Alafasy_128kbps/${sPad}${aPad}.mp3`;
+      } else {
+        fallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=ar&client=tw-ob`;
+      }
+
+      const fallbackAudio = new Audio(fallbackUrl);
+      fallbackAudio.preload = 'auto';
+      currentAudio = fallbackAudio;
+      fallbackAudio.onended = safeEnd;
+      fallbackAudio.onerror = () => {
+        trySpeechSynthesis(cleanText, onStart, safeEnd);
+      };
+      fallbackAudio.play().catch(() => {
+        trySpeechSynthesis(cleanText, onStart, safeEnd);
+      });
     };
 
     // Safety timeout in case playback hangs
@@ -149,8 +166,9 @@ export function playArabicSpeech(
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
-        console.warn('HTML5 audio play rejected, attempting speech fallback:', err);
-        trySpeechSynthesis(cleanText, onStart, safeEnd);
+        console.warn('HTML5 audio play rejected, attempting fallback:', err);
+        // If play was rejected, trigger fallback or speech synthesis
+        audio.onerror?.(new Event('error'));
       });
     }
 
