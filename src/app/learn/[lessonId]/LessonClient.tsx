@@ -119,6 +119,11 @@ export default function LessonClient({ lesson }: LessonClientProps) {
     'module-09-lesson-42': 'module-09-lesson-43',
     'module-09-lesson-43': 'module-09-lesson-44',
     'module-09-lesson-44': 'module-09-lesson-45',
+    'module-09-lesson-45': 'module-10-lesson-46',
+    'module-10-lesson-46': 'module-10-lesson-47',
+    'module-10-lesson-47': 'module-10-lesson-48',
+    'module-10-lesson-48': 'module-10-lesson-49',
+    'module-10-lesson-49': 'module-10-lesson-50',
   };
 
   return (

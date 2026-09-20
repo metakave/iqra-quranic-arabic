@@ -227,6 +227,8 @@ export default function DashboardPage() {
                   ? '/learn/module-09-lesson-41'
                   : module.moduleNumber === 10
                   ? '/learn/module-10-lesson-46'
+                  : module.moduleNumber === 11
+                  ? '/learn/module-11-lesson-51'
                   : '#';
 
               return (
@@ -612,10 +614,48 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-09-lesson-45"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪৫ (সংযোজক বাক্য ও বিবরণ সমাপনী মূল্যায়ন)</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 10 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ১০-এর প্রস্তুতকৃত পাঠসমূহ:</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-10-lesson-46"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪৬ (এবং বনাম অতঃপর: ‘وَ’ ও ‘ثُمَّ’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-10-lesson-47"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪৭ (তাৎক্ষণিক ফল ও ক্ষিপ্রতা: ‘فَـ’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-10-lesson-48"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪৮ (সংশোধন ও বিকল্প: ‘بَلْ’ ও ‘أَوْ’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-10-lesson-49"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪৯ (উদ্দেশ্য ও সীমা: ‘لِـ’ ও ‘حَتَّىٰ’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-10-lesson-50"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ৪৫ (সংযোজক বাক্য ও বিবরণ সমাপনী মূল্যায়ন) • সমাপনী</span>
+                              <span>পাঠ ৫০ (সংযোগ ও যৌক্তিক ধারা সমাপনী মূল্যায়ন) • সমাপনী</span>
                             </Link>
                           </div>
                         </div>
