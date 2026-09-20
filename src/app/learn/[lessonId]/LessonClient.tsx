@@ -240,7 +240,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
 
             {showPreCheck && (
               <div className="p-5 border-t border-stone-100 bg-stone-50/60 space-y-4 animate-fadeIn">
-                <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
+                <p className="text-[17px] sm:text-[19px] text-stone-600 leading-relaxed">
                   {lesson.preCheck.promptBengali}
                 </p>
 
@@ -281,7 +281,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                 <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   আয়াতটি মনোযোগ দিয়ে পড়ুন
                 </h2>
-                <p className="text-base text-stone-600 mt-1">
+                <p className="text-[19px] text-stone-600 mt-1 leading-relaxed">
                   {lesson.steps.dekhun.promptBengali}
                 </p>
               </div>
@@ -338,7 +338,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                 <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   টুকরো চিনে অর্থ বুঝুন
                 </h2>
-                <p className="text-base text-stone-600 mt-1">
+                <p className="text-[19px] text-stone-600 mt-1 leading-relaxed">
                   {lesson.steps.bhangun.promptBengali}
                 </p>
               </div>
@@ -377,7 +377,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                 <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   অংশগুলো কীভাবে পরস্পরের সাথে সম্পর্কিত?
                 </h2>
-                <p className="text-base text-stone-600 mt-1">
+                <p className="text-[19px] text-stone-600 mt-1 leading-relaxed">
                   {lesson.steps.judun.promptBengali}
                 </p>
               </div>
@@ -471,7 +471,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                     </div>
                   </div>
 
-                  <p className="text-sm sm:text-base text-stone-700">
+                  <p className="text-[17px] sm:text-[19px] text-stone-700 leading-relaxed">
                     {lesson.steps.transferApplication.promptBengali}
                   </p>
 
@@ -550,7 +550,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                 <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   নিজের ভাষায় অর্থ লিখুন
                 </h2>
-                <p className="text-base text-stone-600 mt-1">
+                <p className="text-[19px] text-stone-600 mt-1 leading-relaxed">
                   অনুবাদ না দেখে, আরবির তিনটি অংশের সম্পর্ক জুড়ে দিয়ে নিজের ভাষায় অর্থ সংক্ষেপে লিখুন।
                 </p>
               </div>
@@ -593,7 +593,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                 <h2 className="text-2xl font-bold text-stone-900 mt-1">
                   আজকের পাঠের জ্ঞান যাচাই
                 </h2>
-                <p className="text-base text-stone-600 mt-1">
+                <p className="text-[19px] text-stone-600 mt-1 leading-relaxed">
                   প্রতিটি প্রশ্নের উত্তর দিন। ৪–৫টি সঠিক হলে আপনি পরবর্তী পাঠের জন্য প্রস্তুত।
                 </p>
               </div>
