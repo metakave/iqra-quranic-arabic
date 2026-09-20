@@ -484,10 +484,16 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-06-lesson-29"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ২৯ (না-বোধক ও নিষেধ: করে না বনাম করো না)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-06-lesson-30"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ২৯ (না-বোধক ও নিষেধ: করে না বনাম করো না) • নতুন</span>
+                              <span>পাঠ ৩০ (সার্বিক সংকলন ও মডিউল ৬ সমাপ্তি মূল্যায়ন) • সমাপনী</span>
                             </Link>
                           </div>
                         </div>
