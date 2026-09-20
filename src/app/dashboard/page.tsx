@@ -219,6 +219,8 @@ export default function DashboardPage() {
                   ? '/learn/module-05-lesson-21'
                   : module.moduleNumber === 6
                   ? '/learn/module-06-lesson-26'
+                  : module.moduleNumber === 7
+                  ? '/learn/module-07-lesson-31'
                   : '#';
 
               return (
@@ -490,10 +492,24 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-06-lesson-30"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩০ (সার্বিক সংকলন ও মডিউল ৬ সমাপ্তি মূল্যায়ন)</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 7 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ৭-এর প্রস্তুতকৃত পাঠসমূহ:</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-07-lesson-31"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ৩০ (সার্বিক সংকলন ও মডিউল ৬ সমাপ্তি মূল্যায়ন) • সমাপনী</span>
+                              <span>পাঠ ৩১ (সরাসরি আদেশ ও একবচন: اقْرَأْ ও قُلْ) • নতুন</span>
                             </Link>
                           </div>
                         </div>
