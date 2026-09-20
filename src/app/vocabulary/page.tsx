@@ -18,6 +18,7 @@ import {
   ArrowUpDown,
 } from 'lucide-react';
 import { QURAN_ROOT_FAMILIES, RootFamily, DerivativeWord } from '@/data/quranVocabulary';
+import QuranVerseLink from '@/components/QuranVerseLink';
 
 type SortOption = 'freq_desc' | 'freq_asc' | 'alphabetical';
 type ViewMode = 'family' | 'words';
@@ -258,8 +259,8 @@ export default function VocabularyPage() {
               <span className="text-xs sm:text-sm text-stone-400">সর্বাধিক ব্যবহৃত রূপ</span>
             </div>
             <div className="bg-stone-800/80 border border-stone-700 p-3 rounded-2xl">
-              <span className="text-xl sm:text-2xl font-bold text-amber-400 block">
-                {totalFrequency.toLocaleString('bn-BD')}+
+              <span className="text-xl sm:text-2xl font-bold text-amber-300 block">
+                {totalFrequency.toLocaleString('bn-BD')}
               </span>
               <span className="text-xs sm:text-sm text-stone-400">কুরআনে পুনরাবৃত্তি</span>
             </div>
@@ -272,10 +273,10 @@ export default function VocabularyPage() {
                 <div className="flex items-center gap-2">
                   <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
                   <span className="text-xs font-bold text-emerald-300">
-                    কুরআনের ৮০% শব্দভাণ্ডার অর্জনের লক্ষ্যমাত্রা (ধাপ ১)
+                    কুরআনের ৮০% শব্দভাণ্ডার অর্জনের লক্ষ্যমাত্রা অর্জিত! 🎉
                   </span>
                 </div>
-                <span className="text-xs font-bold text-amber-300">
+                <span className="text-xs font-bold text-emerald-300">
                   {coveragePercent}% অর্জিত / ৮০%
                 </span>
               </div>
@@ -289,8 +290,8 @@ export default function VocabularyPage() {
               </div>
 
               <div className="flex items-center justify-between text-[11px] text-stone-400 mt-2">
-                <span>বর্তমান ভাণ্ডার: {totalFrequency.toLocaleString('bn-BD')} শব্দ ({totalRoots}টি মূল)</span>
-                <span className="text-emerald-400 font-semibold">ধাপ ১ সম্পন্ন (+৯,৭১৩ শব্দ)</span>
+                <span>বর্তমান ভাণ্ডার: {totalFrequency.toLocaleString('bn-BD')} শব্দ ({totalRoots}টি পরিবার)</span>
+                <span className="text-emerald-400 font-semibold">৮০%+ লক্ষ্যমাত্রা সম্পন্ন (+১১,৭৪২ শব্দ)</span>
               </div>
             </div>
           </div>
@@ -327,14 +328,14 @@ export default function VocabularyPage() {
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-1.5 text-xs font-bold text-stone-600">
                 <Filter className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                <span>কুরআনিক মূল শব্দ ({QURAN_ROOT_FAMILIES.length}টি মূল):</span>
+                <span>কুরআনিক মূল ও ব্যাকরণিক শব্দ পরিবার ({QURAN_ROOT_FAMILIES.length}টি দল):</span>
                 {selectedRootId !== 'all' && (
                   <button
                     type="button"
                     onClick={() => setSelectedRootId('all')}
                     className="text-[11px] text-emerald-700 hover:text-emerald-800 underline font-semibold ml-1 cursor-pointer"
                   >
-                    সকল মূল রিসেট
+                    সকল রিসেট
                   </button>
                 )}
               </div>
@@ -344,7 +345,7 @@ export default function VocabularyPage() {
                   onClick={() => setIsRootsExpanded((prev) => !prev)}
                   className="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-900 transition-colors cursor-pointer"
                 >
-                  <span>{isRootsExpanded ? 'সংক্ষেপ করুন' : 'সকল মূল দেখুন'}</span>
+                  <span>{isRootsExpanded ? 'সংক্ষেপ করুন' : 'সকল তালিকা দেখুন'}</span>
                   <ChevronDown
                     className={`w-3.5 h-3.5 transition-transform duration-300 ${
                       isRootsExpanded ? 'rotate-180' : ''
@@ -413,7 +414,7 @@ export default function VocabularyPage() {
                   <span>
                     {isRootsExpanded
                       ? 'সংক্ষেপ করুন (Show Less)'
-                      : 'আরও মূল শব্দ দেখুন (Show More)'}
+                      : 'আরও দেখুন (Show More)'}
                   </span>
                   <ChevronDown
                     className={`w-3.5 h-3.5 text-emerald-700 transition-transform duration-300 ${
@@ -478,11 +479,11 @@ export default function VocabularyPage() {
             {/* View Mode & Category Filters */}
             <div className="flex items-center justify-between md:justify-end gap-2 flex-wrap">
               {/* Category Filter */}
-              <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-xl border border-stone-200 text-xs">
+              <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-xl border border-stone-200 text-xs flex-wrap">
                 <button
                   type="button"
                   onClick={() => setSelectedCategory('all')}
-                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                  className={`px-2 py-1 rounded-lg transition-colors ${
                     selectedCategory === 'all'
                       ? 'bg-stone-800 text-white font-semibold'
                       : 'text-stone-600 hover:bg-stone-200'
@@ -493,7 +494,7 @@ export default function VocabularyPage() {
                 <button
                   type="button"
                   onClick={() => setSelectedCategory('verb')}
-                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                  className={`px-2 py-1 rounded-lg transition-colors ${
                     selectedCategory === 'verb'
                       ? 'bg-stone-800 text-white font-semibold'
                       : 'text-stone-600 hover:bg-stone-200'
@@ -504,7 +505,7 @@ export default function VocabularyPage() {
                 <button
                   type="button"
                   onClick={() => setSelectedCategory('noun')}
-                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                  className={`px-2 py-1 rounded-lg transition-colors ${
                     selectedCategory === 'noun'
                       ? 'bg-stone-800 text-white font-semibold'
                       : 'text-stone-600 hover:bg-stone-200'
@@ -515,13 +516,35 @@ export default function VocabularyPage() {
                 <button
                   type="button"
                   onClick={() => setSelectedCategory('adjective')}
-                  className={`px-2.5 py-1 rounded-lg transition-colors ${
+                  className={`px-2 py-1 rounded-lg transition-colors ${
                     selectedCategory === 'adjective'
                       ? 'bg-stone-800 text-white font-semibold'
                       : 'text-stone-600 hover:bg-stone-200'
                   }`}
                 >
                   গুণবাচক
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('particle')}
+                  className={`px-2 py-1 rounded-lg transition-colors ${
+                    selectedCategory === 'particle'
+                      ? 'bg-emerald-800 text-white font-semibold'
+                      : 'text-stone-600 hover:bg-stone-200'
+                  }`}
+                >
+                  অব্যয়
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('pronoun')}
+                  className={`px-2 py-1 rounded-lg transition-colors ${
+                    selectedCategory === 'pronoun'
+                      ? 'bg-emerald-800 text-white font-semibold'
+                      : 'text-stone-600 hover:bg-stone-200'
+                  }`}
+                >
+                  সর্বনাম
                 </button>
               </div>
 
@@ -687,9 +710,12 @@ export default function VocabularyPage() {
                                 <div className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
                                   <div className="text-xs text-emerald-800 font-bold flex items-center justify-between">
                                     <span>কুরআনিক আয়াত উদাহরণ:</span>
-                                    <span className="text-[13px] text-stone-500 font-sans font-normal">
-                                      {word.exampleSurahBengali}
-                                    </span>
+                                    {word.exampleSurahBengali && (
+                                      <QuranVerseLink
+                                        reference={word.exampleSurahBengali}
+                                        className="text-[13px] text-emerald-800 hover:text-emerald-950 font-sans font-medium"
+                                      />
+                                    )}
                                   </div>
                                   <p
                                     className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1"
@@ -780,9 +806,12 @@ export default function VocabularyPage() {
                         <div className="space-y-2 animate-fadeIn bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/70">
                           <div className="text-xs text-emerald-800 font-bold flex items-center justify-between">
                             <span>কুরআনিক আয়াত উদাহরণ:</span>
-                            <span className="text-[13px] text-stone-500 font-sans font-normal">
-                              {word.exampleSurahBengali}
-                            </span>
+                            {word.exampleSurahBengali && (
+                              <QuranVerseLink
+                                reference={word.exampleSurahBengali}
+                                className="text-[13px] text-emerald-800 hover:text-emerald-950 font-sans font-medium"
+                              />
+                            )}
                           </div>
                           <p
                             className="font-quran text-2xl text-emerald-950 leading-relaxed text-right py-1"

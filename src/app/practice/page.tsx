@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { getSRSCards, updateSRSCard, awardXp } from '@/lib/gamification';
 import { SRSCard } from '@/types/curriculum';
 import { RotateCw, CheckCircle2, XCircle, ArrowLeft, Zap, Sparkles, Clock } from 'lucide-react';
+import QuranVerseLink from '@/components/QuranVerseLink';
 
 export default function PracticePage() {
   const [cards, setCards] = useState<SRSCard[]>([]);
@@ -91,7 +92,10 @@ export default function PracticePage() {
                   {currentCard.arabicPhrase}
                 </div>
                 <div className="text-xs text-stone-500 font-sans">
-                  {currentCard.reference}
+                  <QuranVerseLink
+                    reference={currentCard.reference}
+                    className="text-stone-500 hover:text-emerald-700 font-medium transition-colors"
+                  />
                 </div>
               </div>
 

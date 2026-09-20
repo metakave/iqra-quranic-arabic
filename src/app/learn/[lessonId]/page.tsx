@@ -7,6 +7,7 @@ import { SAMPLE_LESSONS } from '@/data/sampleLessons';
 import ChunkBreakdown from '@/components/ChunkBreakdown';
 import TypedReflection from '@/components/TypedReflection';
 import StreakCelebration from '@/components/StreakCelebration';
+import QuranVerseLink from '@/components/QuranVerseLink';
 import { completeLesson } from '@/lib/gamification';
 import {
   ArrowLeft,
@@ -137,9 +138,13 @@ export default function LessonPage() {
         <div className="bg-gradient-to-br from-stone-900 via-stone-850 to-emerald-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
           <div className="relative z-10 space-y-2.5">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-emerald-400 font-semibold uppercase tracking-wider">
+              <QuranVerseLink
+                surah={lesson.anchorAyah.surahNumber}
+                ayah={lesson.anchorAyah.ayahNumber}
+                className="text-sm text-emerald-400 hover:text-emerald-300 font-semibold uppercase tracking-wider"
+              >
                 {lesson.anchorAyah.surahNameBengali} ({lesson.anchorAyah.surahNumber}:{lesson.anchorAyah.ayahNumber})
-              </span>
+              </QuranVerseLink>
               <span className="text-sm text-stone-400">•</span>
               <span className="text-sm text-stone-300">
                 পদ্ধতি: দেখুন → ভাঙুন → জোড়া দিন → বলুন → মিলিয়ে নিন
@@ -187,8 +192,11 @@ export default function LessonPage() {
                   <div className="font-quran text-4xl sm:text-[42px] text-emerald-950 leading-relaxed">
                     {lesson.preCheck.diagnosticAyah.arabicText}
                   </div>
-                  <div className="text-sm text-stone-400 font-sans">
-                    {lesson.preCheck.diagnosticAyah.referenceBengali}
+                  <div className="text-sm text-stone-500 font-sans">
+                    <QuranVerseLink
+                      reference={lesson.preCheck.diagnosticAyah.referenceBengali}
+                      className="text-emerald-700 hover:text-emerald-900 font-medium"
+                    />
                   </div>
                 </div>
 
@@ -228,9 +236,14 @@ export default function LessonPage() {
                   {lesson.steps.dekhun.arabicText}
                 </div>
                 <div className="text-sm text-stone-500 flex items-center justify-center gap-1.5 font-sans">
-                  <span>
-                    কুরআন শরীফ • {lesson.anchorAyah.surahNameBengali} ({lesson.anchorAyah.surahNumber}:{lesson.anchorAyah.ayahNumber})
-                  </span>
+                  <span>কুরআন শরীফ •</span>
+                  <QuranVerseLink
+                    surah={lesson.anchorAyah.surahNumber}
+                    ayah={lesson.anchorAyah.ayahNumber}
+                    className="text-emerald-700 hover:text-emerald-800 font-semibold underline underline-offset-2"
+                  >
+                    {lesson.anchorAyah.surahNameBengali} ({lesson.anchorAyah.surahNumber}:{lesson.anchorAyah.ayahNumber})
+                  </QuranVerseLink>
                 </div>
               </div>
 
@@ -389,7 +402,10 @@ export default function LessonPage() {
                       {lesson.steps.transferApplication.titleBengali}
                     </span>
                     <span className="text-sm text-stone-500 font-sans">
-                      {lesson.steps.transferApplication.referenceBengali}
+                      <QuranVerseLink
+                        reference={lesson.steps.transferApplication.referenceBengali}
+                        className="text-emerald-800 hover:text-emerald-950 font-medium"
+                      />
                     </span>
                   </div>
 

@@ -3,7 +3,7 @@ export interface DerivativeWord {
   arabic: string;
   meaningBengali: string;
   grammarBengali: string;
-  category: 'past_verb' | 'present_verb' | 'imperative_verb' | 'noun' | 'adjective';
+  category: 'past_verb' | 'present_verb' | 'imperative_verb' | 'noun' | 'adjective' | 'particle' | 'pronoun';
   frequencyInQuran?: number;
   quranExample?: string;
   exampleSurahBengali?: string;
@@ -15,7 +15,7 @@ export interface RootFamily {
   rootMeaningBengali: string;
   frequencyInQuran: number;
   descriptionBengali: string;
-  themeColor: 'emerald' | 'amber' | 'sky' | 'violet' | 'rose';
+  themeColor: 'emerald' | 'amber' | 'sky' | 'violet' | 'rose' | 'teal' | 'blue' | 'stone';
   derivatives: DerivativeWord[];
 }
 
@@ -2180,4 +2180,2507 @@ export const QURAN_ROOT_FAMILIES: RootFamily[] = [
       },
     ],
   },
+  // ==========================================
+  // STEP 2: GRAMMATICAL CORE & HIGH-FREQUENCY PARTICLES
+  // ==========================================
+  {
+    id: 'gram-jarr',
+    rootLettersArabic: 'حُرُوفُ الْجَرّ',
+    rootMeaningBengali: 'অবস্থান ও দিক নির্দেশক অব্যয় (Prepositions)',
+    frequencyInQuran: 7883,
+    descriptionBengali: 'কুরআনে সর্বাধিক পুনরাবৃত্ত ছোট অব্যয়সমূহ যা স্থান, দিক, অবস্থান ও সম্পর্কের ভিত্তি তৈরি করে।',
+    themeColor: 'emerald',
+    derivatives: [
+      {
+        id: 'jarr-1',
+        arabic: 'مِنْ',
+        meaningBengali: 'থেকে / পক্ষ থেকে / হতে',
+        grammarBengali: 'অব্যয় (حرف جر)',
+        category: 'particle',
+        frequencyInQuran: 3226,
+        quranExample: 'مِنْ رَبِّهِمْ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:৫',
+      },
+      {
+        id: 'jarr-2',
+        arabic: 'فِي',
+        meaningBengali: 'মধ্যে / ভেতরে / তে',
+        grammarBengali: 'অব্যয় (حرف جر)',
+        category: 'particle',
+        frequencyInQuran: 1701,
+        quranExample: 'فِي الْأَرْضِ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:১১',
+      },
+      {
+        id: 'jarr-3',
+        arabic: 'عَلَىٰ',
+        meaningBengali: 'ওপরে / প্রতি / আবশ্যক',
+        grammarBengali: 'অব্যয় (حرف جر)',
+        category: 'particle',
+        frequencyInQuran: 1445,
+        quranExample: 'عَلَىٰ هُدًى مِنْ رَبِّهِمْ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:৫',
+      },
+      {
+        id: 'jarr-4',
+        arabic: 'إِلَىٰ',
+        meaningBengali: 'দিকে / পর্যন্ত / অভিমুখে',
+        grammarBengali: 'অব্যয় (حرف جر)',
+        category: 'particle',
+        frequencyInQuran: 742,
+        quranExample: 'إِلَى اللَّهِ تُرْجَعُ الْأُمُورُ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২১০',
+      },
+      {
+        id: 'jarr-5',
+        arabic: 'عَنْ',
+        meaningBengali: 'হতে / বিষয়ে / দূরে',
+        grammarBengali: 'অব্যয় (حرف جر)',
+        category: 'particle',
+        frequencyInQuran: 465,
+        quranExample: 'رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ',
+        exampleSurahBengali: 'সূরা আল-মায়েদাহ ৫:১১৯',
+      },
+      {
+        id: 'jarr-6',
+        arabic: 'حَتَّىٰ',
+        meaningBengali: 'পর্যন্ত / যে পর্যন্ত না',
+        grammarBengali: 'সীমাবাচক অব্যয়',
+        category: 'particle',
+        frequencyInQuran: 142,
+        quranExample: 'سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ',
+        exampleSurahBengali: 'সূরা আল-কদর ৯৭:৫',
+      },
+      {
+        id: 'jarr-7',
+        arabic: 'مَعَ',
+        meaningBengali: 'সাথে / সহ',
+        grammarBengali: 'সঙ্গবাচক বিশেষ্য/অব্যয় (ظرف)',
+        category: 'particle',
+        frequencyInQuran: 162,
+        quranExample: 'إِنَّ اللَّهَ مَعَ الصَّابِرِينَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:১৫৩',
+      },
+    ],
+  },
+  {
+    id: 'gram-dama-ir',
+    rootLettersArabic: 'الضَّمَائِرُ الْمُنْفَصِلَة',
+    rootMeaningBengali: 'স্বাধীন সর্বনাম (Detached Pronouns)',
+    frequencyInQuran: 1358,
+    descriptionBengali: 'ব্যক্তি বা বিষয় নির্দেশক স্বাধীন সর্বনাম—তিনি, তারা, আপনি, আমি ও আমরা।',
+    themeColor: 'sky',
+    derivatives: [
+      {
+        id: 'dam-1',
+        arabic: 'هُوَ',
+        meaningBengali: 'তিনি / সে (পুংলিঙ্গ একবচন)',
+        grammarBengali: 'স্বাধীন সর্বনাম (ضمير منفصل)',
+        category: 'pronoun',
+        frequencyInQuran: 481,
+        quranExample: 'قُلْ هُوَ اللَّهُ أَحَدٌ',
+        exampleSurahBengali: 'সূরা আল-ইখলাস ১১২:১',
+      },
+      {
+        id: 'dam-2',
+        arabic: 'هُمْ',
+        meaningBengali: 'তারা / তাহারা (পুংলিঙ্গ বহুবচন)',
+        grammarBengali: 'স্বাধীন সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 443,
+        quranExample: 'وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:৫',
+      },
+      {
+        id: 'dam-3',
+        arabic: 'هِيَ',
+        meaningBengali: 'তিনি / সে / তা (স্ত্রীলিঙ্গ একবচন)',
+        grammarBengali: 'স্বাধীন সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 64,
+        quranExample: 'قَالَ هِيَ عَصَايَ',
+        exampleSurahBengali: 'সূরা ত্বা-হা ২০:১৮',
+      },
+      {
+        id: 'dam-4',
+        arabic: 'أَنْتَ',
+        meaningBengali: 'আপনি / তুমি (পুরুষ একবচন)',
+        grammarBengali: 'স্বাধীন সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 81,
+        quranExample: 'إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:১২৮',
+      },
+      {
+        id: 'dam-5',
+        arabic: 'أَنْتُمْ',
+        meaningBengali: 'আপনারা / তোমরা (পুরুষ বহুবচন)',
+        grammarBengali: 'স্বাধীন সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 135,
+        quranExample: 'وَأَنْتُمْ تَعْلَمُونَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২২',
+      },
+      {
+        id: 'dam-6',
+        arabic: 'أَنَا',
+        meaningBengali: 'আমি (উভয়লিঙ্গ একবচন)',
+        grammarBengali: 'স্বাধীন সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 68,
+        quranExample: 'إِنَّنِي أَنَا اللَّهُ لَا إِلَٰهَ إِلَّا أَنَا',
+        exampleSurahBengali: 'সূরা ত্বা-হা ২০:১৪',
+      },
+      {
+        id: 'dam-7',
+        arabic: 'نَحْنُ',
+        meaningBengali: 'আমরা (উভয়লিঙ্গ বহুবচন)',
+        grammarBengali: 'স্বাধীন সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 86,
+        quranExample: 'نَحْنُ نَقُصُّ عَلَيْكَ أَحْسَنَ الْقَصَصِ',
+        exampleSurahBengali: 'সূরা ইউসুফ ১২:৩',
+      },
+    ],
+  },
+  {
+    id: 'gram-dama-ir-mut',
+    rootLettersArabic: 'الضَّمَائِرُ الْمُتَّصِلَة',
+    rootMeaningBengali: 'সংযুক্ত সর্বনাম (Attached Pronouns)',
+    frequencyInQuran: 6800,
+    descriptionBengali: 'শব্দ ও ক্রিয়ার শেষে জুড়ে থাকা অবিচ্ছেদ্য সর্বনামীয় খণ্ড (তাঁর, তাদের, আপনার, আমাদের)।',
+    themeColor: 'amber',
+    derivatives: [
+      {
+        id: 'dmut-1',
+        arabic: 'ـهُ / ـهِ',
+        meaningBengali: 'তাঁর / তাকে / এর (যুক্ত)',
+        grammarBengali: 'সংযুক্ত সর্বনাম (ضمير متصل)',
+        category: 'pronoun',
+        frequencyInQuran: 2800,
+        quranExample: 'ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২',
+      },
+      {
+        id: 'dmut-2',
+        arabic: 'ـهُمْ / ـهِمْ',
+        meaningBengali: 'তাদের / তাদেরকে (যুক্ত)',
+        grammarBengali: 'সংযুক্ত সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 2100,
+        quranExample: 'صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ',
+        exampleSurahBengali: 'সূরা আল-ফাতিহা ১:৭',
+      },
+      {
+        id: 'dmut-3',
+        arabic: 'ـكَ',
+        meaningBengali: 'আপনার / আপনাকে / তোমার',
+        grammarBengali: 'সংযুক্ত সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 850,
+        quranExample: 'إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ',
+        exampleSurahBengali: 'সূরা আল-ফাতিহা ১:৫',
+      },
+      {
+        id: 'dmut-4',
+        arabic: 'ـكُمْ',
+        meaningBengali: 'আপনাদের / তোমাদেরকে',
+        grammarBengali: 'সংযুক্ত সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 550,
+        quranExample: 'يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمُ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২১',
+      },
+      {
+        id: 'dmut-5',
+        arabic: 'ـي / ـنِي',
+        meaningBengali: 'আমার / আমাকে',
+        grammarBengali: 'সংযুক্ত সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 200,
+        quranExample: 'رَبِّ زِدْنِي عِلْمًا',
+        exampleSurahBengali: 'সূরা ত্বা-হা ২০:১১৪',
+      },
+      {
+        id: 'dmut-6',
+        arabic: 'ـنَا',
+        meaningBengali: 'আমাদের / আমাদেরকে',
+        grammarBengali: 'সংযুক্ত সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 300,
+        quranExample: 'اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ',
+        exampleSurahBengali: 'সূরা আল-ফাতিহা ১:৬',
+      },
+    ],
+  },
+  {
+    id: 'gram-ishara',
+    rootLettersArabic: 'أَسْمَاءُ الْإِشَارَة',
+    rootMeaningBengali: 'নির্দেশক শব্দ (Demonstratives)',
+    frequencyInQuran: 1024,
+    descriptionBengali: 'কাছে বা দূরে নির্দিষ্ট ব্যক্তি, বস্তু বা বিষয়ের দিকে ইঙ্গিত করার সর্বনাম (এই, ওই, এরা)।',
+    themeColor: 'violet',
+    derivatives: [
+      {
+        id: 'ish-1',
+        arabic: 'هَٰذَا',
+        meaningBengali: 'এটি / এই (কাছের পুংলিঙ্গ)',
+        grammarBengali: 'নির্দেশক বিশেষ্য (اسم إشارة)',
+        category: 'pronoun',
+        frequencyInQuran: 215,
+        quranExample: 'هَٰذَا بَيَانٌ لِلنَّاسِ',
+        exampleSurahBengali: 'সূরা আলে ইমরান ৩:১৩৮',
+      },
+      {
+        id: 'ish-2',
+        arabic: 'هَٰذِهِ',
+        meaningBengali: 'এটি / এই (কাছের স্ত্রীলিঙ্গ)',
+        grammarBengali: 'নির্দেশক বিশেষ্য',
+        category: 'pronoun',
+        frequencyInQuran: 48,
+        quranExample: 'وَلَا تَقْرَبَا هَٰذِهِ الشَّجَرَةَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:৩৫',
+      },
+      {
+        id: 'ish-3',
+        arabic: 'ذَٰلِكَ',
+        meaningBengali: 'সেই / ওটি / তা (দূরের পুংলিঙ্গ)',
+        grammarBengali: 'নির্দেশক বিশেষ্য',
+        category: 'pronoun',
+        frequencyInQuran: 471,
+        quranExample: 'ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২',
+      },
+      {
+        id: 'ish-4',
+        arabic: 'تِلْكَ',
+        meaningBengali: 'সেগুলো / তা (দূরের স্ত্রীলিঙ্গ/বহুবচন)',
+        grammarBengali: 'নির্দেশক বিশেষ্য',
+        category: 'pronoun',
+        frequencyInQuran: 42,
+        quranExample: 'تِلْكَ آيَاتُ اللَّهِ نَتْلُوهَا عَلَيْكَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২৫২',
+      },
+      {
+        id: 'ish-5',
+        arabic: 'هَٰؤُلَاءِ',
+        meaningBengali: 'এরা / এগুলো (কাছের বহুবচন)',
+        grammarBengali: 'নির্দেশক বিশেষ্য',
+        category: 'pronoun',
+        frequencyInQuran: 43,
+        quranExample: 'هَٰؤُلَاءِ قَوْمُنَا اتَّخَذُوا مِنْ دُونِهِ آلِهَةً',
+        exampleSurahBengali: 'সূরা আল-কাহফ ১৮:১৫',
+      },
+      {
+        id: 'ish-6',
+        arabic: 'أُولَٰئِكَ',
+        meaningBengali: 'তারা / ওইসব লোক (দূরের বহুবচন)',
+        grammarBengali: 'নির্দেশক বিশেষ্য',
+        category: 'pronoun',
+        frequencyInQuran: 205,
+        quranExample: 'أُولَٰئِكَ عَلَىٰ هُدًى مِنْ رَبِّهِمْ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:৫',
+      },
+    ],
+  },
+  {
+    id: 'gram-mawsul',
+    rootLettersArabic: 'الْأَسْمَاءُ الْمَوْصُولَة',
+    rootMeaningBengali: 'সম্বন্ধসূচক শব্দ (Relative Pronouns)',
+    frequencyInQuran: 2289,
+    descriptionBengali: 'বাক্যাংশের সাথে বিশদ বিবরণ যুক্ত করার শব্দাবলী—যিনি, যা, যাঁরা ও যারা।',
+    themeColor: 'sky',
+    derivatives: [
+      {
+        id: 'maw-1',
+        arabic: 'الَّذِي',
+        meaningBengali: 'যিনি / যা (পুংলিঙ্গ একবচন)',
+        grammarBengali: 'সম্বন্ধবাচক বিশেষ্য (اسم موصول)',
+        category: 'pronoun',
+        frequencyInQuran: 308,
+        quranExample: 'الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ',
+        exampleSurahBengali: 'সূরা আল-মুলক ৬৭:২',
+      },
+      {
+        id: 'maw-2',
+        arabic: 'الَّذِينَ',
+        meaningBengali: 'যাঁরা / যারা (পুংলিঙ্গ বহুবচন)',
+        grammarBengali: 'সম্বন্ধবাচক বিশেষ্য',
+        category: 'pronoun',
+        frequencyInQuran: 1080,
+        quranExample: 'صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ',
+        exampleSurahBengali: 'সূরা আল-ফাতিহা ১:৭',
+      },
+      {
+        id: 'maw-3',
+        arabic: 'الَّتِي',
+        meaningBengali: 'যিনি / যা (স্ত্রীলিঙ্গ একবচন)',
+        grammarBengali: 'সম্বন্ধবাচক বিশেষ্য',
+        category: 'pronoun',
+        frequencyInQuran: 76,
+        quranExample: 'النَّارَ الَّتِي وَقُودُهَا النَّاسُ وَالْحِجَارَةُ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২৪',
+      },
+      {
+        id: 'maw-4',
+        arabic: 'مَنْ',
+        meaningBengali: 'যে / যিনি / কে (বুদ্ধিমান সত্তা)',
+        grammarBengali: 'সম্বন্ধবাচক / প্রশ্নসূচক সর্বনাম',
+        category: 'pronoun',
+        frequencyInQuran: 825,
+        quranExample: 'مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২৫৫',
+      },
+    ],
+  },
+  {
+    id: 'gram-nafy',
+    rootLettersArabic: 'حُرُوفُ النَّفْي',
+    rootMeaningBengali: 'না-বোধক ও নিষেধসূচক অব্যয় (Negation)',
+    frequencyInQuran: 4923,
+    descriptionBengali: 'বাক্যকে অস্বীকার, নিষেধ বা কালভিত্তিক না-বোধক রূপান্তরকারী হরফসমূহ।',
+    themeColor: 'rose',
+    derivatives: [
+      {
+        id: 'naf-1',
+        arabic: 'مَا',
+        meaningBengali: 'না / নয় / যা কিছু',
+        grammarBengali: 'না-বোধক অব্যয় (ما النافية)',
+        category: 'particle',
+        frequencyInQuran: 2618,
+        quranExample: 'وَمَا اللَّهُ بِغَافِلٍ عَمَّا تَعْمَلُونَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:৭৪',
+      },
+      {
+        id: 'naf-2',
+        arabic: 'لَا',
+        meaningBengali: 'না / নেই / কোনো... নেই',
+        grammarBengali: 'সাধারণ না-বোধক ও নিষেধ অব্যয়',
+        category: 'particle',
+        frequencyInQuran: 1736,
+        quranExample: 'لَا إِلَٰهَ إِلَّا اللَّهُ',
+        exampleSurahBengali: 'সূরা মুহাম্মাদ ৪৭:১৯',
+      },
+      {
+        id: 'naf-3',
+        arabic: 'لَمْ',
+        meaningBengali: 'অতীতকালে করেনি / না',
+        grammarBengali: 'অতীত না-বোধক অব্যয় (جزم)',
+        category: 'particle',
+        frequencyInQuran: 374,
+        quranExample: 'لَمْ يَلِدْ وَلَمْ يُولَدْ',
+        exampleSurahBengali: 'সূরা আল-ইখলাস ১১২:৩',
+      },
+      {
+        id: 'naf-4',
+        arabic: 'لَنْ',
+        meaningBengali: 'কখনোই না (ভবিষ্যৎ নিশ্চিত না)',
+        grammarBengali: 'ভবিষ্যৎ না-বোধক অব্যয় (نصب)',
+        category: 'particle',
+        frequencyInQuran: 106,
+        quranExample: 'لَنْ تَنَالُوا الْبِرَّ حَتَّىٰ تُنْفِقُوا',
+        exampleSurahBengali: 'সূরা আলে ইমরান ৩:৯২',
+      },
+      {
+        id: 'naf-5',
+        arabic: 'لَيْسَ',
+        meaningBengali: 'নয় / নেই',
+        grammarBengali: 'না-বোধক অপূর্ণ ক্রিয়া',
+        category: 'particle',
+        frequencyInQuran: 89,
+        quranExample: 'لَيْسَ كَمِثْلِهِ شَيْءٌ',
+        exampleSurahBengali: 'সূরা আশ-শূরা ৪২:১১',
+      },
+    ],
+  },
+  {
+    id: 'gram-shart',
+    rootLettersArabic: 'حُرُوفُ التَّوْكِيدِ وَالشَّرْط',
+    rootMeaningBengali: 'জোর প্রদান ও শর্তবাচক অব্যয় (Emphasis & Condition)',
+    frequencyInQuran: 3747,
+    descriptionBengali: 'বক্তব্যের দৃঢ়তা প্রতিপাদন এবং কারণ ও শর্তযুক্ত পরিণাম প্রকাশকারী মূল অব্যয়।',
+    themeColor: 'emerald',
+    derivatives: [
+      {
+        id: 'shr-1',
+        arabic: 'إِنَّ',
+        meaningBengali: 'নিশ্চয় / নিঃসন্দেহে / অবশ্যই',
+        grammarBengali: 'দৃঢ়তাবাচক অব্যয় (حرف توكيد)',
+        category: 'particle',
+        frequencyInQuran: 1533,
+        quranExample: 'إِنَّ اللَّهَ مَعَ الصَّابِرِينَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:১৫৩',
+      },
+      {
+        id: 'shr-2',
+        arabic: 'أَنَّ',
+        meaningBengali: 'যে / নিশ্চয়',
+        grammarBengali: 'সংযোজক দৃঢ়তাবাচক অব্যয়',
+        category: 'particle',
+        frequencyInQuran: 663,
+        quranExample: 'وَاعْلَمُوا أَنَّ اللَّهَ بِكُلِّ شَيْءٍ عَلِيمٌ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২৩১',
+      },
+      {
+        id: 'shr-3',
+        arabic: 'إِذَا',
+        meaningBengali: 'যখন / যদি (ভবিষ্যৎ নিশ্চিত শর্ত)',
+        grammarBengali: 'শর্ত ও সময়বাচক অব্যয় (ظرفية شرطية)',
+        category: 'particle',
+        frequencyInQuran: 455,
+        quranExample: 'إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ',
+        exampleSurahBengali: 'সূরা আন-নাসর ১১০:১',
+      },
+      {
+        id: 'shr-4',
+        arabic: 'إِنْ',
+        meaningBengali: 'যদি (শর্তবাচক)',
+        grammarBengali: 'শর্তসূচক অব্যয় (حرف شرط)',
+        category: 'particle',
+        frequencyInQuran: 691,
+        quranExample: 'إِنْ يَنْصُرْكُمُ اللَّهُ فَلَا غَالِبَ لَكُمْ',
+        exampleSurahBengali: 'সূরা আলে ইমরান ৩:১৬০',
+      },
+      {
+        id: 'shr-5',
+        arabic: 'لَوْ',
+        meaningBengali: 'যদি (অতীত বা কাল্পনিক শর্ত)',
+        grammarBengali: 'অসম্ভব শর্তসূচক অব্যয়',
+        category: 'particle',
+        frequencyInQuran: 208,
+        quranExample: 'لَوْ أَنْزَلْنَا هَٰذَا الْقُرْآنَ عَلَىٰ جَبَلٍ',
+        exampleSurahBengali: 'সূরা আল-হাশর ৫৯:২১',
+      },
+      {
+        id: 'shr-6',
+        arabic: 'لَعَلَّ',
+        meaningBengali: 'সম্ভবত / যাতে তোমরা (আশা ও প্রত্যাশা)',
+        grammarBengali: 'প্রত্যাশাবাচক অব্যয় (ترجي)',
+        category: 'particle',
+        frequencyInQuran: 129,
+        quranExample: 'يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمُ لَعَلَّكُمْ تَتَّقُونَ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:২১',
+      },
+      {
+        id: 'shr-7',
+        arabic: 'كَأَنَّ',
+        meaningBengali: 'যেন / মনে হয় যেন (সাদৃশ্য)',
+        grammarBengali: 'উপমাবাচক দৃঢ়তা অব্যয় (تشبيه)',
+        category: 'particle',
+        frequencyInQuran: 68,
+        quranExample: 'كَأَنَّهُمْ خُشُبٌ مُسَنَّدَةٌ',
+        exampleSurahBengali: 'সূরা আল-মুনাফিকূন ৬৩:৪',
+      },
+    ],
+  },
+  {
+    id: 'gram-atf',
+    rootLettersArabic: 'حُرُوفُ الْعَطْفِ وَالِاسْتِفْهَام',
+    rootMeaningBengali: 'সংযোজক ও প্রশ্নসূচক শব্দ (Connectors & Questions)',
+    frequencyInQuran: 2680,
+    descriptionBengali: 'একটি বিষয়ের সাথে অপর বিষয় জোড়া দেওয়ার হরফ এবং জিজ্ঞাসা ও প্রশ্নসূচক কাঠামো।',
+    themeColor: 'amber',
+    derivatives: [
+      {
+        id: 'atf-1',
+        arabic: 'وَ',
+        meaningBengali: 'এবং / আর / শপথবাচক',
+        grammarBengali: 'সংযোজক অব্যয় (حرف عطف)',
+        category: 'particle',
+        frequencyInQuran: 1200,
+        quranExample: 'وَالْعَصْرِ ۝ إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ',
+        exampleSurahBengali: 'সূরা আল-আসর ১০৩:১-২',
+      },
+      {
+        id: 'atf-2',
+        arabic: 'فَـ',
+        meaningBengali: 'সুতরাং / অতঃপর / ফলে',
+        grammarBengali: 'তাৎক্ষণিক ফলসূচক সংযোজক অব্যয়',
+        category: 'particle',
+        frequencyInQuran: 750,
+        quranExample: 'فَصَلِّ لِرَبِّكَ وَانْحَرْ',
+        exampleSurahBengali: 'সূরা আল-কাওসার ১০৮:২',
+      },
+      {
+        id: 'atf-3',
+        arabic: 'ثُمَّ',
+        meaningBengali: 'তারপর / এরপর (বিরতিসহ)',
+        grammarBengali: 'বিলম্বিত সংযোজক অব্যয়',
+        category: 'particle',
+        frequencyInQuran: 338,
+        quranExample: 'ثُمَّ أَمَاتَهُ فَأَقْبَرَهُ',
+        exampleSurahBengali: 'সূরা আবাসা ৮০:২১',
+      },
+      {
+        id: 'atf-4',
+        arabic: 'أَوْ',
+        meaningBengali: 'অথবা / কিংবা',
+        grammarBengali: 'বিকল্পসূচক অব্যয়',
+        category: 'particle',
+        frequencyInQuran: 285,
+        quranExample: 'أَوْ كَصَيِّبٍ مِنَ السَّمَاءِ',
+        exampleSurahBengali: 'সূরা আল-বাকারা ২:১৯',
+      },
+      {
+        id: 'atf-5',
+        arabic: 'هَلْ',
+        meaningBengali: 'কি? (প্রশ্নবোধক)',
+        grammarBengali: 'প্রশ্নসূচক হরফ (حرف استفهام)',
+        category: 'particle',
+        frequencyInQuran: 93,
+        quranExample: 'هَلْ أَتَىٰكَ حَدِيثُ الْغَاشِيَةِ',
+        exampleSurahBengali: 'সূরা আল-গাশিয়া ৮৮:১',
+      },
+      {
+        id: 'atf-6',
+        arabic: 'بَلْ',
+        meaningBengali: 'বরং / পরন্তু (সংশোধন)',
+        grammarBengali: 'উপেক্ষা ও প্রাধান্যসূচক অব্যয় (إضراب)',
+        category: 'particle',
+        frequencyInQuran: 14,
+        quranExample: 'بَلْ كَذَّبُوا بِالْحَقِّ لَمَّا جَاءَهُمْ',
+        exampleSurahBengali: 'সূরা কাফ ৫০:৫',
+      },
+    ],
+  },
+  {
+  id: "root-ilm",
+  rootLettersArabic: "ع-ل-م",
+  rootMeaningBengali: "জ্ঞান / জানা",
+  frequencyInQuran: 854,
+  descriptionBengali: "কুরআনে জ্ঞান, শিক্ষা ও সর্বজ্ঞাত আল্লাহর গুণবাচক রূপসমূহ।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "ilm-1",
+      arabic: "عَلِمَ",
+      meaningBengali: "সে জেনেছে / অবগত হয়েছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 382,
+      quranExample: "عَلِمَ أَنْ سَيَكُونُ مِنْكُمْ مَرْضَىٰ",
+      exampleSurahBengali: "সূরা আল-মুযযাম্মিল ৭৩:২০"
+    },
+    {
+      id: "ilm-2",
+      arabic: "يَعْلَمُونَ",
+      meaningBengali: "তারা জানে / তারা অবগত হয়",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 245,
+      quranExample: "وَاللَّهُ يَعْلَمُ وَأَنْتُمْ لَا تَعْلَمُونَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২১৬"
+    },
+    {
+      id: "ilm-3",
+      arabic: "عَلِيمٌ",
+      meaningBengali: "সর্বজ্ঞাত / মহাজ্ঞানী",
+      grammarBengali: "গুণবাচক বিশেষ্য (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 162,
+      quranExample: "وَهُوَ بِكُلِّ شَيْءٍ عَلِيمٌ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৯"
+    },
+    {
+      id: "ilm-4",
+      arabic: "عِلْم",
+      meaningBengali: "জ্ঞান / তথ্য",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 65,
+      quranExample: "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
+      exampleSurahBengali: "সূরা ত্বা-হা ২০:১১৪"
+    }
+  ]
+},
+  {
+  id: "root-jaal",
+  rootLettersArabic: "ج-ع-ل",
+  rootMeaningBengali: "সৃষ্টি করা / নির্ধারণ করা",
+  frequencyInQuran: 346,
+  descriptionBengali: "আল্লাহর সৃষ্টি নির্ধারণ ও যেকোনো অবস্থা বা নিয়ামত বিধানের মূল শব্দ।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "jal-1",
+      arabic: "جَعَلَ",
+      meaningBengali: "তিনি সৃষ্টি করেছেন / নির্ধারণ করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 210,
+      quranExample: "الَّذِي جَعَلَ لَكُمُ الْأَرْضَ فِرَاشًا",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২২"
+    },
+    {
+      id: "jal-2",
+      arabic: "يَجْعَلُ",
+      meaningBengali: "তিনি করেন / নির্ধারণ করবেন",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 95,
+      quranExample: "وَيَجْعَلُ الرِّجْسَ عَلَى الَّذِينَ لَا يَعْقِلُونَ",
+      exampleSurahBengali: "সূরা ইউনুস ১০:১০০"
+    },
+    {
+      id: "jal-3",
+      arabic: "جَاعِلٌ",
+      meaningBengali: "নির্ধারণকারী / প্রতিষ্ঠাকারী",
+      grammarBengali: "কর্তৃকারক বিশেষ্য (اسم فاعل)",
+      category: "noun",
+      frequencyInQuran: 41,
+      quranExample: "إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৩০"
+    }
+  ]
+},
+  {
+  id: "root-shaa",
+  rootLettersArabic: "ش-ي-ء",
+  rootMeaningBengali: "ইচ্ছা করা / বস্তু",
+  frequencyInQuran: 519,
+  descriptionBengali: "আল্লাহর ইচ্ছা ও মহাবিশ্বের যেকোনো অস্তিত্ব প্রকাশের মূল।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "shaa-1",
+      arabic: "شَاءَ",
+      meaningBengali: "তিনি ইচ্ছা করেছেন / চেয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 236,
+      quranExample: "وَلَوْ شَاءَ اللَّهُ لَذَهَبَ بِسَمْعِهِمْ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২০"
+    },
+    {
+      id: "shaa-2",
+      arabic: "يَشَاءُ",
+      meaningBengali: "তিনি ইচ্ছা করেন / চান",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 236,
+      quranExample: "يَهْدِي مَنْ يَشَاءُ إِلَىٰ صِرَاطٍ مُسْتَقِيمٍ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৪২"
+    },
+    {
+      id: "shaa-3",
+      arabic: "شَيْء",
+      meaningBengali: "বস্তু / যেকোনো কিছু",
+      grammarBengali: "একবচন সাধারণ বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 47,
+      quranExample: "إِنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২০"
+    }
+  ]
+},
+  {
+  id: "root-khalaq",
+  rootLettersArabic: "خ-ل-ق",
+  rootMeaningBengali: "সৃষ্টি করা / পয়দা করা",
+  frequencyInQuran: 261,
+  descriptionBengali: "মানুষ, আসমান ও জমিনের সৃষ্টির অনন্য কুদরত।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "khl-1",
+      arabic: "خَلَقَ",
+      meaningBengali: "তিনি সৃষ্টি করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 180,
+      quranExample: "خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ بِالْحَقِّ",
+      exampleSurahBengali: "সূরা আন-নাহল ১৬:৩"
+    },
+    {
+      id: "khl-2",
+      arabic: "خَلْق",
+      meaningBengali: "সৃষ্টি / গঠন",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 52,
+      quranExample: "إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ لَآيَاتٍ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৯০"
+    },
+    {
+      id: "khl-3",
+      arabic: "خَالِقٌ",
+      meaningBengali: "সৃষ্টিকর্তা / স্রষ্টা",
+      grammarBengali: "গুণবাচক / কর্তৃকারক বিশেষ্য",
+      category: "adjective",
+      frequencyInQuran: 29,
+      quranExample: "هُوَ اللَّهُ الْخَالِقُ الْبَارِئُ الْمُصَوِّرُ",
+      exampleSurahBengali: "সূরা আল-হাশর ৫৯:২৪"
+    }
+  ]
+},
+  {
+  id: "root-hakam",
+  rootLettersArabic: "ح-ك-م",
+  rootMeaningBengali: "ফয়সালা / প্রজ্ঞা",
+  frequencyInQuran: 210,
+  descriptionBengali: "আল্লাহর চূড়ান্ত ফয়সালা, বিধান ও হিকমতের পরিচয়।",
+  themeColor: "blue",
+  derivatives: [
+    {
+      id: "hkm-1",
+      arabic: "حَكِيمٌ",
+      meaningBengali: "মহাপ্রজ্ঞাময় / সুবিজ্ঞানী",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 97,
+      quranExample: "إِنَّكَ أَنْتَ الْعَلِيمُ الْحَكِيمُ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৩২"
+    },
+    {
+      id: "hkm-2",
+      arabic: "حُكْم",
+      meaningBengali: "ফয়সালা / কর্তৃত্ব / শাসন",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 68,
+      quranExample: "إِنِ الْحُكْمُ إِلَّا لِلَّهِ",
+      exampleSurahBengali: "সূরা ইউসুফ ১২:৪০"
+    },
+    {
+      id: "hkm-3",
+      arabic: "يَحْكُمُ",
+      meaningBengali: "তিনি ফয়সালা করেন / বিচার করবেন",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 45,
+      quranExample: "فَاللَّهُ يَحْكُمُ بَيْنَهُمْ يَوْمَ الْقِيَامَةِ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১১৩"
+    }
+  ]
+},
+  {
+  id: "root-nazal",
+  rootLettersArabic: "ن-ز-ل",
+  rootMeaningBengali: "অবতরণ করা / নাযিল করা",
+  frequencyInQuran: 293,
+  descriptionBengali: "কুরআন ও আসমানী কিতাব নাযিলের পবিত্র বর্ণনা।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "nzl-1",
+      arabic: "أَنْزَلَ",
+      meaningBengali: "তিনি অবতীর্ণ করেছেন / পাঠিয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 192,
+      quranExample: "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ",
+      exampleSurahBengali: "সূরা আল-ক্বদর ৯৭:১"
+    },
+    {
+      id: "nzl-2",
+      arabic: "يُنَزِّلُ",
+      meaningBengali: "তিনি অবতীর্ণ করেন / বর্ষণ করেন",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 58,
+      quranExample: "وَهُوَ الَّذِي يُنَزِّلُ الْغَيْثَ مِنْ بَعْدِ مَا قَنَطُوا",
+      exampleSurahBengali: "সূরা আশ-শূরা ৪২:২৮"
+    },
+    {
+      id: "nzl-3",
+      arabic: "تَنْزِيلٌ",
+      meaningBengali: "অবতরণ / সুনির্দিষ্ট বার্তা",
+      grammarBengali: "ভাববাচক বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 43,
+      quranExample: "تَنْزِيلُ الْكِتَابِ لَا رَيْبَ فِيهِ مِنْ رَبِّ الْعَالَمِينَ",
+      exampleSurahBengali: "সূরা আস-সাজদাহ ৩২:২"
+    }
+  ]
+},
+  {
+  id: "root-rasal",
+  rootLettersArabic: "ر-س-ل",
+  rootMeaningBengali: "পাঠানো / রাসূল",
+  frequencyInQuran: 513,
+  descriptionBengali: "আল্লাহর নবী-রাসূল ও তাদের প্রেরিত রিসালাতের মূল পরিবার।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "rsl-1",
+      arabic: "رَسُول",
+      meaningBengali: "রাসূল / বার্তাবাহক",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 332,
+      quranExample: "مُحَمَّدٌ رَسُولُ اللَّهِ",
+      exampleSurahBengali: "সূরা আল-ফাতহ ৪৮:২৯"
+    },
+    {
+      id: "rsl-2",
+      arabic: "رُسُل",
+      meaningBengali: "রাসূলগণ / প্রেরিত দূতগণ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 102,
+      quranExample: "تِلْكَ الرُّسُلُ فَضَّلْنَا بَعْضَهُمْ عَلَىٰ بَعْضٍ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৫৩"
+    },
+    {
+      id: "rsl-3",
+      arabic: "أَرْسَلَ",
+      meaningBengali: "তিনি পাঠিয়েছেন / প্রেরণ করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 79,
+      quranExample: "هُوَ الَّذِي أَرْسَلَ رَسُولَهُ بِالْهُدَىٰ",
+      exampleSurahBengali: "সূরা আত-তাওবাহ ৯:৩৩"
+    }
+  ]
+},
+  {
+  id: "root-daaa",
+  rootLettersArabic: "د-ع-و",
+  rootMeaningBengali: "ডাকা / প্রার্থনা করা",
+  frequencyInQuran: 212,
+  descriptionBengali: "আল্লাহকে ডাকা, দোয়া ও ইসলামের দিকে আহ্বানের মূল।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "daa-1",
+      arabic: "دَعَا",
+      meaningBengali: "সে ডেকেছে / প্রার্থনা করেছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 86,
+      quranExample: "هُنَالِكَ دَعَا زَكَرِيَّا رَبَّهُ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:৩৮"
+    },
+    {
+      id: "daa-2",
+      arabic: "يَدْعُونَ",
+      meaningBengali: "তারা ডাকে / প্রার্থনা করে",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 88,
+      quranExample: "وَالَّذِينَ يَدْعُونَ مِنْ دُونِهِ لَا يَسْتَجِيبُونَ لَهُمْ",
+      exampleSurahBengali: "সূরা আর-রা‘দ ১৩:১৪"
+    },
+    {
+      id: "daa-3",
+      arabic: "دُعَاء",
+      meaningBengali: "প্রার্থনা / আহ্বান",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 38,
+      quranExample: "إِنَّ رَبِّي لَسَمِيعُ الدُّعَاءِ",
+      exampleSurahBengali: "সূরা ইবরাহীম ১৪:৩৯"
+    }
+  ]
+},
+  {
+  id: "root-hasan",
+  rootLettersArabic: "ح-س-ن",
+  rootMeaningBengali: "সুন্দর / উত্তম / কল্যাণ",
+  frequencyInQuran: 194,
+  descriptionBengali: "ইহসান, উত্তম আচরণ ও জান্নাতের সৌন্দর্যের রূপ।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "hsn-1",
+      arabic: "حَسَنٌ",
+      meaningBengali: "সুন্দর / উৎকৃষ্ট / উত্তম",
+      grammarBengali: "গুণবাচক বিশেষ্য (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 88,
+      quranExample: "مَنْ ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৪৫"
+    },
+    {
+      id: "hsn-2",
+      arabic: "حَسَنَة",
+      meaningBengali: "কল্যাণ / সওয়াব / পুণ্য",
+      grammarBengali: "স্ত্রীলিঙ্গ একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 58,
+      quranExample: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২০১"
+    },
+    {
+      id: "hsn-3",
+      arabic: "أَحْسَنَ",
+      meaningBengali: "তিনি সুন্দর করেছেন / উত্তম আচরণ করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 48,
+      quranExample: "الَّذِي أَحْسَنَ كُلَّ شَيْءٍ خَلَقَهُ",
+      exampleSurahBengali: "সূরা আস-সাজদাহ ৩২:৭"
+    }
+  ]
+},
+  {
+  id: "root-abad",
+  rootLettersArabic: "ع-ب-د",
+  rootMeaningBengali: "ইবাদত / দাসত্ব",
+  frequencyInQuran: 275,
+  descriptionBengali: "আল্লাহর দাসত্ব, আনুগত্য ও বান্দার মর্যাদা।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "abd-1",
+      arabic: "اعْبُدُوا",
+      meaningBengali: "তোমরা ইবাদত করো / দাসত্ব করো",
+      grammarBengali: "আদেশসূচক ক্রিয়া (فعل أمر)",
+      category: "imperative_verb",
+      frequencyInQuran: 92,
+      quranExample: "يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمُ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২১"
+    },
+    {
+      id: "abd-2",
+      arabic: "نَعْبُدُ",
+      meaningBengali: "আমরা ইবাদত করি",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 78,
+      quranExample: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+      exampleSurahBengali: "সূরা আল-ফাতিহা ১:৫"
+    },
+    {
+      id: "abd-3",
+      arabic: "عَبْد",
+      meaningBengali: "বান্দা / দাস",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 65,
+      quranExample: "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا",
+      exampleSurahBengali: "সূরা আল-ইসরা ১৭:১"
+    },
+    {
+      id: "abd-4",
+      arabic: "عِبَاد",
+      meaningBengali: "বান্দাগণ / দাসগণ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 40,
+      quranExample: "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৮৬"
+    }
+  ]
+},
+  {
+  id: "root-ghafar",
+  rootLettersArabic: "غ-ف-ر",
+  rootMeaningBengali: "ক্ষমা করা / মাগফিরাত",
+  frequencyInQuran: 234,
+  descriptionBengali: "আল্লাহর পরম ক্ষমাশীল রূপ ও বান্দার মুক্তি প্রার্থনা।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "ghf-1",
+      arabic: "غَفُورٌ",
+      meaningBengali: "পরম ক্ষমাশীল",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 91,
+      quranExample: "وَاللَّهُ غَفُورٌ رَحِيمٌ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২১৮"
+    },
+    {
+      id: "ghf-2",
+      arabic: "يَغْفِرُ",
+      meaningBengali: "তিনি ক্ষমা করেন / মাফ করবেন",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 65,
+      quranExample: "إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا",
+      exampleSurahBengali: "সূরা আয-যুমার ৩৯:৫৩"
+    },
+    {
+      id: "ghf-3",
+      arabic: "مَغْفِرَة",
+      meaningBengali: "ক্ষমা / মাগফিরাত",
+      grammarBengali: "ভাববাচক বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 45,
+      quranExample: "وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِنْ رَبِّكُمْ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৩৩"
+    },
+    {
+      id: "ghf-4",
+      arabic: "اسْتَغْفِرُوا",
+      meaningBengali: "তোমরা ক্ষমা প্রার্থনা করো",
+      grammarBengali: "আদেশসূচক ক্রিয়া (فعل أمر)",
+      category: "imperative_verb",
+      frequencyInQuran: 33,
+      quranExample: "وَاسْتَغْفِرُوا اللَّهَ إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ",
+      exampleSurahBengali: "সূরা আল-মুযযাম্মিল ৭৩:২০"
+    }
+  ]
+},
+  {
+  id: "root-dhalam",
+  rootLettersArabic: "ظ-ل-م",
+  rootMeaningBengali: "জুলুম / অন্যায় / অবিচার",
+  frequencyInQuran: 315,
+  descriptionBengali: "শিরক, অবিচার ও সীমালঙ্ঘনের কুরআনিক সতর্কবার্তা।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "zlm-1",
+      arabic: "ظَلَمُوا",
+      meaningBengali: "তারা জুলুম করেছে / অন্যায় করেছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 110,
+      quranExample: "وَمَا ظَلَمْنَاهُمْ وَلَٰكِنْ ظَلَمُوا أَنْفُسَهُمْ",
+      exampleSurahBengali: "সূরা হূদ ১১:১০১"
+    },
+    {
+      id: "zlm-2",
+      arabic: "ظَالِمُونَ",
+      meaningBengali: "জালিমরা / সীমালঙ্ঘনকারীরা",
+      grammarBengali: "বহুবচন কর্তৃকারক বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 105,
+      quranExample: "أَلَا لَعْنَةُ اللَّهِ عَلَى الظَّالِمِينَ",
+      exampleSurahBengali: "সূরা হূদ ১১:১৮"
+    },
+    {
+      id: "zlm-3",
+      arabic: "ظُلْم",
+      meaningBengali: "অন্যায় / জুলুম",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 60,
+      quranExample: "إِنَّ الشِّرْكَ لَظُلْمٌ عَظِيمٌ",
+      exampleSurahBengali: "সূরা লুকমান ৩১:১৩"
+    },
+    {
+      id: "zlm-4",
+      arabic: "يَظْلِمُونَ",
+      meaningBengali: "তারা জুলুম করে",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 40,
+      quranExample: "إِنَّ اللَّهَ لَا يَظْلِمُ النَّاسَ شَيْئًا",
+      exampleSurahBengali: "সূরা ইউনুস ১০:৪৪"
+    }
+  ]
+},
+  {
+  id: "root-kafar",
+  rootLettersArabic: "ك-ف-ر",
+  rootMeaningBengali: "কুফরি / অস্বীকার করা",
+  frequencyInQuran: 525,
+  descriptionBengali: "ঈমানের বিপরীত কুফরি, অস্বীকৃতি ও নিয়ামত অকৃতজ্ঞতা।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "kfr-1",
+      arabic: "كَفَرُوا",
+      meaningBengali: "তারা কুফরি করেছে / অস্বীকার করেছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 289,
+      quranExample: "إِنَّ الَّذِينَ كَفَرُوا سَوَاءٌ عَلَيْهِمْ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৬"
+    },
+    {
+      id: "kfr-2",
+      arabic: "كَافِرُونَ",
+      meaningBengali: "কাফেররা / অবিশ্বাসীগণ",
+      grammarBengali: "বহুবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 134,
+      quranExample: "قُلْ يَا أَيُّهَا الْكَافِرُونَ",
+      exampleSurahBengali: "সূরা আল-কাফিরুন ১০৯:১"
+    },
+    {
+      id: "kfr-3",
+      arabic: "كُفْر",
+      meaningBengali: "কুফরি / অস্বীকৃতি",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 62,
+      quranExample: "وَلَا يَرْضَىٰ لِعِبَادِهِ الْكُفْرَ",
+      exampleSurahBengali: "সূরা আয-যুমার ৩৯:৭"
+    },
+    {
+      id: "kfr-4",
+      arabic: "يَكْفُرُونَ",
+      meaningBengali: "তারা কুফরি করে / অস্বীকার করে",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 40,
+      quranExample: "وَمَا يَكْفُرُ بِهَا إِلَّا الْفَاسِقُونَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৯৯"
+    }
+  ]
+},
+  {
+  id: "root-samaa",
+  rootLettersArabic: "س-م-ع",
+  rootMeaningBengali: "শোনা / শ্রবণ করা",
+  frequencyInQuran: 185,
+  descriptionBengali: "বান্দার আহ্বান আল্লাহর শোনা ও কুরআনের বাণী মনোযোগ দিয়ে শ্রবণ।",
+  themeColor: "blue",
+  derivatives: [
+    {
+      id: "sm-1",
+      arabic: "سَمِعَ",
+      meaningBengali: "তিনি শুনেছেন / সে শুনল",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 88,
+      quranExample: "سَمِعَ اللَّهُ قَوْلَ الَّتِي تُجَادِلُكَ",
+      exampleSurahBengali: "সূরা আল-মুজাদালাহ ৫৮:১"
+    },
+    {
+      id: "sm-2",
+      arabic: "يَسْمَعُونَ",
+      meaningBengali: "তারা শোনে / বুঝতে পারে",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 50,
+      quranExample: "إِنَّمَا يَسْتَجِيبُ الَّذِينَ يَسْمَعُونَ",
+      exampleSurahBengali: "সূরা আল-আন‘আম ৬:৩৬"
+    },
+    {
+      id: "sm-3",
+      arabic: "سَمِيعٌ",
+      meaningBengali: "সর্বশ্রোতা",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 47,
+      quranExample: "إِنَّ اللَّهَ سَمِيعٌ بَصِيرٌ",
+      exampleSurahBengali: "সূরা আল-হাজ্জ ২২:৬১"
+    }
+  ]
+},
+  {
+  id: "root-basar",
+  rootLettersArabic: "ب-ص-ر",
+  rootMeaningBengali: "দেখা / দৃষ্টিশক্তি",
+  frequencyInQuran: 148,
+  descriptionBengali: "আল্লাহর সর্বদ্রষ্টা রূপ ও মানুষের বিবেকচক্ষু।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "bsr-1",
+      arabic: "أَبْصَار",
+      meaningBengali: "দৃষ্টিসমূহ / চোখসমূহ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 62,
+      quranExample: "لَا تُدْرِكُهُ الْأَبْصَارُ وَهُوَ يُدْرِكُ الْأَبْصَارَ",
+      exampleSurahBengali: "সূরা আল-আন‘আম ৬:১০৩"
+    },
+    {
+      id: "bsr-2",
+      arabic: "بَصِيرٌ",
+      meaningBengali: "সর্বদ্রষ্টা / প্রত্যক্ষদর্শী",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 51,
+      quranExample: "وَاللَّهُ بَصِيرٌ بِمَا تَعْمَلُونَ",
+      exampleSurahBengali: "সূরা আল-হুজুরাত ৪৯:১৮"
+    },
+    {
+      id: "bsr-3",
+      arabic: "يُبْصِرُونَ",
+      meaningBengali: "তারা দেখে / প্রত্যক্ষ করে",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 35,
+      quranExample: "أَفَلَا تُبْصِرُونَ",
+      exampleSurahBengali: "সূরা আয-যারিয়াত ৫১:২১"
+    }
+  ]
+},
+  {
+  id: "root-sabar",
+  rootLettersArabic: "ص-ب-ر",
+  rootMeaningBengali: "ধৈর্য / অবিচলতা",
+  frequencyInQuran: 103,
+  descriptionBengali: "সবর, সহনশীলতা ও কঠিন সময়ে ঈমানের দৃঢ়তা।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "sbr-1",
+      arabic: "صَبَرُوا",
+      meaningBengali: "তারা ধৈর্য ধারণ করেছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 42,
+      quranExample: "إِلَّا الَّذِينَ صَبَرُوا وَعَمِلُوا الصَّالِحَاتِ",
+      exampleSurahBengali: "সূরা হূদ ১১:১১"
+    },
+    {
+      id: "sbr-2",
+      arabic: "اصْبِرُوا",
+      meaningBengali: "তোমরা ধৈর্য ধারণ করো",
+      grammarBengali: "আদেশসূচক ক্রিয়া (فعل أمر)",
+      category: "imperative_verb",
+      frequencyInQuran: 33,
+      quranExample: "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:২০০"
+    },
+    {
+      id: "sbr-3",
+      arabic: "صَابِرِينَ",
+      meaningBengali: "ধৈর্যশীলগণ",
+      grammarBengali: "বহুবচন গুণবাচক বিশেষ্য",
+      category: "adjective",
+      frequencyInQuran: 28,
+      quranExample: "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৫৩"
+    }
+  ]
+},
+  {
+  id: "root-nasar",
+  rootLettersArabic: "ن-ص-ر",
+  rootMeaningBengali: "সাহায্য / বিজয়",
+  frequencyInQuran: 158,
+  descriptionBengali: "আল্লাহর পক্ষ থেকে ঈমানদারদের চূড়ান্ত সাহায্য ও বিজয়।",
+  themeColor: "blue",
+  derivatives: [
+    {
+      id: "nsr-1",
+      arabic: "نَصَرَ",
+      meaningBengali: "তিনি সাহায্য করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 62,
+      quranExample: "وَلَقَدْ نَصَرَكُمُ اللَّهُ بِبَدْرٍ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১২৩"
+    },
+    {
+      id: "nsr-2",
+      arabic: "نَصْر",
+      meaningBengali: "সাহায্য / বিজয়",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 54,
+      quranExample: "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ",
+      exampleSurahBengali: "সূরা আন-নাসর ১১০:১"
+    },
+    {
+      id: "nsr-3",
+      arabic: "يَنْصُرُ",
+      meaningBengali: "তিনি সাহায্য করেন / বিজয়ী করেন",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 42,
+      quranExample: "إِنْ تَنْصُرُوا اللَّهَ يَنْصُرْكُمْ",
+      exampleSurahBengali: "সূরা মুহাম্মদ ৪৭:৭"
+    }
+  ]
+},
+  {
+  id: "root-waad",
+  rootLettersArabic: "و-ع-د",
+  rootMeaningBengali: "প্রতিশ্রুতি / ওয়াদা",
+  frequencyInQuran: 151,
+  descriptionBengali: "জান্নাত, পুনরুত্থান ও আল্লাহর সত্য ওয়াদার ঘোষণা।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "wad-1",
+      arabic: "وَعَدَ",
+      meaningBengali: "তিনি প্রতিশ্রুতি দিয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 86,
+      quranExample: "وَعَدَ اللَّهُ الْمُؤْمِنِينَ وَالْمُؤْمِنَاتِ جَنَّاتٍ",
+      exampleSurahBengali: "সূরা আত-তাওবাহ ৯:৭২"
+    },
+    {
+      id: "wad-2",
+      arabic: "وَعْد",
+      meaningBengali: "প্রতিশ্রুতি / অঙ্গীকার",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 48,
+      quranExample: "إِنَّ وَعْدَ اللَّهِ حَقٌّ",
+      exampleSurahBengali: "সূরা ফাতির ৩৫:৫"
+    },
+    {
+      id: "wad-3",
+      arabic: "يَعِدُ",
+      meaningBengali: "তিনি প্রতিশ্রুতি দেন / শয়তান প্ররোচনা দেয়",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 17,
+      quranExample: "الشَّيْطَانُ يَعِدُكُمُ الْفَقْرَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৬৮"
+    }
+  ]
+},
+  {
+  id: "root-hada",
+  rootLettersArabic: "ه-د-ي",
+  rootMeaningBengali: "হেদায়েত / পথপ্রদর্শন",
+  frequencyInQuran: 316,
+  descriptionBengali: "সিরাতাল মুস্তাকিম ও সরল পথের ঐশী হেদায়েত।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "hdy-1",
+      arabic: "هَدَىٰ",
+      meaningBengali: "তিনি পথ দেখিয়েছেন / হেদায়েত দিয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 142,
+      quranExample: "قُلْ إِنَّ هُدَى اللَّهِ هُوَ الْهُدَىٰ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১২০"
+    },
+    {
+      id: "hdy-2",
+      arabic: "هُدًى",
+      meaningBengali: "পথপ্রদর্শন / হেদায়েত",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 85,
+      quranExample: "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২"
+    },
+    {
+      id: "hdy-3",
+      arabic: "يَهْدِي",
+      meaningBengali: "তিনি হেদায়েত দেন / পথ দেখান",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 52,
+      quranExample: "إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ",
+      exampleSurahBengali: "সূরা আল-ইসরা ১৭:৯"
+    },
+    {
+      id: "hdy-4",
+      arabic: "مُهْتَدِينَ",
+      meaningBengali: "সুপথপ্রাপ্তগণ",
+      grammarBengali: "বহুবচন গুণবাচক বিশেষ্য",
+      category: "adjective",
+      frequencyInQuran: 37,
+      quranExample: "أُولَٰئِكَ هُمُ الْمُهْتَدُونَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৫৭"
+    }
+  ]
+},
+  {
+  id: "root-yawm",
+  rootLettersArabic: "ي-و-م",
+  rootMeaningBengali: "দিন / কিয়ামত",
+  frequencyInQuran: 405,
+  descriptionBengali: "কিয়ামতের দিন, দুনিয়া ও আখিরাতের সময়কাল।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "ywm-1",
+      arabic: "يَوْم",
+      meaningBengali: "দিন / দিবস",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 265,
+      quranExample: "مَالِكِ يَوْمِ الدِّينِ",
+      exampleSurahBengali: "সূরা আল-ফাতিহা ১:৪"
+    },
+    {
+      id: "ywm-2",
+      arabic: "يَوْمَئِذٍ",
+      meaningBengali: "সেই দিন / সেদিন",
+      grammarBengali: "যৌগিক সময়সূচক অব্যয়",
+      category: "particle",
+      frequencyInQuran: 75,
+      quranExample: "يَوْمَئِذٍ تُحَدِّثُ أَخْبَارَهَا",
+      exampleSurahBengali: "সূরা আয-যালযালাহ ৯৯:৪"
+    },
+    {
+      id: "ywm-3",
+      arabic: "أَيَّام",
+      meaningBengali: "কয়েকটি দিন / দিনসমূহ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 65,
+      quranExample: "أَيَّامًا مَعْدُودَاتٍ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৮৪"
+    }
+  ]
+},
+  {
+  id: "root-nafs",
+  rootLettersArabic: "ن-ف-س",
+  rootMeaningBengali: "প্রাণ / আত্মা / সত্ত্বা",
+  frequencyInQuran: 298,
+  descriptionBengali: "মানুষের আত্মা, ব্যক্তিগত জবাবদিহিতা ও প্রবৃত্তি।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "nfs-1",
+      arabic: "نَفْس",
+      meaningBengali: "প্রাণ / ব্যক্তি / সত্ত্বা",
+      grammarBengali: "স্ত্রীলিঙ্গ একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 145,
+      quranExample: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৮৫"
+    },
+    {
+      id: "nfs-2",
+      arabic: "أَنْفُس",
+      meaningBengali: "নিজেদের / আত্মাসমূহ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 153,
+      quranExample: "قُوا أَنْفُسَكُمْ وَأَهْلِيكُمْ نَارًا",
+      exampleSurahBengali: "সূরা আত-তাহরীম ৬৬:৬"
+    }
+  ]
+},
+  {
+  id: "root-azaz",
+  rootLettersArabic: "ع-ز-ز",
+  rootMeaningBengali: "পরাক্রম / মর্যাদা",
+  frequencyInQuran: 119,
+  descriptionBengali: "আল্লাহর আল-আযীয রূপ ও প্রকৃত সম্মানের উৎস।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "azz-1",
+      arabic: "عَزِيزٌ",
+      meaningBengali: "মহাপরাক্রমশালী / অপ্রতিরোধ্য",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 98,
+      quranExample: "وَاعْلَمْ أَنَّ اللَّهَ عَزِيزٌ حَكِيمٌ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৬০"
+    },
+    {
+      id: "azz-2",
+      arabic: "عِزَّة",
+      meaningBengali: "মর্যাদা / প্রতাপ / সম্মান",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 21,
+      quranExample: "مَنْ كَانَ يُرِيدُ الْعِزَّةَ فَلِلَّهِ الْعِزَّةُ جَمِيعًا",
+      exampleSurahBengali: "সূরা ফাতির ৩৫:১০"
+    }
+  ]
+},
+  {
+  id: "root-haqq",
+  rootLettersArabic: "ح-ق-ق",
+  rootMeaningBengali: "সত্য / অবিসংবাদিত অধিকার",
+  frequencyInQuran: 287,
+  descriptionBengali: "কুরআন, রিসালাত ও সত্যের অবিচল অবস্থান।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "hqq-1",
+      arabic: "حَقّ",
+      meaningBengali: "সত্য / যথার্থ অধিকার",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 247,
+      quranExample: "وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ",
+      exampleSurahBengali: "সূরা আল-ইসরা ১৭:৮১"
+    },
+    {
+      id: "hqq-2",
+      arabic: "حَقًّا",
+      meaningBengali: "সত্যরূপে / অবশ্যই",
+      grammarBengali: "ক্রিয়াবিশেষণ / তাগিদ অব্যয়",
+      category: "particle",
+      frequencyInQuran: 40,
+      quranExample: "وَكَانَ حَقًّا عَلَيْنَا نَصْرُ الْمُؤْمِنِينَ",
+      exampleSurahBengali: "সূরা আর-রূম ৩০:৪৭"
+    }
+  ]
+},
+  {
+  id: "root-noor",
+  rootLettersArabic: "ن-و-ر",
+  rootMeaningBengali: "আলো / নূর",
+  frequencyInQuran: 194,
+  descriptionBengali: "আল্লাহ আসমান ও জমিনের জ্যোতি এবং কুরআনের হেদায়েতের নূর।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "nr-1",
+      arabic: "نُور",
+      meaningBengali: "আলো / ঐশী জ্যোতি",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 147,
+      quranExample: "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ",
+      exampleSurahBengali: "সূরা আন-নূর ২৪:৩৫"
+    },
+    {
+      id: "nr-2",
+      arabic: "مُنِيرٌ",
+      meaningBengali: "উজ্জ্বল / আলোকোজ্জ্বল",
+      grammarBengali: "গুণবাচক বিশেষ্য (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 47,
+      quranExample: "وَسِرَاجًا مُنِيرًا",
+      exampleSurahBengali: "সূরা আল-আহযাব ৩৩:৪৬"
+    }
+  ]
+},
+  {
+  id: "root-adhab",
+  rootLettersArabic: "ع-ذ-ب",
+  rootMeaningBengali: "শাস্তি / আজাব",
+  frequencyInQuran: 373,
+  descriptionBengali: "জাহান্নাম ও অবাধ্যতার কঠিন শাস্তির সতর্কবার্তা।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "adh-1",
+      arabic: "عَذَاب",
+      meaningBengali: "কঠিন শাস্তি / আজাব",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 322,
+      quranExample: "وَقِنَا عَذَابَ النَّارِ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২০১"
+    },
+    {
+      id: "adh-2",
+      arabic: "عَذَّبَ",
+      meaningBengali: "তিনি শাস্তি দিয়েছেন / শাস্তি দেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 51,
+      quranExample: "فَيَوْمَئِذٍ لَا يُعَذِّبُ عَذَابَهُ أَحَدٌ",
+      exampleSurahBengali: "সূরা আল-ফজর ৮৯:২৫"
+    }
+  ]
+},
+  {
+  id: "root-jannah",
+  rootLettersArabic: "ج-ن-ن",
+  rootMeaningBengali: "বাগান / জান্নাত",
+  frequencyInQuran: 147,
+  descriptionBengali: "মুত্তাকীদের জন্য প্রস্তুতকৃত চিরস্থায়ী জান্নাত।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "jnn-1",
+      arabic: "جَنَّة",
+      meaningBengali: "জান্নাত / উদ্যান",
+      grammarBengali: "স্ত্রীলিঙ্গ একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 67,
+      quranExample: "ادْخُلُوا الْجَنَّةَ بِمَا كُنْتُمْ تَعْمَلُونَ",
+      exampleSurahBengali: "সূরা আন-নাহল ১৬:৩২"
+    },
+    {
+      id: "jnn-2",
+      arabic: "جَنَّات",
+      meaningBengali: "জান্নাতসমূহ / সুশোভিত বাগানসমূহ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع مؤنث سالم)",
+      category: "noun",
+      frequencyInQuran: 80,
+      quranExample: "جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৫"
+    }
+  ]
+},
+  {
+  id: "root-naar",
+  rootLettersArabic: "ن-ا-ر",
+  rootMeaningBengali: "আগুন / জাহান্নাম",
+  frequencyInQuran: 145,
+  descriptionBengali: "জাহান্নামের আগুন ও পাপাচারের পরিণাম।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "nar-1",
+      arabic: "نَار",
+      meaningBengali: "আগুন / জাহান্নামের আগুন",
+      grammarBengali: "স্ত্রীলিঙ্গ একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 145,
+      quranExample: "فَاتَّقُوا النَّارَ الَّتِي وَقُودُهَا النَّاسُ وَالْحِجَارَةُ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৪"
+    }
+  ]
+},
+  {
+  id: "root-mawt",
+  rootLettersArabic: "م-و-ت",
+  rootMeaningBengali: "মৃত্যু / বিনাশ",
+  frequencyInQuran: 161,
+  descriptionBengali: "জীবনের অবসান, মৃত্যুর স্বাদ ও পরকালের সূচনা।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "mwt-1",
+      arabic: "مَوْت",
+      meaningBengali: "মৃত্যু",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 85,
+      quranExample: "حَتَّىٰ أَتَانَا الْيَقِينُ",
+      exampleSurahBengali: "সূরা আল-মুদ্দাসসির ৭৪:৪৭"
+    },
+    {
+      id: "mwt-2",
+      arabic: "مَاتَ",
+      meaningBengali: "সে মারা গেছে / মৃত্যুবরণ করেছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 46,
+      quranExample: "أَفَإِنْ مَاتَ أَوْ قُتِلَ انْقَلَبْتُمْ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৪৪"
+    },
+    {
+      id: "mwt-3",
+      arabic: "مَيِّتٌ",
+      meaningBengali: "মৃত / নির্জীব",
+      grammarBengali: "গুণবাচক বিশেষ্য (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 30,
+      quranExample: "وَآيَةٌ لَهُمُ الْأَرْضُ الْمَيْتَةُ أَحْيَيْنَاهَا",
+      exampleSurahBengali: "সূরা ইয়াসীন ৩৬:৩৩"
+    }
+  ]
+},
+  {
+  id: "root-hayaa",
+  rootLettersArabic: "ح-ي-ي",
+  rootMeaningBengali: "জীবন / জীবিত করা",
+  frequencyInQuran: 184,
+  descriptionBengali: "আল্লাহর আল-হাইয়্য রূপ ও পুনরুত্থানে নতুন জীবনদান।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "hyy-1",
+      arabic: "حَيَاة",
+      meaningBengali: "জীবন / দুনিয়ার জীবন",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 105,
+      quranExample: "وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৮৫"
+    },
+    {
+      id: "hyy-2",
+      arabic: "حَيٌّ",
+      meaningBengali: "চিরঞ্জীব / জীবিত",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 44,
+      quranExample: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৫৫"
+    },
+    {
+      id: "hyy-3",
+      arabic: "أَحْيَا",
+      meaningBengali: "তিনি জীবিত করেছেন / জীবন দিয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 35,
+      quranExample: "الَّذِي يُمِيتُ وَيُحْيِي",
+      exampleSurahBengali: "সূরা আশ-শু‘আরা ২৬:৮১"
+    }
+  ]
+},
+  {
+  id: "root-amr",
+  rootLettersArabic: "أ-م-ر",
+  rootMeaningBengali: "আদেশ / বিষয় / শাসন",
+  frequencyInQuran: 248,
+  descriptionBengali: "আল্লাহর মহাজাগতিক আদেশ ও দ্বীনের বিধান।",
+  themeColor: "blue",
+  derivatives: [
+    {
+      id: "amr-1",
+      arabic: "أَمْر",
+      meaningBengali: "আদেশ / বিষয় / কার্যভার",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 168,
+      quranExample: "أَلَا لَهُ الْخَلْقُ وَالْأَمْرُ",
+      exampleSurahBengali: "সূরা আল-আ‘রাফ ৭:৫৪"
+    },
+    {
+      id: "amr-2",
+      arabic: "أَمَرَ",
+      meaningBengali: "তিনি আদেশ করেছেন / হুকুম দিয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 52,
+      quranExample: "إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ",
+      exampleSurahBengali: "সূরা আন-নাহল ১৬:৯০"
+    },
+    {
+      id: "amr-3",
+      arabic: "أُمُور",
+      meaningBengali: "বিষয়াদি / কার্যকলাপ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 28,
+      quranExample: "وَإِلَى اللَّهِ تُرْجَعُ الْأُمُورُ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২১০"
+    }
+  ]
+},
+  {
+  id: "root-kitab",
+  rootLettersArabic: "ك-ت-ب",
+  rootMeaningBengali: "কিতাব / লেখা / বিধান",
+  frequencyInQuran: 319,
+  descriptionBengali: "আল-কুরআন, তাওরাত, ইনজিল ও ভাগ্যলিপির বর্ণনাসমূহ।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "ktb-1",
+      arabic: "كِتَاب",
+      meaningBengali: "গ্রন্থ / কিতাব / সংবিধান",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 230,
+      quranExample: "الْحَمْدُ لِلَّهِ الَّذِي أَنْزَلَ عَلَىٰ عَبْدِهِ الْكِتَابَ",
+      exampleSurahBengali: "সূরা আল-কাহফ ১৮:১"
+    },
+    {
+      id: "ktb-2",
+      arabic: "كَتَبَ",
+      meaningBengali: "তিনি লিখেছেন / নির্ধারণ করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 56,
+      quranExample: "كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِنْ قَبْلِكُمْ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৮৩"
+    },
+    {
+      id: "ktb-3",
+      arabic: "كُتُب",
+      meaningBengali: "কিতাবসমূহ / ঐশী গ্রন্থাবলী",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 33,
+      quranExample: "وَآمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৮৫"
+    }
+  ]
+},
+  {
+  id: "root-deen",
+  rootLettersArabic: "د-ي-ن",
+  rootMeaningBengali: "দ্বীন / জীবনবিধান / বিচার",
+  frequencyInQuran: 92,
+  descriptionBengali: "ইসলামী পূর্ণাঙ্গ জীবনব্যবস্থা ও ইয়াওমুদ্দীন (বিচার দিবস)।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "den-1",
+      arabic: "دِين",
+      meaningBengali: "দ্বীন / জীবনবিধান / বিচার",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 92,
+      quranExample: "إِنَّ الدِّينَ عِنْدَ اللَّهِ الْإِسْلَامُ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৯"
+    }
+  ]
+},
+  {
+  id: "root-mulk",
+  rootLettersArabic: "م-ل-ك",
+  rootMeaningBengali: "সার্বভৌমত্ব / ফেরেশতা / রাজত্ব",
+  frequencyInQuran: 206,
+  descriptionBengali: "আল্লাহর একচ্ছত্র রাজত্ব ও সম্মানিত ফেরেশতামণ্ডলী।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "mlk-1",
+      arabic: "مُلْك",
+      meaningBengali: "রাজত্ব / সার্বভৌমত্ব",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 81,
+      quranExample: "تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ",
+      exampleSurahBengali: "সূরা আল-মুলক ৬৭:১"
+    },
+    {
+      id: "mlk-2",
+      arabic: "مَلَائِكَة",
+      meaningBengali: "ফেরেশতাগণ",
+      grammarBengali: "বহুবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 68,
+      quranExample: "وَإِذْ قُلْنَا لِلْمَلَائِكَةِ اسْجُدُوا لِآدَمَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৩৪"
+    },
+    {
+      id: "mlk-3",
+      arabic: "مَلِكٌ",
+      meaningBengali: "বাদশাহ / অধিপতি",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 35,
+      quranExample: "فَتَعَالَى اللَّهُ الْمَلِكُ الْحَقُّ",
+      exampleSurahBengali: "সূরা ত্বা-হা ২০:১১৪"
+    },
+    {
+      id: "mlk-4",
+      arabic: "مَلَكَتْ",
+      meaningBengali: "মালিকানাভুক্ত হয়েছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 22,
+      quranExample: "إِلَّا عَلَىٰ أَزْوَاجِهِمْ أَوْ مَا مَلَكَتْ أَيْمَانُهُمْ",
+      exampleSurahBengali: "সূরা আল-মুমিনূন ২৩:৬"
+    }
+  ]
+},
+  {
+  id: "root-salam",
+  rootLettersArabic: "س-ل-م",
+  rootMeaningBengali: "ইসলাম / শান্তি / আত্মসমর্পণ",
+  frequencyInQuran: 140,
+  descriptionBengali: "শান্তি, নিরাপত্তা ও আল্লাহর কাছে আত্মসমর্পণ।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "slm-1",
+      arabic: "سَلَامٌ",
+      meaningBengali: "শান্তি / নিরাপত্তা / সালাম",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 50,
+      quranExample: "سَلَامٌ قَوْلًا مِنْ رَبٍّ رَحِيمٍ",
+      exampleSurahBengali: "সূরা ইয়াসীন ৩৬:৫৮"
+    },
+    {
+      id: "slm-2",
+      arabic: "مُسْلِمُونَ",
+      meaningBengali: "আত্মসমর্পণকারীরা / মুসলমানগণ",
+      grammarBengali: "বহুবচন কর্তৃকারক বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 42,
+      quranExample: "وَاشْهَدْ بِأَنَّا مُسْلِمُونَ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:৫২"
+    },
+    {
+      id: "slm-3",
+      arabic: "إِسْلَام",
+      meaningBengali: "ইসলাম / পূর্ণ আত্মসমর্পণ",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 28,
+      quranExample: "وَرَضِيتُ لَكُمُ الْإِسْلَامَ دِينًا",
+      exampleSurahBengali: "সূরা আল-মায়িদাহ ৫:৩"
+    },
+    {
+      id: "slm-4",
+      arabic: "أَسْلَمَ",
+      meaningBengali: "সে আত্মসমর্পণ করেছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 20,
+      quranExample: "إِذْ قَالَ لَهُ رَبُّهُ أَسْلِمْ قَالَ أَسْلَمْتُ لِرَبِّ الْعَالَمِينَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৩১"
+    }
+  ]
+},
+  {
+  id: "root-sadaq",
+  rootLettersArabic: "ص-দ-ق",
+  rootMeaningBengali: "সত্যবাদীতা / সত্যায়ন",
+  frequencyInQuran: 155,
+  descriptionBengali: "সত্যবাদীদের চরিত্র ও আল্লাহর বাণীর সত্যায়ন।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "sdq-1",
+      arabic: "صَادِقِينَ",
+      meaningBengali: "সত্যবাদীরা",
+      grammarBengali: "বহুবচন গুণবাচক বিশেষ্য",
+      category: "adjective",
+      frequencyInQuran: 86,
+      quranExample: "يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَكُونُوا مَعَ الصَّادِقِينَ",
+      exampleSurahBengali: "সূরা আত-তাওবাহ ৯:১১৯"
+    },
+    {
+      id: "sdq-2",
+      arabic: "صَدَقَ",
+      meaningBengali: "তিনি সত্য বলেছেন / সত্য প্রমাণিত হয়েছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 38,
+      quranExample: "قُلْ صَدَقَ اللَّهُ فَاتَّبِعُوا مِلَّةَ إِبْرَاهِيمَ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:৯৫"
+    },
+    {
+      id: "sdq-3",
+      arabic: "مُصَدِّقٌ",
+      meaningBengali: "সত্যায়নকারী",
+      grammarBengali: "কর্তৃকারক বিশেষ্য (اسم فاعل)",
+      category: "noun",
+      frequencyInQuran: 31,
+      quranExample: "مُصَدِّقًا لِمَا بَيْنَ يَدَيْهِ مِنَ الْكِتَابِ",
+      exampleSurahBengali: "সূরা আল-মায়িদাহ ৫:৪৮"
+    }
+  ]
+},
+  {
+  id: "root-dhikr",
+  rootLettersArabic: "ذ-ك-ر",
+  rootMeaningBengali: "স্মরণ / যিকির / উপদেশ",
+  frequencyInQuran: 292,
+  descriptionBengali: "আল্লাহকে স্মরণ, অন্তরের প্রশান্তি ও কুরআন স্মারক।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "zkr-1",
+      arabic: "ذِكْر",
+      meaningBengali: "স্মরণ / উপদেশ / যিকির",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 164,
+      quranExample: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+      exampleSurahBengali: "সূরা আর-রা‘দ ১৩:২৮"
+    },
+    {
+      id: "zkr-2",
+      arabic: "اذْكُرُوا",
+      meaningBengali: "তোমরা স্মরণ করো",
+      grammarBengali: "আদেশসূচক ক্রিয়া (فعل أمر)",
+      category: "imperative_verb",
+      frequencyInQuran: 82,
+      quranExample: "يَا بَنِي إِسْرَائِيلَ اذْكُرُوا نِعْمَتِيَ الَّتِي أَنْعَمْتُ عَلَيْكُمْ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৪০"
+    },
+    {
+      id: "zkr-3",
+      arabic: "تَذْكِرَة",
+      meaningBengali: "স্মারক / উপদেশমালা",
+      grammarBengali: "স্ত্রীলিঙ্গ বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 46,
+      quranExample: "كَلَّا إِنَّهَا تَذْكِرَةٌ",
+      exampleSurahBengali: "সূরা আবাসা ৮০:১১"
+    }
+  ]
+},
+  {
+  id: "root-tawb",
+  rootLettersArabic: "ت-و-ب",
+  rootMeaningBengali: "তাওবা / প্রত্যাবর্তন",
+  frequencyInQuran: 87,
+  descriptionBengali: "বান্দার অনুশোচনা ও আল্লাহর পরম ক্ষমা কবুলকারী রূপ।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "twb-1",
+      arabic: "تَابَ",
+      meaningBengali: "সে তওবা করেছে / তিনি ক্ষমা করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 48,
+      quranExample: "فَتَلَقَّىٰ آدَمُ مِنْ رَبِّهِ كَلِمَاتٍ فَتَابَ عَلَيْهِ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৩৭"
+    },
+    {
+      id: "twb-2",
+      arabic: "تَوَّابٌ",
+      meaningBengali: "পরম তওবা কবুলকারী",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 24,
+      quranExample: "إِنَّهُ كَانَ تَوَّابًا",
+      exampleSurahBengali: "সূরা আন-নাসর ১১০:৩"
+    },
+    {
+      id: "twb-3",
+      arabic: "تَوْبَة",
+      meaningBengali: "অনুশোচনা / তওবা",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 15,
+      quranExample: "إِنَّمَا التَّوْبَةُ عَلَى اللَّهِ لِلَّذِينَ يَعْمَلُونَ السُّوءَ بِجَهَالَةٍ",
+      exampleSurahBengali: "সূরা আন-নিসা ৪:১৭"
+    }
+  ]
+},
+  {
+  id: "root-kharaj",
+  rootLettersArabic: "خ-ر-ج",
+  rootMeaningBengali: "বের হওয়া / বের করা",
+  frequencyInQuran: 182,
+  descriptionBengali: "কবর থেকে পুনরুত্থান ও মৃত জমিন থেকে ফলমূল উৎপাদন।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "khj-1",
+      arabic: "أَخْرَجَ",
+      meaningBengali: "তিনি বের করেছেন / উৎপন্ন করেছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 112,
+      quranExample: "وَأَخْرَجَتِ الْأَرْضُ أَثْقَالَهَا",
+      exampleSurahBengali: "সূরা আয-যালযালাহ ৯৯:২"
+    },
+    {
+      id: "khj-2",
+      arabic: "خَرَجَ",
+      meaningBengali: "সে বের হয়েছে / তারা বের হলো",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 42,
+      quranExample: "فَخَرَجَ عَلَىٰ قَوْمِهِ فِي زِينَتِهِ",
+      exampleSurahBengali: "সূরা আল-ক্বসাস ২৮:৭৯"
+    },
+    {
+      id: "khj-3",
+      arabic: "خُرُوج",
+      meaningBengali: "বহির্গমন / পুনরুত্থান",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 28,
+      quranExample: "يَوْمَ يَسْمَعُونَ الصَّيْحَةَ بِالْحَقِّ ذَٰلِكَ يَوْمُ الْخُرُوجِ",
+      exampleSurahBengali: "সূরা কাফ ৫০:৪২"
+    }
+  ]
+},
+  {
+  id: "root-dakhal",
+  rootLettersArabic: "د-خ-ل",
+  rootMeaningBengali: "প্রবেশ করা / দাখিল হওয়া",
+  frequencyInQuran: 124,
+  descriptionBengali: "জান্নাতে প্রবেশ ও সত্য দ্বীনে জনসমাগম।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "dkh-1",
+      arabic: "دَخَلُوا",
+      meaningBengali: "তারা প্রবেশ করেছে / ঢুকল",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 78,
+      quranExample: "وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا",
+      exampleSurahBengali: "সূরা আন-নাসর ১১০:২"
+    },
+    {
+      id: "dkh-2",
+      arabic: "أَدْخَلَ",
+      meaningBengali: "তিনি প্রবেশ করিয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 32,
+      quranExample: "رَبَّنَا إِنَّكَ مَنْ تُدْخِلِ النَّارَ فَقَدْ أَخْزَيْتَهُ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৯২"
+    },
+    {
+      id: "dkh-3",
+      arabic: "ادْخُلُوا",
+      meaningBengali: "তোমরা প্রবেশ করো",
+      grammarBengali: "আদেশসূচক ক্রিয়া (فعل أمر)",
+      category: "imperative_verb",
+      frequencyInQuran: 14,
+      quranExample: "ادْخُلُوا الْجَنَّةَ لَا خَوْفٌ عَلَيْكُمْ",
+      exampleSurahBengali: "সূরা আল-আ‘রাফ ৭:৪৯"
+    }
+  ]
+},
+  {
+  id: "root-raaa",
+  rootLettersArabic: "ر-أ-ي",
+  rootMeaningBengali: "দেখা / উপলব্ধি করা",
+  frequencyInQuran: 328,
+  descriptionBengali: "চাক্ষুষ দৃষ্টি ও হৃদয়ের গভীর উপলব্ধি।",
+  themeColor: "blue",
+  derivatives: [
+    {
+      id: "raa-1",
+      arabic: "رَأَىٰ",
+      meaningBengali: "সে দেখেছে / প্রত্যক্ষ করল",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 128,
+      quranExample: "فَلَمَّا رَأَى الْقَمَرَ بَازِغًا",
+      exampleSurahBengali: "সূরা আল-আন‘আম ৬:৭৭"
+    },
+    {
+      id: "raa-2",
+      arabic: "يَرَوْنَ",
+      meaningBengali: "তারা দেখে / প্রত্যক্ষ করে",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 110,
+      quranExample: "أَوَلَمْ يَرَوْا إِلَى الْأَرْضِ كَمْ أَنْبَتْنَا فِيهَا",
+      exampleSurahBengali: "সূরা আশ-শু‘আরা ২৬:৭"
+    },
+    {
+      id: "raa-3",
+      arabic: "أَرَأَيْتَ",
+      meaningBengali: "তুমি কি দেখেছ? / ভেবে দেখেছ?",
+      grammarBengali: "জিজ্ঞাসাসূচক অতীত ক্রিয়া",
+      category: "past_verb",
+      frequencyInQuran: 90,
+      quranExample: "أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ",
+      exampleSurahBengali: "সূরা আল-মা‘উন ১০৭:১"
+    }
+  ]
+},
+  {
+  id: "root-waqa",
+  rootLettersArabic: "و-ق-ي",
+  rootMeaningBengali: "তাকওয়া / আত্মরক্ষা / বেঁচে থাকা",
+  frequencyInQuran: 258,
+  descriptionBengali: "আল্লাহভীতি, সংযম ও জাহান্নাম থেকে আত্মরক্ষা।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "wqa-1",
+      arabic: "مُتَّقِينَ",
+      meaningBengali: "মুত্তাকীরা / আল্লাহভীরুরা",
+      grammarBengali: "বহুবচন গুণবাচক বিশেষ্য",
+      category: "adjective",
+      frequencyInQuran: 134,
+      quranExample: "إِنَّ لِلْمُتَّقِينَ مَفَازًا",
+      exampleSurahBengali: "সূরা আন-নাবা ৭৮:৩১"
+    },
+    {
+      id: "wqa-2",
+      arabic: "اتَّقُوا",
+      meaningBengali: "তোমরা ভয় করো / বেঁচে থাকো",
+      grammarBengali: "আদেশসূচক ক্রিয়া (فعل أمر)",
+      category: "imperative_verb",
+      frequencyInQuran: 84,
+      quranExample: "يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ حَقَّ تُقَاتِهِ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১০২"
+    },
+    {
+      id: "wqa-3",
+      arabic: "تَقْوَى",
+      meaningBengali: "তাকওয়া / খোদাভীতি / সংযম",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 40,
+      quranExample: "وَتَزَوَّدُوا فَإِنَّ خَيْرَ الزَّادِ التَّقْوَىٰ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:১৯৭"
+    }
+  ]
+},
+  {
+  id: "root-wali",
+  rootLettersArabic: "و-ل-ي",
+  rootMeaningBengali: "অভিভাবক / বন্ধু / ফিরে যাওয়া",
+  frequencyInQuran: 232,
+  descriptionBengali: "আল্লাহই মুমিনদের পরম অভিভাবক, রক্ষাকারী ও বন্ধু।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "wli-1",
+      arabic: "وَلِيّ",
+      meaningBengali: "অভিভাবক / পরম বন্ধু",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 86,
+      quranExample: "اللَّهُ وَلِيُّ الَّذِينَ آمَنُوا",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৫৭"
+    },
+    {
+      id: "wli-2",
+      arabic: "تَوَلَّىٰ",
+      meaningBengali: "সে মুখ ফিরিয়ে নিল / পৃষ্ঠপ্রদর্শন করল",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 74,
+      quranExample: "عَبَسَ وَتَوَلَّىٰ",
+      exampleSurahBengali: "সূরা আবাসা ৮০:১"
+    },
+    {
+      id: "wli-3",
+      arabic: "أَوْلِيَاء",
+      meaningBengali: "বন্ধুগণ / অভিভাবকবৃন্দ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 42,
+      quranExample: "أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ",
+      exampleSurahBengali: "সূরা ইউনুস ১০:৬২"
+    },
+    {
+      id: "wli-4",
+      arabic: "مَوْلَىٰ",
+      meaningBengali: "রক্ষাকর্তা / পৃষ্ঠপোষক",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 30,
+      quranExample: "أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২৮৬"
+    }
+  ]
+},
+  {
+  id: "root-khawf",
+  rootLettersArabic: "خ-و-ف",
+  rootMeaningBengali: "ভয় / শঙ্কা",
+  frequencyInQuran: 124,
+  descriptionBengali: "আল্লাহভীতি ও পরকালীন ভয় থেকে মুক্তির প্রতিশ্রুতি।",
+  themeColor: "amber",
+  derivatives: [
+    {
+      id: "khf-1",
+      arabic: "خَوْف",
+      meaningBengali: "ভয় / শঙ্কা",
+      grammarBengali: "মূল বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 62,
+      quranExample: "فَلَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:৩৮"
+    },
+    {
+      id: "khf-2",
+      arabic: "خَافَ",
+      meaningBengali: "সে ভয় করেছে / শঙ্কা করল",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 38,
+      quranExample: "وَلِمَنْ خَافَ مَقَامَ رَبِّهِ جَنَّتَانِ",
+      exampleSurahBengali: "সূরা আর-রহমান ৫৫:৪৬"
+    },
+    {
+      id: "khf-3",
+      arabic: "يَخَافُونَ",
+      meaningBengali: "তারা ভয় করে / শঙ্কিত হয়",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 24,
+      quranExample: "يَخَافُونَ يَوْمًا تَتَقَلَّبُ فِيهِ الْقُلُوبُ وَالْأَبْصَارُ",
+      exampleSurahBengali: "সূরা আন-নূর ২৪:৩৭"
+    }
+  ]
+},
+  {
+  id: "root-faala",
+  rootLettersArabic: "ف-ع-ل",
+  rootMeaningBengali: "করা / সম্পাদন করা",
+  frequencyInQuran: 107,
+  descriptionBengali: "আল্লাহর ইচ্ছা বাস্তবায়ন ও মানুষের কৃতকর্মের পরিচয়।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "fal-1",
+      arabic: "فَعَلَ",
+      meaningBengali: "সে করেছে / সম্পাদন করল",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 48,
+      quranExample: "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ",
+      exampleSurahBengali: "সূরা আল-ফীল ১০৫:১"
+    },
+    {
+      id: "fal-2",
+      arabic: "يَفْعَلُونَ",
+      meaningBengali: "তারা করে / সম্পাদন করে",
+      grammarBengali: "বর্তমান/ভবিষ্যৎ ক্রিয়া (فعل مضارع)",
+      category: "present_verb",
+      frequencyInQuran: 44,
+      quranExample: "وَيَفْعَلُونَ مَا يُؤْمَرُونَ",
+      exampleSurahBengali: "সূরা আন-নাহল ১৬:৫০"
+    },
+    {
+      id: "fal-3",
+      arabic: "افْعَلُوا",
+      meaningBengali: "তোমরা করো / সম্পাদন করো",
+      grammarBengali: "আদেশসূচক ক্রিয়া (فعل أمر)",
+      category: "imperative_verb",
+      frequencyInQuran: 15,
+      quranExample: "وَافْعَلُوا الْخَيْرَ لَعَلَّكُمْ تُفْلِحُونَ",
+      exampleSurahBengali: "সূরা আল-হাজ্জ ২২:৭৭"
+    }
+  ]
+},
+  {
+  id: "root-qadar",
+  rootLettersArabic: "ق-د-ر",
+  rootMeaningBengali: "ক্ষমতা / তাকদীর / নির্ধারণ",
+  frequencyInQuran: 132,
+  descriptionBengali: "আল্লাহর সর্বশক্তিমান ক্ষমতা ও নিখুঁত পরিমাপ।",
+  themeColor: "blue",
+  derivatives: [
+    {
+      id: "qdr-1",
+      arabic: "قَدِيرٌ",
+      meaningBengali: "সর্বশক্তিমান / চূড়ান্ত ক্ষমতাবান",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 45,
+      quranExample: "إِنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
+      exampleSurahBengali: "সূরা আল-বাকারা ২:২০"
+    },
+    {
+      id: "qdr-2",
+      arabic: "قَدْر",
+      meaningBengali: "মহিমান্বিত সম্মান / পরিমাপ",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 35,
+      quranExample: "وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ",
+      exampleSurahBengali: "সূরা আল-ক্বদর ৯৭:২"
+    },
+    {
+      id: "qdr-3",
+      arabic: "قَدَّرَ",
+      meaningBengali: "তিনি পরিমাপ করেছেন / নির্ধারণ করলেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 32,
+      quranExample: "وَالَّذِي قَدَّرَ فَهَدَىٰ",
+      exampleSurahBengali: "সূরা আল-আ‘লা ৮৭:৩"
+    },
+    {
+      id: "qdr-4",
+      arabic: "تَقْدِير",
+      meaningBengali: "পরিকল্পনা / অমোঘ নির্ধারণ",
+      grammarBengali: "ভাববাচক বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 20,
+      quranExample: "ذَٰلِكَ تَقْدِيرُ الْعَزِيزِ الْعَلِيمِ",
+      exampleSurahBengali: "সূরা ইয়াসীন ৩৬:৩৮"
+    }
+  ]
+},
+  {
+  id: "root-shahid",
+  rootLettersArabic: "ش-ه-د",
+  rootMeaningBengali: "সাক্ষ্য দেওয়া / উপস্থিত থাকা",
+  frequencyInQuran: 160,
+  descriptionBengali: "তাওহীদের সাক্ষ্য ও কিয়ামতের দিনের সাক্ষ্যদান।",
+  themeColor: "teal",
+  derivatives: [
+    {
+      id: "shd-1",
+      arabic: "شَهِيدٌ",
+      meaningBengali: "প্রত্যক্ষ সাক্ষী",
+      grammarBengali: "আল্লাহর গুণবাচক নাম (اسم صفة)",
+      category: "adjective",
+      frequencyInQuran: 56,
+      quranExample: "وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ شَهِيدٌ",
+      exampleSurahBengali: "সূরা আল-বুরূজ ৮৫:৯"
+    },
+    {
+      id: "shd-2",
+      arabic: "شَهِدَ",
+      meaningBengali: "তিনি সাক্ষ্য দিয়েছেন",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 46,
+      quranExample: "شَهِدَ اللَّهُ أَنَّهُ لَا إِلَٰهَ إِلَّا هُوَ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:১৮"
+    },
+    {
+      id: "shd-3",
+      arabic: "شَهَادَة",
+      meaningBengali: "সাক্ষ্য / দৃশ্যমান জগত",
+      grammarBengali: "স্ত্রীলিঙ্গ বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 35,
+      quranExample: "عَالِمُ الْغَيْبِ وَالشَّهَادَةِ",
+      exampleSurahBengali: "সূরা আল-আন‘আম ৬:৭৩"
+    },
+    {
+      id: "shd-4",
+      arabic: "شُهَدَاء",
+      meaningBengali: "সাক্ষীগণ / শহীদগণ",
+      grammarBengali: "বহুবচন বিশেষ্য (جمع تكسير)",
+      category: "noun",
+      frequencyInQuran: 23,
+      quranExample: "وَالصِّدِّيقِينَ وَالشُّهَدَاءِ وَالصَّالِحِينَ",
+      exampleSurahBengali: "সূরা আন-নিসা ৪:৬৯"
+    }
+  ]
+},
+  {
+  id: "root-ahl",
+  rootLettersArabic: "أ-ه-ل",
+  rootMeaningBengali: "পরিবার / অধিকারী / অধিবাসী",
+  frequencyInQuran: 127,
+  descriptionBengali: "আহলে কিতাব, ঈমানদারের পরিবার ও জান্নাতের অধিবাসী।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "ahl-1",
+      arabic: "أَهْل",
+      meaningBengali: "অধিকারী / পরিবার / বাসিন্দা",
+      grammarBengali: "একবচন সম্বন্ধসূচক বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 127,
+      quranExample: "قُلْ يَا أَهْلَ الْكِتَابِ تَعَالَوْا إِلَىٰ كَلِمَةٍ سَوَاءٍ",
+      exampleSurahBengali: "সূরা আলে ইমরান ৩:৬৪"
+    }
+  ]
+},
+  {
+  id: "root-khayr",
+  rootLettersArabic: "خ-ي-ر",
+  rootMeaningBengali: "উত্তম / কল্যাণ / শ্রেষ্ঠ",
+  frequencyInQuran: 196,
+  descriptionBengali: "সর্বোত্তম কল্যাণ ও পরকালীন অনন্ত পুরস্কারের ঘোষণা।",
+  themeColor: "emerald",
+  derivatives: [
+    {
+      id: "khyr-1",
+      arabic: "خَيْرٌ",
+      meaningBengali: "উত্তম / সর্বোত্তম কল্যাণ",
+      grammarBengali: "তুলনাবাচক বিশেষ্য (اسم تفضيل)",
+      category: "noun",
+      frequencyInQuran: 196,
+      quranExample: "وَالْآخِرَةُ خَيْرٌ وَأَبْقَىٰ",
+      exampleSurahBengali: "সূরা আল-আ‘লা ৮৭:১৭"
+    }
+  ]
+},
+  {
+  id: "root-sharr",
+  rootLettersArabic: "ش-ر-ر",
+  rootMeaningBengali: "মন্দ / অকল্যাণ",
+  frequencyInQuran: 31,
+  descriptionBengali: "অশুভ, শয়তানের অনিষ্ট ও অনিষ্টতা থেকে আশ্রয় প্রার্থনা।",
+  themeColor: "stone",
+  derivatives: [
+    {
+      id: "shr-1",
+      arabic: "شَرّ",
+      meaningBengali: "অকল্যাণ / অনিষ্ট / নিকৃষ্ট",
+      grammarBengali: "একবচন বিশেষ্য",
+      category: "noun",
+      frequencyInQuran: 31,
+      quranExample: "مِنْ شَرِّ مَا خَلَقَ",
+      exampleSurahBengali: "সূরা আল-ফালাক্ব ১১৩:২"
+    }
+  ]
+},
+  {
+  id: "root-balagh",
+  rootLettersArabic: "ب-ل-غ",
+  rootMeaningBengali: "পৌঁছানো / স্পষ্ট বার্তা",
+  frequencyInQuran: 77,
+  descriptionBengali: "রাসূলগণের দায়িত্ব সত্যবাণী স্পষ্টভাবে পৌঁছে দেওয়া।",
+  themeColor: "blue",
+  derivatives: [
+    {
+      id: "blg-1",
+      arabic: "بَلَغَ",
+      meaningBengali: "সে পৌঁছেছে / উপনীত হয়েছে",
+      grammarBengali: "অতীতকালীন ক্রিয়া (فعل ماض)",
+      category: "past_verb",
+      frequencyInQuran: 42,
+      quranExample: "حَتَّىٰ إِذَا بَلَغَ أَشُدَّهُ وَبَلَغَ أَرْبَعِينَ سَنَةً",
+      exampleSurahBengali: "সূরা আল-আহক্বাফ ৪৬:১৫"
+    },
+    {
+      id: "blg-2",
+      arabic: "بَلَاغٌ",
+      meaningBengali: "সুস্পষ্ট বার্তা / প্রচার",
+      grammarBengali: "ভাববাচক বিশেষ্য (مصدر)",
+      category: "noun",
+      frequencyInQuran: 35,
+      quranExample: "مَا عَلَى الرَّسُولِ إِلَّا الْبَلَاغُ",
+      exampleSurahBengali: "সূরা আল-মায়িদাহ ৫:৯৯"
+    }
+  ]
+}
 ];

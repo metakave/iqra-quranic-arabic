@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { COURSE_MODULES } from '@/data/courseCurriculum';
+import QuranVerseLink from '@/components/QuranVerseLink';
 import {
   ArrowRight,
   Sparkles,
@@ -124,7 +125,10 @@ export default function HomePage() {
                 اهْدِ + نَا
               </div>
               <div className="text-xs text-stone-600 font-sans" dir="ltr">
-                সূরা আল-ফাতিহা ১:৬
+                <QuranVerseLink
+                  reference="সূরা আল-ফাতিহা ১:৬"
+                  className="text-stone-600 hover:text-emerald-700 font-medium"
+                />
               </div>
               <div className="border-t border-emerald-200/60 pt-2 text-stone-900 font-bold text-sm" dir="ltr">
                 “আমাদেরকে পথ দেখান”
@@ -140,7 +144,10 @@ export default function HomePage() {
                 رَبَّ + نَا
               </div>
               <div className="text-xs text-stone-600 font-sans" dir="ltr">
-                সূরা আল-বাকারা ২:২০১
+                <QuranVerseLink
+                  reference="সূরা আল-বাকারা ২:২০১"
+                  className="text-stone-600 hover:text-emerald-700 font-medium"
+                />
               </div>
               <div className="border-t border-amber-200/60 pt-2 text-stone-900 font-bold text-sm" dir="ltr">
                 “আমাদের প্রতিপালক”
