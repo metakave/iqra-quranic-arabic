@@ -84,6 +84,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
     'module-05-lesson-24': 'module-05-lesson-25',
     'module-05-lesson-25': 'module-06-lesson-26',
     'module-06-lesson-26': 'module-06-lesson-27',
+    'module-06-lesson-27': 'module-06-lesson-28',
   };
 
   return (
