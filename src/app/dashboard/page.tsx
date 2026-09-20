@@ -223,6 +223,10 @@ export default function DashboardPage() {
                   ? '/learn/module-07-lesson-31'
                   : module.moduleNumber === 8
                   ? '/learn/module-08-lesson-36'
+                  : module.moduleNumber === 9
+                  ? '/learn/module-09-lesson-41'
+                  : module.moduleNumber === 10
+                  ? '/learn/module-10-lesson-46'
                   : '#';
 
               return (
@@ -532,10 +536,86 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-07-lesson-35"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩৫ (সার্বিক সংকলন ও মডিউল ৭ সমাপনী মূল্যায়ন)</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 8 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ৮-এর প্রস্তুতকৃত পাঠসমূহ:</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-08-lesson-36"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩৬ (‘লা’ ও ‘মা’-এর না-বোধক ব্যবহার)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-08-lesson-37"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩৭ (অতীত ও ভবিষ্যৎ: ‘লাম’ ও ‘লান’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-08-lesson-38"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩৮ (নিষেধ বনাম তথ্য: ‘লা আন-নাহিয়াহ’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-08-lesson-39"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৩৯ (ব্যতিক্রমসহ না-বোধক: ‘লা/মা ... ইল্লা’)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-08-lesson-40"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪০ (চেকপয়েন্ট C: না-বোধক ও নিষেধাজ্ঞা সমাপনী)</span>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+
+                      {module.moduleNumber === 9 && (
+                        <div className="pt-2">
+                          <div className="text-[13px] font-bold text-stone-500 mb-1.5">মডিউল ৯-এর প্রস্তুতকৃত পাঠসমূহ:</div>
+                          <div className="flex flex-wrap gap-2">
+                            <Link
+                              href="/learn/module-09-lesson-41"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪১ (একবচন সংযোজক: الَّذِي ও الَّتِي)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-09-lesson-42"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪২ (বহুবচন সংযোজক: الَّذِينَ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-09-lesson-43"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪৩ (সংশ্লিষ্ট বিবরণী বাক্য: صلة الموصول)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-09-lesson-44"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ৪৪ (প্রশ্ন নাকি বিবরণ? مَا ও مَنْ)</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-09-lesson-45"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ৩৫ (সার্বিক সংকলন ও মডিউল ৭ সমাপনী মূল্যায়ন) • সমাপনী</span>
+                              <span>পাঠ ৪৫ (সংযোজক বাক্য ও বিবরণ সমাপনী মূল্যায়ন) • সমাপনী</span>
                             </Link>
                           </div>
                         </div>
