@@ -140,6 +140,9 @@ export function completeLesson(lessonId: string, xpReward: number): UserProfile 
   if (lessonId === 'module-06-lesson-30' && updated.unlockedModule < 7) {
     updated.unlockedModule = 7;
   }
+  if (lessonId === 'module-07-lesson-35' && updated.unlockedModule < 8) {
+    updated.unlockedModule = 8;
+  }
 
   saveUserProfile(updated);
   return updated;
