@@ -106,6 +106,12 @@ export default function VocabularyPage() {
     0
   );
 
+  const QURAN_TOTAL_WORDS = 77439;
+  const coveragePercent = Math.min(
+    100,
+    parseFloat(((totalFrequency / QURAN_TOTAL_WORDS) * 100).toFixed(1))
+  );
+
   // Filter and sort logic for families
   const filteredFamilies = useMemo(() => {
     const matched = QURAN_ROOT_FAMILIES.filter((family) => {
@@ -256,6 +262,36 @@ export default function VocabularyPage() {
                 {totalFrequency.toLocaleString('bn-BD')}+
               </span>
               <span className="text-xs sm:text-sm text-stone-400">কুরআনে পুনরাবৃত্তি</span>
+            </div>
+          </div>
+
+          {/* 80% Vocabulary Target Progress Tracker */}
+          <div className="max-w-xl mx-auto pt-4">
+            <div className="bg-stone-800/90 border border-emerald-500/30 rounded-2xl p-4 text-left shadow-lg">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+                  <span className="text-xs font-bold text-emerald-300">
+                    কুরআনের ৮০% শব্দভাণ্ডার অর্জনের লক্ষ্যমাত্রা (ধাপ ১)
+                  </span>
+                </div>
+                <span className="text-xs font-bold text-amber-300">
+                  {coveragePercent}% অর্জিত / ৮০%
+                </span>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="w-full h-2.5 bg-stone-700 rounded-full overflow-hidden p-0.5">
+                <div
+                  className="bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400 h-full rounded-full transition-all duration-700 shadow-xs"
+                  style={{ width: `${Math.min(100, (coveragePercent / 80) * 100)}%` }}
+                />
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] text-stone-400 mt-2">
+                <span>বর্তমান ভাণ্ডার: {totalFrequency.toLocaleString('bn-BD')} শব্দ ({totalRoots}টি মূল)</span>
+                <span className="text-emerald-400 font-semibold">ধাপ ১ সম্পন্ন (+৯,৭১৩ শব্দ)</span>
+              </div>
             </div>
           </div>
         </div>
