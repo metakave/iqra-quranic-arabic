@@ -442,10 +442,16 @@ export default function DashboardPage() {
                             </Link>
                             <Link
                               href="/learn/module-05-lesson-23"
+                              className="text-xs bg-stone-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-stone-700 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors flex items-center gap-1 font-medium"
+                            >
+                              <span>পাঠ ২৩ (অতীতের কাজ: সে ও তারা [ـَ / ـَتْ / ـُوا])</span>
+                            </Link>
+                            <Link
+                              href="/learn/module-05-lesson-24"
                               className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-300 font-bold transition-colors flex items-center gap-1 shadow-2xs"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                              <span>পাঠ ২৩ (অতীতের কাজ: সে ও তারা [ـَ / ـَتْ / ـُوا]) • নতুন</span>
+                              <span>পাঠ ২৪ (সংলাপ ও বর্ণনায় অতীতের রূপান্তর) • নতুন</span>
                             </Link>
                           </div>
                         </div>
