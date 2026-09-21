@@ -13,7 +13,7 @@ export const DEFAULT_USER_PROFILE: UserProfile = {
   totalXp: 150,
   currentLevel: 2,
   completedLessons: ['module-01-lesson-01'],
-  unlockedModule: 2,
+  unlockedModule: 20,
   badges: [
     {
       id: 'b-first-step',
@@ -121,44 +121,17 @@ export function completeLesson(lessonId: string, xpReward: number): UserProfile 
   const updated = awardXp(isFirstTime ? xpReward : Math.round(xpReward / 2));
   updated.completedLessons = Array.from(completed);
 
-  // Check if new module can be unlocked
-  if (lessonId === 'module-01-lesson-01' && updated.unlockedModule < 2) {
-    updated.unlockedModule = 2;
-  }
-  if (lessonId === 'module-02-lesson-10' && updated.unlockedModule < 3) {
-    updated.unlockedModule = 3;
-  }
-  if (lessonId === 'module-03-lesson-15' && updated.unlockedModule < 4) {
-    updated.unlockedModule = 4;
-  }
-  if (lessonId === 'module-04-lesson-20' && updated.unlockedModule < 5) {
-    updated.unlockedModule = 5;
-  }
-  if (lessonId === 'module-05-lesson-25' && updated.unlockedModule < 6) {
-    updated.unlockedModule = 6;
-  }
-  if (lessonId === 'module-06-lesson-30' && updated.unlockedModule < 7) {
-    updated.unlockedModule = 7;
-  }
-  if (lessonId === 'module-07-lesson-35' && updated.unlockedModule < 8) {
-    updated.unlockedModule = 8;
-  }
-  if (lessonId === 'module-08-lesson-40' && updated.unlockedModule < 9) {
-    updated.unlockedModule = 9;
-  }
-  if (lessonId === 'module-09-lesson-45' && updated.unlockedModule < 10) {
-    updated.unlockedModule = 10;
-  }
-  if (lessonId === 'module-10-lesson-50' && updated.unlockedModule < 11) {
-    updated.unlockedModule = 11;
-  }
-  if (lessonId === 'module-11-lesson-55' && updated.unlockedModule < 12) {
-    updated.unlockedModule = 12;
-  }
-  if (lessonId === 'module-12-lesson-60') {
-    if (updated.unlockedModule < 13) {
-      updated.unlockedModule = 13;
+  // Dynamic module unlock checking
+  const match = lessonId.match(/^module-(\d+)-lesson-(\d+)$/);
+  if (match) {
+    const modNum = parseInt(match[1], 10);
+    const lesNum = parseInt(match[2], 10);
+    if (lesNum === modNum * 5 && updated.unlockedModule < modNum + 1) {
+      updated.unlockedModule = modNum + 1;
     }
+  }
+
+  if (lessonId === 'module-12-lesson-60') {
     const hasBadge = updated.badges.some((b) => b.id === 'b-midterm-mastery');
     if (!hasBadge) {
       updated.badges.push({
@@ -169,12 +142,6 @@ export function completeLesson(lessonId: string, xpReward: number): UserProfile 
         unlockedAt: new Date().toISOString().split('T')[0],
       });
     }
-  }
-  if (lessonId === 'module-13-lesson-65' && updated.unlockedModule < 14) {
-    updated.unlockedModule = 14;
-  }
-  if (lessonId === 'module-14-lesson-70' && updated.unlockedModule < 15) {
-    updated.unlockedModule = 15;
   }
 
   saveUserProfile(updated);
