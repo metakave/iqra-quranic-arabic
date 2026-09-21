@@ -29,6 +29,14 @@ export const metadata: Metadata = {
     "কুরআন শিক্ষা",
     "Arabic Grammar in Bengali",
   ],
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({
