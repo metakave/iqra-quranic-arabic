@@ -13,7 +13,7 @@ export const DEFAULT_USER_PROFILE: UserProfile = {
   totalXp: 150,
   currentLevel: 2,
   completedLessons: ['module-01-lesson-01'],
-  unlockedModule: 20,
+  unlockedModule: 24,
   badges: [
     {
       id: 'b-first-step',
@@ -40,7 +40,12 @@ export function getUserProfile(): UserProfile {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_USER_PROFILE));
       return DEFAULT_USER_PROFILE;
     }
-    return JSON.parse(saved);
+    const profile: UserProfile = JSON.parse(saved);
+    if (!profile.unlockedModule || profile.unlockedModule < 24) {
+      profile.unlockedModule = 24;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+    }
+    return profile;
   } catch {
     return DEFAULT_USER_PROFILE;
   }

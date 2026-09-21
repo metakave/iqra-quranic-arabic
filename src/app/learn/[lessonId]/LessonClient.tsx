@@ -80,76 +80,13 @@ export default function LessonClient({ lesson }: LessonClientProps) {
     }));
   };
 
-  const nextLessonMap: Record<string, string> = {
-    'module-01-lesson-01': 'module-01-lesson-02',
-    'module-01-lesson-02': 'module-01-lesson-03',
-    'module-01-lesson-03': 'module-01-lesson-04',
-    'module-01-lesson-04': 'module-01-lesson-05',
-    'module-01-lesson-05': 'module-02-lesson-06',
-    'module-02-lesson-06': 'module-02-lesson-07',
-    'module-02-lesson-07': 'module-02-lesson-08',
-    'module-02-lesson-08': 'module-02-lesson-09',
-    'module-02-lesson-09': 'module-02-lesson-10',
-    'module-02-lesson-10': 'module-03-lesson-11',
-    'module-03-lesson-11': 'module-03-lesson-12',
-    'module-03-lesson-12': 'module-03-lesson-13',
-    'module-03-lesson-13': 'module-03-lesson-14',
-    'module-03-lesson-14': 'module-03-lesson-15',
-    'module-03-lesson-15': 'module-04-lesson-16',
-    'module-04-lesson-16': 'module-04-lesson-17',
-    'module-04-lesson-17': 'module-04-lesson-18',
-    'module-04-lesson-18': 'module-04-lesson-19',
-    'module-04-lesson-19': 'module-04-lesson-20',
-    'module-04-lesson-20': 'module-05-lesson-21',
-    'module-05-lesson-21': 'module-05-lesson-22',
-    'module-05-lesson-22': 'module-05-lesson-23',
-    'module-05-lesson-23': 'module-05-lesson-24',
-    'module-05-lesson-24': 'module-05-lesson-25',
-    'module-05-lesson-25': 'module-06-lesson-26',
-    'module-06-lesson-26': 'module-06-lesson-27',
-    'module-06-lesson-27': 'module-06-lesson-28',
-    'module-06-lesson-28': 'module-06-lesson-29',
-    'module-06-lesson-29': 'module-06-lesson-30',
-    'module-06-lesson-30': 'module-07-lesson-31',
-    'module-07-lesson-31': 'module-07-lesson-32',
-    'module-07-lesson-32': 'module-07-lesson-33',
-    'module-07-lesson-33': 'module-07-lesson-34',
-    'module-07-lesson-34': 'module-07-lesson-35',
-    'module-07-lesson-35': 'module-08-lesson-36',
-    'module-08-lesson-36': 'module-08-lesson-37',
-    'module-08-lesson-37': 'module-08-lesson-38',
-    'module-08-lesson-38': 'module-08-lesson-39',
-    'module-08-lesson-39': 'module-08-lesson-40',
-    'module-08-lesson-40': 'module-09-lesson-41',
-    'module-09-lesson-41': 'module-09-lesson-42',
-    'module-09-lesson-42': 'module-09-lesson-43',
-    'module-09-lesson-43': 'module-09-lesson-44',
-    'module-09-lesson-44': 'module-09-lesson-45',
-    'module-09-lesson-45': 'module-10-lesson-46',
-    'module-10-lesson-46': 'module-10-lesson-47',
-    'module-10-lesson-47': 'module-10-lesson-48',
-    'module-10-lesson-48': 'module-10-lesson-49',
-    'module-10-lesson-49': 'module-10-lesson-50',
-    'module-10-lesson-50': 'module-11-lesson-51',
-    'module-11-lesson-51': 'module-11-lesson-52',
-    'module-11-lesson-52': 'module-11-lesson-53',
-    'module-11-lesson-53': 'module-11-lesson-54',
-    'module-11-lesson-54': 'module-11-lesson-55',
-    'module-11-lesson-55': 'module-12-lesson-56',
-    'module-12-lesson-56': 'module-12-lesson-57',
-    'module-12-lesson-57': 'module-12-lesson-58',
-    'module-12-lesson-58': 'module-12-lesson-59',
-    'module-12-lesson-59': 'module-12-lesson-60',
-    'module-12-lesson-60': 'module-13-lesson-61',
-    'module-13-lesson-61': 'module-13-lesson-62',
-    'module-13-lesson-62': 'module-13-lesson-63',
-    'module-13-lesson-63': 'module-13-lesson-64',
-    'module-13-lesson-64': 'module-13-lesson-65',
-    'module-13-lesson-65': 'module-14-lesson-66',
-    'module-14-lesson-66': 'module-14-lesson-67',
-    'module-14-lesson-67': 'module-14-lesson-68',
-    'module-14-lesson-68': 'module-14-lesson-69',
-    'module-14-lesson-69': 'module-14-lesson-70',
+  const getNextLessonId = (lessonNum: number): string | undefined => {
+    const nextNum = lessonNum + 1;
+    if (nextNum > 120) return undefined;
+    const modNum = Math.ceil(nextNum / 5);
+    const padMod = String(modNum).padStart(2, '0');
+    const padLes = String(nextNum).padStart(2, '0');
+    return `module-${padMod}-lesson-${padLes}`;
   };
 
   return (
@@ -765,7 +702,7 @@ export default function LessonClient({ lesson }: LessonClientProps) {
         xpEarned={earnedXp}
         streakDays={currentStreak}
         onClose={() => setShowCelebration(false)}
-        nextLessonId={nextLessonMap[lesson.id]}
+        nextLessonId={getNextLessonId(lesson.lessonNumber)}
       />
     </div>
   );

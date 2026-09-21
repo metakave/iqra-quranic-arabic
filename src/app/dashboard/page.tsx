@@ -19,7 +19,7 @@ export default function DashboardPage() {
   );
 
   const completedLessons = profile?.completedLessons ?? ['module-01-lesson-01'];
-  const unlockedModule = profile?.unlockedModule ?? 20;
+  const unlockedModule = profile?.unlockedModule ?? 24;
 
   return (
     <div className="min-h-screen bg-stone-50 py-8 px-4 sm:px-6">
