@@ -7,6 +7,7 @@ import ChunkBreakdown from '@/components/ChunkBreakdown';
 import TypedReflection from '@/components/TypedReflection';
 import StreakCelebration from '@/components/StreakCelebration';
 import QuranVerseLink from '@/components/QuranVerseLink';
+import AudioPronounceButton from '@/components/AudioPronounceButton';
 import { completeLesson } from '@/lib/gamification';
 import {
   ArrowLeft,
@@ -22,6 +23,11 @@ import {
 interface LessonClientProps {
   lesson: LessonContent;
   lessonId?: string;
+}
+
+function extractArabicText(str: string): string {
+  const clean = str.replace(/\s*\([^)]*\)/g, '').trim();
+  return clean || str;
 }
 
 function renderContrastOption(text: string) {
@@ -297,10 +303,17 @@ export default function LessonClient({ lesson }: LessonClientProps) {
               </div>
 
               {/* Uncut Quranic Verse Display */}
-              <div className="quran-verse-card p-8 text-center my-6">
-                <div className="font-quran text-4xl sm:text-5xl text-stone-900 mb-4 leading-loose">
+              <div className="quran-verse-card p-8 text-center my-6 flex flex-col items-center justify-center gap-3">
+                <div className="font-quran text-4xl sm:text-5xl text-stone-900 leading-loose">
                   {lesson.steps.dekhun.arabicText}
                 </div>
+                <AudioPronounceButton
+                  text={lesson.steps.dekhun.arabicText}
+                  size="md"
+                  surah={lesson.anchorAyah.surahNumber}
+                  ayah={lesson.anchorAyah.ayahNumber}
+                  label="মূল আয়াতের তিলাওয়াত/উচ্চারণ শুনুন"
+                />
                 <div className="text-sm text-stone-500 flex items-center justify-center gap-1.5 font-sans">
                   <span>কুরআন শরীফ •</span>
                   <QuranVerseLink
@@ -394,19 +407,30 @@ export default function LessonClient({ lesson }: LessonClientProps) {
 
               {/* Relationship Connectors */}
               <div className="space-y-3.5">
-                {lesson.steps.judun.connectors.map((c, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 sm:p-5 rounded-2xl bg-stone-50 border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-                  >
-                    <div className="font-quran text-2xl sm:text-3xl text-emerald-950 font-normal py-0.5 leading-relaxed" dir="rtl">
-                      {c.fromText}
+                {lesson.steps.judun.connectors.map((c, idx) => {
+                  const arabicPart = extractArabicText(c.fromText);
+                  const hasArabic = /[\u0600-\u06FF]/.test(arabicPart);
+                  return (
+                    <div
+                      key={idx}
+                      className="p-4 sm:p-5 rounded-2xl bg-stone-50 border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                    >
+                      <div className="flex items-center gap-2 font-quran text-2xl sm:text-3xl text-emerald-950 font-normal py-0.5 leading-relaxed" dir="rtl">
+                        <span>{c.fromText}</span>
+                        {hasArabic && (
+                          <AudioPronounceButton
+                            text={arabicPart}
+                            size="sm"
+                            label={`"${arabicPart}" এর উচ্চারণ শুনুন`}
+                          />
+                        )}
+                      </div>
+                      <div className="text-stone-800 text-sm sm:text-base bg-white px-3.5 py-2 rounded-xl border border-stone-200 font-medium">
+                        💡 {c.relationshipBengali}
+                      </div>
                     </div>
-                    <div className="text-stone-800 text-sm sm:text-base bg-white px-3.5 py-2 rounded-xl border border-stone-200 font-medium">
-                      💡 {c.relationshipBengali}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               {/* Contrast Check (বিভ্রান্তি দূরীকরণ) */}
@@ -475,10 +499,15 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                     </span>
                   </div>
 
-                  <div className="p-4 bg-white rounded-xl border border-emerald-200 text-center">
+                  <div className="p-4 bg-white rounded-xl border border-emerald-200 text-center flex flex-col items-center justify-center gap-2">
                     <div className="font-quran text-4xl sm:text-5xl text-emerald-950 font-normal py-1 leading-relaxed">
                       {lesson.steps.transferApplication.arabicText}
                     </div>
+                    <AudioPronounceButton
+                      text={lesson.steps.transferApplication.arabicText}
+                      size="md"
+                      label="আয়াতের উচ্চারণ শুনুন"
+                    />
                   </div>
 
                   <p className="text-[17px] sm:text-[19px] text-stone-700 leading-relaxed">
@@ -486,15 +515,22 @@ export default function LessonClient({ lesson }: LessonClientProps) {
                   </p>
 
                   {/* Vocabulary assistance cards */}
-                  <div className="grid grid-cols-3 gap-2 text-center" dir="rtl">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center" dir="rtl">
                     {lesson.steps.transferApplication.vocabularySupport.map((v, idx) => (
                       <div
                         key={idx}
-                        className="bg-white p-2.5 rounded-xl border border-emerald-200 text-center"
+                        className="bg-white p-3 rounded-xl border border-emerald-200 text-center flex flex-col items-center justify-between shadow-2xs hover:border-emerald-300 transition-all"
                       >
-                        <span className="font-quran text-2xl text-emerald-900 block leading-relaxed">
-                          {v.arabic}
-                        </span>
+                        <div className="flex items-center justify-center gap-1.5 w-full">
+                          <span className="font-quran text-2xl text-emerald-950 leading-relaxed">
+                            {v.arabic}
+                          </span>
+                          <AudioPronounceButton
+                            text={v.arabic}
+                            size="sm"
+                            label={`"${v.arabic}" এর উচ্চারণ শুনুন`}
+                          />
+                        </div>
                         <span className="text-sm text-stone-700 font-sans block mt-1 font-medium" dir="ltr">
                           = {v.meaningBengali}
                         </span>

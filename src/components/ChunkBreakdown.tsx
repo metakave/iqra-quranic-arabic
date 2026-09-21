@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Chunk } from '@/types/curriculum';
 import { Eye, CheckCircle2, Sparkles } from 'lucide-react';
+import AudioPronounceButton from '@/components/AudioPronounceButton';
 
 interface ChunkBreakdownProps {
   chunks: Chunk[];
@@ -80,10 +81,17 @@ export default function ChunkBreakdown({
             >
               {/* Arabic chunk */}
               <div>
-                <span className="inline-block text-xs sm:text-sm px-2.5 py-0.5 rounded-full bg-stone-200/80 text-stone-600 font-sans mb-2" dir="ltr">
-                  অংশ {idx + 1}
-                </span>
-                <h3 className="font-quran text-4xl sm:text-[42px] text-emerald-950 font-normal leading-relaxed py-1.5">
+                <div className="flex items-center justify-between mb-2" dir="ltr">
+                  <span className="inline-block text-xs sm:text-sm px-2.5 py-0.5 rounded-full bg-stone-200/80 text-stone-600 font-sans">
+                    অংশ {idx + 1}
+                  </span>
+                  <AudioPronounceButton
+                    text={chunk.arabicText}
+                    size="sm"
+                    label={`"${chunk.arabicText}" এর উচ্চারণ শুনুন`}
+                  />
+                </div>
+                <h3 className="font-quran text-3xl sm:text-[38px] text-emerald-950 font-normal leading-relaxed py-1">
                   {chunk.arabicText}
                 </h3>
               </div>
