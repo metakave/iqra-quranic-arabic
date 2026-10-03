@@ -45,7 +45,7 @@ export default function HomePage() {
           </div>
 
           <p className="text-lg sm:text-2xl text-emerald-300 font-medium max-w-2xl mx-auto leading-relaxed">
-            কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবি সরাসরি উপলব্ধি করার আধুনিক পদ্ধতি
+            কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবী সরাসরি শেখার আধুনিক পদ্ধতি
           </p>
 
           <p className="text-sm sm:text-base text-stone-300 max-w-2xl mx-auto leading-relaxed font-normal">
