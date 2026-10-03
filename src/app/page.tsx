@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   ChevronRight,
   Flame,
+  HeartHandshake,
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -75,6 +76,14 @@ export default function HomePage() {
             >
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span>কোরানের শব্দভান্ডার</span>
+            </Link>
+
+            <Link
+              href="/duas"
+              className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-amber-950/80 hover:bg-amber-900 text-amber-300 font-semibold text-base border border-amber-700/60 flex items-center justify-center gap-2 transition-colors"
+            >
+              <HeartHandshake className="w-4 h-4 text-amber-400" />
+              <span>কুরআনের দোয়া ও ব্যাকরণ</span>
             </Link>
           </div>
 
@@ -237,6 +246,31 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Quran Supplications Highlight Card */}
+      <section className="py-12 px-4 bg-gradient-to-r from-emerald-950 via-stone-900 to-stone-950 text-white border-y border-emerald-900/50">
+        <div className="max-w-4xl mx-auto rounded-3xl border border-emerald-700/50 p-6 sm:p-10 bg-stone-900/80 backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="space-y-3 text-center md:text-left">
+            <div className="inline-flex items-center gap-1.5 bg-emerald-950/90 border border-emerald-600/60 px-3 py-1 rounded-full text-xs text-emerald-300 font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>বিশেষ সংকলন • ৭৫টি অমর কুরআনিক মুনাজাত</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-stone-100 font-bengali">
+              কুরআনের দোয়া ও ব্যাকরণিক বিশ্লেষণ
+            </h3>
+            <p className="text-sm text-stone-300 max-w-xl leading-relaxed">
+              সূরা ও আয়াতের ক্রমানুসারে সাজানো সকল রব্বানা ও রব্বি দোয়ার শব্দভিত্তিক বিশ্লেষণ, অর্থপূর্ণ খণ্ড এবং পাঠের সঙ্গে সম্পর্কের রহস্য উন্মোচন করুন।
+            </p>
+          </div>
+          <Link
+            href="/duas"
+            className="shrink-0 px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-bold text-sm shadow-lg flex items-center gap-2 transition-all transform hover:scale-105"
+          >
+            <span>সকল দোয়া এক্সপ্লোর করুন</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

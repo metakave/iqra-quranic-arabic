@@ -6,7 +6,7 @@ import { COURSE_MODULES } from '@/data/courseCurriculum';
 import { SAMPLE_LESSONS } from '@/data/sampleLessons';
 import { getUserProfile, calculateLevel } from '@/lib/gamification';
 import { UserProfile } from '@/types/curriculum';
-import { Flame, Zap, Award, BookOpen, Clock, Lock, CheckCircle, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { Flame, Zap, Award, BookOpen, Clock, Lock, CheckCircle, ArrowRight, ShieldCheck, Sparkles, HeartHandshake } from 'lucide-react';
 
 export default function DashboardPage() {
   const [profile] = useState<UserProfile | null>(getUserProfile);
@@ -91,29 +91,57 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Daily Action Banner (30 Min Practice) */}
-        <div className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/60 rounded-3xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
-              <Clock className="w-6 h-6" />
+        {/* Action Banners Grid (30 Min Practice + Quranic Duas) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* SRS Card Practice */}
+          <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-white border border-amber-300/70 rounded-3xl p-6 flex flex-col justify-between gap-4 shadow-xs">
+            <div className="flex items-start gap-3.5">
+              <div className="h-11 w-11 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                <Clock className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-stone-900 text-base">
+                  আজকের ৩০ মিনিটের স্বাধীন পুনরাবৃত্তি
+                </h3>
+                <p className="text-xs text-stone-600 mt-1 leading-relaxed">
+                  স্মরণ ব্যবধান (SRS) কার্ডের মাধ্যমে আগের শেখা শব্দের তাৎক্ষণিক অর্থ উদ্ধার করুন।
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-bold text-stone-900 text-base">
-                আজকের ৩০ মিনিটের স্বাধীন পুনরাবৃত্তি বাকি আছে?
-              </h3>
-              <p className="text-xs text-stone-600 mt-0.5">
-                স্মরণ ব্যবধান (SRS) কার্ডের মাধ্যমে আগের শেখা শব্দের তাৎক্ষণিক অর্থ উদ্ধার করুন।
-              </p>
-            </div>
+
+            <Link
+              href="/practice"
+              className="w-full py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors"
+            >
+              <span>অনুশীলন শুরু করুন (+৩০ XP)</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
-          <Link
-            href="/practice"
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-xs shrink-0 transition-colors"
-          >
-            <span>পুনরাবৃত্তি শুরু করুন (+৩০ XP)</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          {/* Quranic Supplications Portal */}
+          <div className="bg-gradient-to-br from-emerald-900/10 via-emerald-800/5 to-white border border-emerald-300/70 rounded-3xl p-6 flex flex-col justify-between gap-4 shadow-xs">
+            <div className="flex items-start gap-3.5">
+              <div className="h-11 w-11 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                <HeartHandshake className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-stone-900 text-base">
+                  কুরআনের দোয়া ও ব্যাকরণিক বিশ্লেষণ
+                </h3>
+                <p className="text-xs text-stone-600 mt-1 leading-relaxed">
+                  ৭৫টি অমর দোয়ার শব্দভিত্তিক খণ্ড, ব্যাকরণিক সূত্র এবং পাঠের সঙ্গে সম্পর্কের রহস্য।
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href="/duas"
+              className="w-full py-2.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors"
+            >
+              <span>সকল দোয়া দেখুন</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
 
         {/* Badges Showcase */}
