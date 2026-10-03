@@ -25,6 +25,8 @@ import {
   ArrowUpDown,
   Info,
   Layers,
+  Lightbulb,
+  ArrowRight,
 } from 'lucide-react';
 
 export default function DuasPage() {
@@ -46,6 +48,7 @@ export default function DuasPage() {
   const [expandedAnalysisIds, setExpandedAnalysisIds] = useState<string[]>([]);
   const [revealedChunkKeys, setRevealedChunkKeys] = useState<Record<string, number[]>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [isTipsExpanded, setIsTipsExpanded] = useState<boolean>(false);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -423,6 +426,157 @@ export default function DuasPage() {
             )}
           </div>
         </div>
+
+        {/* Tips Section: বাক্য বোঝার ৮০% শর্টকাট (শব্দে X দেখলে অর্থ Y) */}
+        <section className="bg-gradient-to-br from-amber-500/10 via-emerald-500/5 to-teal-500/10 border border-amber-200/90 rounded-2xl p-4 sm:p-5 shadow-xs">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-800 flex items-center justify-center shrink-0">
+                <Lightbulb className="w-5 h-5 text-amber-700" />
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-bold text-stone-900 font-bengali flex items-center gap-2 flex-wrap">
+                  <span>Tips: বাক্য বোঝার ৮০% সহজ শর্টকাট</span>
+                  <span className="text-[11px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-sans font-semibold">
+                    শব্দে X দেখলে অর্থ Y
+                  </span>
+                </h3>
+                <p className="text-xs text-stone-600 font-bengali mt-0.5">
+                  কঠিন ব্যাকরণ ছক ছাড়াই এই কয়েকটি উপসর্গ ও অনুসর্গ চিনে কুরআনের অধিকাংশ দোয়ার বাক্য গঠন সরাসরি বুঝুন।
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsTipsExpanded(!isTipsExpanded)}
+                className="text-xs px-3 py-1.5 rounded-xl font-bold bg-amber-500 text-stone-950 hover:bg-amber-400 transition-colors shadow-xs cursor-pointer"
+              >
+                {isTipsExpanded ? 'টিপস সংকুচিত করুন ▲' : 'টিপস দেখুন ▼'}
+              </button>
+              <Link
+                href="/tips"
+                className="text-xs px-3 py-1.5 rounded-xl font-semibold bg-white border border-stone-200 text-stone-700 hover:text-emerald-700 hover:bg-stone-50 transition-colors flex items-center gap-1 cursor-pointer"
+              >
+                <span>সকল ২৪টি টিপস</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Quick Shortcuts Cards Grid */}
+          {isTipsExpanded && (
+            <div className="mt-4 pt-4 border-t border-amber-200/70 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {/* 1. bi */}
+                <div className="p-3 rounded-xl bg-white/95 border border-stone-200 shadow-2xs space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-quran text-lg font-bold text-emerald-800">بِـ (বি-)</span>
+                    <span className="text-[11px] text-stone-500 bg-stone-100 px-2 py-0.5 rounded-full">শব্দের শুরুতে</span>
+                  </div>
+                  <div className="text-xs font-bold text-stone-900 font-bengali">
+                    অর্থ: দিয়ে / দ্বারা / সাথে
+                  </div>
+                  <div className="text-xs text-stone-600 font-bengali">
+                    যেমন: <span className="font-quran text-stone-900 font-bold">بِسْمِ</span> = আল্লাহর নাম দিয়ে।
+                  </div>
+                </div>
+
+                {/* 2. li */}
+                <div className="p-3 rounded-xl bg-white/95 border border-stone-200 shadow-2xs space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-quran text-lg font-bold text-emerald-800">لِـ (লি-)</span>
+                    <span className="text-[11px] text-stone-500 bg-stone-100 px-2 py-0.5 rounded-full">শব্দের শুরুতে</span>
+                  </div>
+                  <div className="text-xs font-bold text-stone-900 font-bengali">
+                    অর্থ: জন্য / উদ্দেশ্যে
+                  </div>
+                  <div className="text-xs text-stone-600 font-bengali">
+                    যেমন: <span className="font-quran text-stone-900 font-bold">لِلَّهِ</span> = আল্লাহর জন্য, <span className="font-quran text-stone-900 font-bold">لَنَا</span> = আমাদের জন্য।
+                  </div>
+                </div>
+
+                {/* 3. al */}
+                <div className="p-3 rounded-xl bg-white/95 border border-stone-200 shadow-2xs space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-quran text-lg font-bold text-emerald-800">الـ (আল-)</span>
+                    <span className="text-[11px] text-stone-500 bg-stone-100 px-2 py-0.5 rounded-full">শব্দের শুরুতে</span>
+                  </div>
+                  <div className="text-xs font-bold text-stone-900 font-bengali">
+                    অর্থ: নির্দিষ্ট টি / টা / সেই
+                  </div>
+                  <div className="text-xs text-stone-600 font-bengali">
+                    যেমন: <span className="font-quran text-stone-900 font-bold">الصِّرَاطَ</span> = সেই সঠিক পথটি।
+                  </div>
+                </div>
+
+                {/* 4. na */}
+                <div className="p-3 rounded-xl bg-white/95 border border-stone-200 shadow-2xs space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-quran text-lg font-bold text-emerald-800">ـنَا (-না)</span>
+                    <span className="text-[11px] text-stone-500 bg-stone-100 px-2 py-0.5 rounded-full">শব্দের শেষে</span>
+                  </div>
+                  <div className="text-xs font-bold text-stone-900 font-bengali">
+                    অর্থ: আমাদের / আমাদেরকে
+                  </div>
+                  <div className="text-xs text-stone-600 font-bengali">
+                    যেমন: <span className="font-quran text-stone-900 font-bold">رَبَّنَا</span> = আমাদের রব, <span className="font-quran text-stone-900 font-bold">اهْدِنَا</span> = আমাদের পথ দেখান।
+                  </div>
+                </div>
+
+                {/* 5. ni */}
+                <div className="p-3 rounded-xl bg-white/95 border border-stone-200 shadow-2xs space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-quran text-lg font-bold text-emerald-800">ـنِي / ـي (-নি / -ই)</span>
+                    <span className="text-[11px] text-stone-500 bg-stone-100 px-2 py-0.5 rounded-full">শব্দের শেষে</span>
+                  </div>
+                  <div className="text-xs font-bold text-stone-900 font-bengali">
+                    অর্থ: আমাকে / আমার
+                  </div>
+                  <div className="text-xs text-stone-600 font-bengali">
+                    যেমন: <span className="font-quran text-stone-900 font-bold">رَبِّ</span> = আমার রব, <span className="font-quran text-stone-900 font-bold">ارْزُقْنِي</span> = আমাকে রিজিক দিন।
+                  </div>
+                </div>
+
+                {/* 6. sukun dua */}
+                <div className="p-3 rounded-xl bg-white/95 border border-stone-200 shadow-2xs space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-quran text-lg font-bold text-emerald-800">সাকিন ( ْ )</span>
+                    <span className="text-[11px] text-stone-500 bg-stone-100 px-2 py-0.5 rounded-full">দোয়ার শেষে</span>
+                  </div>
+                  <div className="text-xs font-bold text-stone-900 font-bengali">
+                    অর্থ: বিনম্র দোয়ার আকুতি
+                  </div>
+                  <div className="text-xs text-stone-600 font-bengali">
+                    যেমন: <span className="font-quran text-stone-900 font-bold">اغْفِرْ</span> (ক্ষমা করুন), <span className="font-quran text-stone-900 font-bold">ارْحَمْ</span> (দয়া করুন)।
+                  </div>
+                </div>
+              </div>
+
+              {/* Supplication 3-step formula bar */}
+              <div className="p-3.5 rounded-xl bg-white border border-emerald-300 text-xs font-bengali flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[10px]">
+                    গোল্ডেন ফর্মুলা
+                  </span>
+                  <span className="font-bold text-stone-900">
+                    কুরআনের ৮০% দোয়ার ৩ ধাপ:
+                  </span>
+                  <span className="text-stone-700">
+                    ১. ডাক (হে রব) ➔ ২. মিনতি (ক্ষমা করুন) ➔ ৩. চাওয়া বিষয় (আজাব থেকে)
+                  </span>
+                </div>
+                <Link
+                  href="/tips"
+                  className="text-emerald-700 hover:text-emerald-800 font-bold underline underline-offset-2 shrink-0 flex items-center gap-1"
+                >
+                  <span>সব টিপস শিখুন</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+          )}
+        </section>
 
         {/* Results Counter & Bulk Controls Bar */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm text-stone-600 px-1">

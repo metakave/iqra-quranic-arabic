@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Flame, Zap, BookOpen, Clock, User, Compass, BookMarked, HeartHandshake } from 'lucide-react';
+import { Flame, Zap, BookOpen, Clock, User, Compass, BookMarked, HeartHandshake, Lightbulb } from 'lucide-react';
 import { getUserProfile } from '@/lib/gamification';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { UserProfile } from '@/types/curriculum';
@@ -48,6 +48,7 @@ export default function Navbar() {
     { href: '/dashboard', label: 'পাঠশালা', icon: BookOpen },
     { href: '/vocabulary', label: 'শব্দভান্ডার', icon: BookMarked },
     { href: '/duas', label: 'কুরআনের দোয়া', icon: HeartHandshake },
+    { href: '/tips', label: 'টিপস (Tips)', icon: Lightbulb },
     { href: '/practice', label: 'অনুশীলন', icon: Clock },
     { href: '/#curriculum', label: 'পাঠ্যক্রম', icon: Compass },
   ];
