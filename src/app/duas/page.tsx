@@ -685,7 +685,7 @@ export default function DuasPage() {
                     <button
                       type="button"
                       onClick={() => toggleAnalysis(dua.id)}
-                      className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all border cursor-pointer ${
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm sm:text-[15px] font-semibold transition-all border cursor-pointer ${
                         isAnalysisExpanded
                           ? 'bg-emerald-900 text-white border-emerald-950 shadow-sm'
                           : 'bg-emerald-50/80 hover:bg-emerald-100 text-emerald-900 border-emerald-200'
@@ -699,7 +699,7 @@ export default function DuasPage() {
                             : 'কেন এমন অর্থ হলো? ব্যাকরণিক রহস্য ও পাঠের সূত্র দেখুন'}
                         </span>
                       </div>
-                      <span className="text-xs opacity-80">
+                      <span className="text-xs sm:text-[13px] opacity-80">
                         {isAnalysisExpanded ? '▲ বন্ধ করুন' : '▼ বিস্তারিত দেখুন'}
                       </span>
                     </button>
@@ -708,16 +708,16 @@ export default function DuasPage() {
                       <div className="mt-3 p-4 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-50/40 via-white to-stone-50 border border-emerald-200/90 shadow-inner space-y-4">
                         {/* Connected Course Lessons Badges */}
                         <div>
-                          <span className="text-xs font-bold text-emerald-900 uppercase tracking-wider block mb-2">
+                          <span className="text-xs sm:text-[13px] font-bold text-emerald-900 uppercase tracking-wider block mb-2">
                             সংশ্লিষ্ট কোর্স পাঠমালা (Lesson Linkage):
                           </span>
                           <div className="flex flex-wrap gap-1.5">
                             {dua.grammarExplanation.lessonLinks.map((linkText, lIdx) => (
                               <span
                                 key={lIdx}
-                                className="inline-flex items-center gap-1 bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs px-2.5 py-1 rounded-lg font-medium"
+                                className="inline-flex items-center gap-1 bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs sm:text-[13px] px-2.5 py-1 rounded-lg font-medium"
                               >
-                                <BookOpen className="w-3 h-3 text-emerald-700 shrink-0" />
+                                <BookOpen className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
                                 <span>{linkText}</span>
                               </span>
                             ))}
@@ -726,22 +726,22 @@ export default function DuasPage() {
 
                         {/* Step-by-step grammatical breakdown */}
                         <div className="space-y-1.5 pt-2 border-t border-emerald-100">
-                          <h4 className="text-xs sm:text-sm font-bold text-stone-900 flex items-center gap-1.5">
+                          <h4 className="text-sm sm:text-[15px] font-bold text-stone-900 flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                             <span>মূল ব্যাকরণিক গঠন (Grammatical Breakdown):</span>
                           </h4>
-                          <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-bengali">
+                          <p className="text-sm sm:text-[15px] text-stone-700 leading-relaxed font-bengali">
                             {dua.grammarExplanation.coreBreakdownBengali}
                           </p>
                         </div>
 
                         {/* Why it means what it means (কেন এমন অর্থ হলো?) */}
                         <div className="space-y-1.5 pt-2 border-t border-emerald-100">
-                          <h4 className="text-xs sm:text-sm font-bold text-stone-900 flex items-center gap-1.5">
+                          <h4 className="text-sm sm:text-[15px] font-bold text-stone-900 flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-amber-500"></span>
                             <span>কেন এমন অর্থ হলো? (Linguistic & Spiritual Wisdom):</span>
                           </h4>
-                          <p className="text-xs sm:text-sm text-stone-800 leading-relaxed font-bengali bg-white/80 p-3.5 rounded-lg border border-emerald-200/50">
+                          <p className="text-sm sm:text-[15px] text-stone-800 leading-relaxed font-bengali bg-white/80 p-3.5 rounded-lg border border-emerald-200/50">
                             {dua.grammarExplanation.whyItMeansWhatItMeansBengali}
                           </p>
                         </div>
