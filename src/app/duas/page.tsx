@@ -670,7 +670,7 @@ export default function DuasPage() {
                                 </div>
                               ) : (
                                 <div className="text-xs sm:text-[13px] text-stone-400 font-medium flex items-center justify-center gap-1 py-1">
-                                  <span>ক্লিক করে ভূমিকা দেখুন</span>
+                                  <span>ক্লিক করে সহজ ভূমিকা জানুন</span>
                                 </div>
                               )}
                             </div>
@@ -695,8 +695,8 @@ export default function DuasPage() {
                         <Sparkles className={`w-4 h-4 ${isAnalysisExpanded ? 'text-amber-400' : 'text-emerald-700'}`} />
                         <span>
                           {isAnalysisExpanded
-                            ? 'ব্যাকরণিক বিশ্লেষণ সংকুচিত করুন'
-                            : 'কেন এমন অর্থ হলো? ব্যাকরণিক রহস্য ও পাঠের সূত্র দেখুন'}
+                            ? 'সহজ বিশ্লেষণ সংকুচিত করুন'
+                            : 'কেন এমন অর্থ হলো? সহজ গঠন ও গভীর তাৎপর্য জানুন'}
                         </span>
                       </div>
                       <span className="text-xs sm:text-[13px] opacity-80">
@@ -709,7 +709,7 @@ export default function DuasPage() {
                         {/* Connected Course Lessons Badges */}
                         <div>
                           <span className="text-xs sm:text-[13px] font-bold text-emerald-900 uppercase tracking-wider block mb-2">
-                            সংশ্লিষ্ট কোর্স পাঠমালা (Lesson Linkage):
+                            সংশ্লিষ্ট সহজ পাঠমালা (সহজ যোগসূত্র):
                           </span>
                           <div className="flex flex-wrap gap-1.5">
                             {dua.grammarExplanation.lessonLinks.map((linkText, lIdx) => (
@@ -728,7 +728,7 @@ export default function DuasPage() {
                         <div className="space-y-1.5 pt-2 border-t border-emerald-100">
                           <h4 className="text-sm sm:text-[15px] font-bold text-stone-900 flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                            <span>মূল ব্যাকরণিক গঠন (Grammatical Breakdown):</span>
+                            <span>শব্দ ও বাক্যের সহজ গঠন:</span>
                           </h4>
                           <p className="text-sm sm:text-[15px] text-stone-700 leading-relaxed font-bengali">
                             {dua.grammarExplanation.coreBreakdownBengali}
@@ -739,7 +739,7 @@ export default function DuasPage() {
                         <div className="space-y-1.5 pt-2 border-t border-emerald-100">
                           <h4 className="text-sm sm:text-[15px] font-bold text-stone-900 flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                            <span>কেন এমন অর্থ হলো? (Linguistic & Spiritual Wisdom):</span>
+                            <span>অর্থের অন্তর্নিহিত সৌন্দর্য ও গভীর তাৎপর্য:</span>
                           </h4>
                           <p className="text-sm sm:text-[15px] text-stone-800 leading-relaxed font-bengali bg-white/80 p-3.5 rounded-lg border border-emerald-200/50">
                             {dua.grammarExplanation.whyItMeansWhatItMeansBengali}
