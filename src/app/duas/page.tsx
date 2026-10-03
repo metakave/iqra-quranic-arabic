@@ -640,7 +640,7 @@ export default function DuasPage() {
                           <div
                             key={cIdx}
                             onClick={() => toggleChunk(dua.id, cIdx)}
-                            className={`p-3 rounded-xl border text-center transition-all cursor-pointer flex flex-col justify-between min-h-[110px] select-none ${
+                            className={`p-3.5 rounded-xl border text-center transition-all cursor-pointer flex flex-col justify-between min-h-[125px] select-none ${
                               isRevealed
                                 ? `${colorClass} shadow-xs ring-1 ring-emerald-500/20`
                                 : 'bg-white border-stone-200 hover:border-emerald-300 hover:bg-stone-50/90'
@@ -648,28 +648,28 @@ export default function DuasPage() {
                           >
                             <div>
                               <div className="flex items-center justify-between mb-1" dir="ltr">
-                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-stone-200/70 text-stone-600 font-sans">
+                                <span className="text-[11px] px-2 py-0.5 rounded-full bg-stone-200/70 text-stone-600 font-sans">
                                   অংশ {cIdx + 1}
                                 </span>
                                 <AudioPronounceButton text={chunk.arabicText} size="sm" />
                               </div>
-                              <div className="font-quran text-lg sm:text-xl font-bold text-stone-900 leading-normal">
+                              <div className="font-quran text-xl sm:text-2xl font-bold text-stone-900 leading-normal py-0.5">
                                 {chunk.arabicText}
                               </div>
                             </div>
 
-                            <div className="mt-2 pt-1 border-t border-stone-200/60" dir="ltr">
+                            <div className="mt-2.5 pt-1.5 border-t border-stone-200/60" dir="ltr">
                               {isRevealed ? (
-                                <div className="space-y-0.5">
-                                  <div className="text-xs font-semibold text-stone-800">
+                                <div className="space-y-1">
+                                  <div className="text-sm sm:text-[15px] font-bold text-stone-800 leading-snug">
                                     {chunk.meaningBengali}
                                   </div>
-                                  <div className="text-[11px] text-emerald-700 font-medium">
+                                  <div className="text-xs sm:text-[13px] text-emerald-800 font-medium">
                                     {chunk.roleBengali}
                                   </div>
                                 </div>
                               ) : (
-                                <div className="text-[11px] text-stone-400 font-medium flex items-center justify-center gap-1 py-0.5">
+                                <div className="text-xs sm:text-[13px] text-stone-400 font-medium flex items-center justify-center gap-1 py-1">
                                   <span>ক্লিক করে ভূমিকা দেখুন</span>
                                 </div>
                               )}
