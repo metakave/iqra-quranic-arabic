@@ -1,6 +1,5 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { COURSE_MODULES } from '@/data/courseCurriculum';
 import QuranVerseLink from '@/components/QuranVerseLink';
@@ -10,18 +9,117 @@ import {
   CheckCircle2,
   BookOpen,
   Clock,
-  Award,
-  ShieldCheck,
   ChevronRight,
   Flame,
   HeartHandshake,
+  HelpCircle,
 } from 'lucide-react';
 
-export default function HomePage() {
-  const [demoRevealed, setDemoRevealed] = useState(false);
+export const metadata: Metadata = {
+  title: "ইক্বরা কোরানের আরবী - কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবী সরাসরি শেখার আধুনিক প্ল্যাটফর্ম",
+  description:
+    "বাংলাভাষীদের জন্য বৈজ্ঞানিক স্ব-শিক্ষণ প্ল্যাটফর্ম। কোনো মুখস্থ ছক ছাড়াই অর্থপূর্ণ খণ্ড, বাস্তব আয়াত এবং বৈজ্ঞানিক অনুশীলনের সাহায্যে কুরআনের আরবী সরাসরি বুঝে পড়ার ১২০টি পাঠের কোর্স।",
+  keywords: [
+    "কুরআনের আরবী শিক্ষা",
+    "কোরআনের আরবি ভাষা শিক্ষা",
+    "বুঝে বুঝে কুরআন পড়া",
+    "কুরআন বোঝার সহজ উপায়",
+    "ইক্বরা কোরানের আরবী",
+    "IQRA Quranic Arabic",
+    "কুরআনিক আরবি কোর্স বাংলা",
+    "কুরআনের দোয়া ও ব্যাকরণিক বিশ্লেষণ",
+  ],
+  alternates: {
+    canonical: '/',
+  },
+};
 
+const jsonLdData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://quranicarabic.metakave.com/#website",
+      "url": "https://quranicarabic.metakave.com",
+      "name": "ইক্বরা কোরানের আরবী - IQRA Quranic Arabic",
+      "description": "কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবী সরাসরি শেখার আধুনিক প্ল্যাটফর্ম",
+      "inLanguage": "bn",
+      "publisher": {
+        "@type": "Organization",
+        "name": "MetaKave",
+        "url": "https://quranicarabic.metakave.com"
+      }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://quranicarabic.metakave.com/#course",
+      "name": "ইক্বরা কোরানের আরবী (IQRA Quranic Arabic Course)",
+      "description": "১২০টি পাঠের স্ব-শিক্ষণ পাঠ্যক্রম। অর্থপূর্ণ খণ্ড ও বাস্তব আয়াতের সাহায্যে বাংলাভাষীদের জন্য কুরআন বুঝে পড়ার বৈজ্ঞানিক কোর্স।",
+      "provider": {
+        "@type": "Organization",
+        "name": "ইক্বরা কোরানের আরবী",
+        "sameAs": "https://quranicarabic.metakave.com"
+      },
+      "educationalLevel": "Beginner to Intermediate",
+      "inLanguage": "bn",
+      "isAccessibleForFree": true,
+      "courseCode": "IQRA-QA-120",
+      "numberOfCredits": 120,
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "Online",
+        "courseWorkload": "PT30M"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://quranicarabic.metakave.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "কোনো মুখস্থ ছক ছাড়াই কীভাবে কুরআনের আরবী শেখা যায়?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ইক্বরা পদ্ধতিতে প্রচলিত ব্যাকরণের জটিল ছক মুখস্থ না করিয়ে কুরআনের বাস্তব আয়াতের ছোট ছোট অর্থপূর্ণ খণ্ডে বিভক্ত করে (দেখুন → ভাঙুন → জোড়া দিন → বলুন → মিলিয়ে নিন) ধাপে ধাপে সরাসরি অর্থ উদ্ধার করা শেখানো হয়।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ইক্বরা কোরানের আরবী কোর্সে কয়টি পাঠ ও মডিউল রয়েছে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "কোর্সে সর্বমোট ২৪টি মডিউল এবং ১২০টি পাঠ রয়েছে। প্রতিদিন ২০–২৫ মিনিট অনুশীলনের মাধ্যমে যে কেউ সহজে কুরআন অনুধাবনের পূর্ণ দক্ষতা অর্জন করতে পারেন।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "কুরআনের দোয়া ও ব্যাকরণিক বিশ্লেষণ সেকশনটিতে কী রয়েছে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "এখানে অধ্যায় ও আয়াতের ক্রমানুসারে ৭৫টি শ্রেষ্ঠ কুরআনিক দোয়া সংকলিত রয়েছে, যেখানে প্রতিটি দোয়ার শব্দভিত্তিক খণ্ড ও ব্যাকরণিক সূত্র ব্যাখ্যা করা হয়েছে।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "কোর্সটি শুরু করার জন্য কি পূর্ববর্তী কোনো আরবি ব্যাকরণ জানার প্রয়োজন আছে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "না, কেবল আরবি রিডিং পড়তে পারলেই এই কোর্সটি সফলভাবে সম্পন্ন করা সম্ভব। কোনো পূর্ববর্তী ব্যাকরণ ব্যাকগ্রাউন্ডের প্রয়োজন নেই।"
+          }
+        }
+      ]
+    }
+  ]
+};
+
+export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-stone-50">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-stone-900 via-stone-850 to-emerald-950 text-white py-16 sm:py-24 px-4">
         {/* Subtle decorative background glow */}
@@ -333,6 +431,66 @@ export default function HomePage() {
               <span>সকল ২৪টি মডিউল ও ১২০টি পাঠের তালিকা দেখুন</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Frequently Asked Questions (FAQ) Section - High SEO Ranking Value */}
+      <section className="py-16 px-4 bg-stone-100/60 border-t border-stone-200">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center justify-center gap-1.5">
+              <HelpCircle className="w-4 h-4" />
+              <span>সাধারণ জিজ্ঞাসা ও উত্তর</span>
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 font-bengali">
+              কুরআনের আরবী শিক্ষা সম্পর্কিত সাধারণ প্রশ্নোত্তর
+            </h2>
+            <p className="text-xs sm:text-sm text-stone-600 max-w-xl mx-auto">
+              কুরআন সরাসরি বুঝে পড়ার পদ্ধতি, পাঠের পরিকাঠামো এবং নিয়মিত অনুশীলনের যাবতীয় তথ্যাদি।
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <details className="group bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs open:border-emerald-300 transition-all cursor-pointer">
+              <summary className="font-bold text-stone-900 text-sm sm:text-base flex items-center justify-between list-none">
+                <span>১. কোনো মুখস্থ ছক ছাড়াই কীভাবে কুরআনের আরবী সরাসরি শেখা সম্ভব?</span>
+                <span className="text-emerald-600 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed pt-2 border-t border-stone-100 font-bengali">
+                প্রচলিত ব্যাকরণিক পদ্ধতিতে শত শত ছক মুখস্থ করানো হয়। কিন্তু ইক্বরা পদ্ধতিতে মুখস্থ করার বদলে মস্তিষ্কের স্বাভাবিক প্যাটার্ন চেনার ক্ষমতা কাজে লাগানো হয়। কুরআনের বাস্তব আয়াতের অর্থপূর্ণ খণ্ড (Chunks) বিশ্লেষণ করে—‘দেখুন → ভাঙুন → জোড়া দিন → বলুন → মিলিয়ে নিন’—পদ্ধতিতে শিক্ষার্থী সরাসরি কুরআনের বাক্যভঙ্গি আয়ত্ত করতে পারেন।
+              </p>
+            </details>
+
+            <details className="group bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs open:border-emerald-300 transition-all cursor-pointer">
+              <summary className="font-bold text-stone-900 text-sm sm:text-base flex items-center justify-between list-none">
+                <span>২. ইক্বরা কোরানের আরবী কোর্সে কয়টি পাঠ ও মডিউল রয়েছে?</span>
+                <span className="text-emerald-600 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed pt-2 border-t border-stone-100 font-bengali">
+                কোর্সে সর্বমোট ২৪টি মডিউল এবং ১২০টি স্বয়ংসম্পূর্ণ পাঠ রয়েছে। প্রতিটি পাঠে সময় লাগে মাত্র ২০–২৫ মিনিট। ২৪ সপ্তাহের নিয়মিত রুটিনে প্রতিদিন পাঠ গ্রহণ ও ৩০ মিনিটের স্মরণ ব্যবধান (SRS) অনুশীলনের মাধ্যমে পুরো কুরআনের ব্যাকরণিক কাঠামো আয়ত্তে চলে আসে।
+              </p>
+            </details>
+
+            <details className="group bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs open:border-emerald-300 transition-all cursor-pointer">
+              <summary className="font-bold text-stone-900 text-sm sm:text-base flex items-center justify-between list-none">
+                <span>৩. কুরআনের দোয়া ও ব্যাকরণিক বিশ্লেষণ সেকশনটি কীভাবে সাহায্য করে?</span>
+                <span className="text-emerald-600 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed pt-2 border-t border-stone-100 font-bengali">
+                আমাদের ডেডিকেটেড ‘কুরআনের দোয়া’ সেকশনে অধ্যায় ও আয়াতের ক্রমানুসারে ৭৫টি শ্রেষ্ঠ রব্বানা ও রব্বি দোয়া সংকলিত রয়েছে। প্রতিটি দোয়ার শব্দভিত্তিক বিশ্লেষণ, দুর্বল হরফের রূপান্তর এবং পাঠমালার ব্যাকরণিক সূত্রের সাহায্যে “কেন এমন অর্থ হলো” তা বিস্তারিত ব্যাখ্যা করা হয়েছে। সাথে রয়েছে বিশুদ্ধ অডিও তেলাওয়াত।
+              </p>
+            </details>
+
+            <details className="group bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs open:border-emerald-300 transition-all cursor-pointer">
+              <summary className="font-bold text-stone-900 text-sm sm:text-base flex items-center justify-between list-none">
+                <span>৪. কোর্সটি শুরু করার জন্য কি পূর্ববর্তী আরবি ব্যাকরণ জানা আবশ্যক?</span>
+                <span className="text-emerald-600 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed pt-2 border-t border-stone-100 font-bengali">
+                না, একেবারেই নয়। আপনি যদি কেবল দেখে দেখে আরবি পড়তে (রিডিং পড়তে) পারেন, তবেই আপনি এই কোর্স শুরু করতে পারবেন। হরকত, চিহ্ন ও খণ্ড বিশ্লেষণের মাধ্যমে কোর্সটি একেবারে শূন্য থেকে আপনাকে স্বাবলম্বী করে তুলবে।
+              </p>
+            </details>
           </div>
         </div>
       </section>

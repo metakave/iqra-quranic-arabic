@@ -17,18 +17,82 @@ const amiriQuran = Amiri_Quran({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://quranicarabic.metakave.com';
+
 export const metadata: Metadata = {
-  title: "ইক্বরা কোরানের আরবী - IQRA Quranic Arabic | বাংলাভাষীদের জন্য ধাপে ধাপে কুরআনিক আরবি",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "ইক্বরা কোরানের আরবী - কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবী সরাসরি শেখার আধুনিক প্ল্যাটফর্ম",
+    template: "%s | ইক্বরা কোরানের আরবী (IQRA Quranic Arabic)",
+  },
   description:
-    "ছোট ছোট পাঠ, বাস্তব আয়াত এবং বৈজ্ঞানিক অনুশীলনের মাধ্যমে কুরআনের আরবি সরাসরি বুঝে পড়ার স্ব-শিক্ষণ প্ল্যাটফর্ম।",
+    "বাংলাভাষীদের জন্য বৈজ্ঞানিক স্ব-শিক্ষণ প্ল্যাটফর্ম। কোনো মুখস্থ ছক ছাড়াই অর্থপূর্ণ খণ্ড, বাস্তব আয়াত এবং বৈজ্ঞানিক অনুশীলনের সাহায্যে কুরআনের আরবী সরাসরি বুঝে পড়ার ১২০টি পাঠের সমন্বিত কোর্স।",
   keywords: [
+    "কুরআনের আরবী শিক্ষা",
+    "কোরআনের আরবি ভাষা শিক্ষা",
+    "বুঝে বুঝে কুরআন পড়া",
+    "কুরআন বোঝার সহজ উপায়",
     "ইক্বরা কোরানের আরবী",
     "IQRA Quranic Arabic",
-    "কুরআনিক আরবি",
-    "Quranic Arabic Bengali",
+    "কুরআনিক আরবি কোর্স বাংলা",
+    "কুরআনের দোয়া ও ব্যাকরণিক বিশ্লেষণ",
+    "রব্বানা দোয়া বাংলা অর্থসহ",
+    "কুরআনের শব্দভান্ডার",
     "কুরআন শিক্ষা",
+    "Quranic Arabic in Bengali",
+    "Learn Quranic Arabic Bengali",
+    "Quran Bangla Course",
     "Arabic Grammar in Bengali",
+    "Understand Quran without translation",
   ],
+  authors: [{ name: "IQRA Quranic Arabic Team", url: siteUrl }],
+  creator: "ইক্বরা কোরানের আরবী (IQRA Quranic Arabic)",
+  publisher: "MetaKave",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: "website",
+    locale: "bn_BD",
+    alternateLocale: ["en_US"],
+    url: siteUrl,
+    title: "ইক্বরা কোরানের আরবী - কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবী সরাসরি শেখার আধুনিক প্ল্যাটফর্ম",
+    description:
+      "মুখস্থ ছকের ঝামেলা ছাড়াই ছোট ছোট পাঠ ও বাস্তব আয়াতের সাহায্যে কুরআনের আরবী সরাসরি অনুধাবন করুন। ১২০টি পাঠ, কুরআনের দোয়া সংকলন ও ইন্টারেক্টিভ শব্দভান্ডার।",
+    siteName: "ইক্বরা কোরানের আরবী (IQRA Quranic Arabic)",
+    images: [
+      {
+        url: '/icon.svg',
+        width: 512,
+        height: 512,
+        alt: "ইক্বরা কোরানের আরবী লোগো",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ইক্বরা কোরানের আরবী - IQRA Quranic Arabic",
+    description:
+      "কোনো মুখস্থ ছক ছাড়াই কুরআনের আরবী সরাসরি শেখার আধুনিক পদ্ধতি। ১২০টি পাঠ ও ৭৫টি কুরআনিক দোয়ার বিশ্লেষণ।",
+    images: ['/icon.svg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  category: "education",
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
