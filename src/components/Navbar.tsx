@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Flame, Zap, BookOpen, Clock, User, Compass, BookMarked, HeartHandshake, Lightbulb } from 'lucide-react';
+import { Zap, BookOpen, Clock, User, Compass, BookMarked, HeartHandshake, Lightbulb } from 'lucide-react';
 import { getUserProfile } from '@/lib/gamification';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { UserProfile } from '@/types/curriculum';
@@ -48,7 +48,7 @@ export default function Navbar() {
     { href: '/dashboard', label: 'পাঠশালা', icon: BookOpen },
     { href: '/vocabulary', label: 'শব্দভান্ডার', icon: BookMarked },
     { href: '/duas', label: 'কুরআনের দোয়া', icon: HeartHandshake },
-    { href: '/tips', label: 'টিপস (Tips)', icon: Lightbulb },
+    { href: '/tips', label: 'টিপস', icon: Lightbulb },
     { href: '/practice', label: 'অনুশীলন', icon: Clock },
     { href: '/#curriculum', label: 'পাঠ্যক্রম', icon: Compass },
   ];
@@ -95,14 +95,6 @@ export default function Navbar() {
 
         {/* Right Gamification Pills & Profile */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Daily Streak */}
-          <div
-            title="ধারাবাহিক পড়ার দিন"
-            className="flex items-center gap-1 bg-amber-950/70 border border-amber-800/70 px-2.5 py-1 rounded-full text-amber-300 text-xs sm:text-sm font-semibold streak-glow"
-          >
-            <Flame className="w-4 h-4 text-amber-400 fill-amber-400 animate-pulse" />
-            <span>{profile?.streakDays ?? 1} দিন</span>
-          </div>
 
           {/* XP Badge */}
           <div
