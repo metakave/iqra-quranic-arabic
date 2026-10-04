@@ -5,25 +5,21 @@ import Link from 'next/link';
 import {
   Lightbulb,
   Search,
-  BookOpen,
   ArrowRight,
   Filter,
   Sparkles,
   Zap,
   CheckCircle2,
   HeartHandshake,
-  RotateCcw,
-  Volume2
+  RotateCcw
 } from 'lucide-react';
-import Navbar from '@/components/Navbar';
 import AudioPronounceButton from '@/components/AudioPronounceButton';
-import { SENTENCE_TIPS, SENTENCE_TIPS_CATEGORIES, SentenceTip } from '@/data/sentenceTips';
+import { SENTENCE_TIPS, SENTENCE_TIPS_CATEGORIES } from '@/data/sentenceTips';
 
 export default function TipsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeTesterIndex, setActiveTesterIndex] = useState<number | null>(null);
-  const [testerAnswerRevealed, setTesterAnswerRevealed] = useState<boolean>(false);
 
   // Filtered tips
   const filteredTips = useMemo(() => {
@@ -68,8 +64,6 @@ export default function TipsPage() {
 
   return (
     <div className="min-h-screen bg-stone-100 font-sans pb-20 selection:bg-emerald-500 selection:text-white">
-      <Navbar />
-
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-stone-900 via-stone-900 to-stone-850 text-white pt-10 pb-14 border-b border-stone-800 relative overflow-hidden">
         {/* Subtle Decorative Ambient Background */}
@@ -84,7 +78,7 @@ export default function TipsPage() {
                 মূলপাতা
               </Link>
               <span>/</span>
-              <span className="text-emerald-400 font-medium">বাক্য বোঝার ৮০% টিপস (Tips)</span>
+              <span className="text-emerald-400 font-medium">বাক্য বোঝার ৮০% টিপস</span>
             </div>
 
             <div className="inline-flex items-center gap-1.5 bg-amber-950/80 border border-amber-600/50 px-3.5 py-1 rounded-full text-xs text-amber-300 font-medium">
@@ -167,7 +161,6 @@ export default function TipsPage() {
                       setActiveTesterIndex(null);
                     } else {
                       setActiveTesterIndex(idx);
-                      setTesterAnswerRevealed(true);
                     }
                   }}
                   className={`p-3 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center justify-between min-h-[90px] select-none ${
